@@ -25,11 +25,14 @@ type TSearchResultContextValue = {
   results: TSearchResults,
   setResult: React.Dispatch<React.SetStateAction<TSearchResults>>,
   searchTerm: string,
+  isSearchOn: boolean,
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>,
   suggest: (term: string) => Suggestion[],
 };
 
-const searchClient = new SearchClient();
+// @todo: load search config.
+const conf = JSON.parse(process.env.BODILESS_SEARCH_PARAMS || '');
+const searchClient = new SearchClient(conf);
 
 /**
  * Search result context
@@ -40,16 +43,22 @@ const defaultSearchResults: TSearchResultContextValue = {
   searchTerm: '',
   setSearchTerm: () => '',
   suggest: () => [],
+  isSearchOn: false,
 };
 const searchResultContext = React.createContext<TSearchResultContextValue>(defaultSearchResults);
 export const useSearchResultContext = () => useContext(searchResultContext);
 export const SearchResultProvider: FC = ({ children }) => {
   const [results, setResult] = useState<TSearchResults>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [isSearchOn, setIsSearchOn] = useState<boolean>(false);
 
   const search = (term: string) => {
-    const searchResult = searchClient.search(term);
-    setResult(searchResult);
+    setIsSearchOn(() => true);
+    setTimeout(() => {
+      const searchResult = searchClient.search(term);
+      setResult(searchResult);
+      setIsSearchOn(() => false);
+    }, 2000);
   };
 
   const didMountRef = useRef(false);
@@ -73,12 +82,13 @@ export const SearchResultProvider: FC = ({ children }) => {
 
   const suggest = useCallback((queryString: string) => searchClient.suggest(queryString), []);
 
-  const contextValue = {
+  const contextValue: TSearchResultContextValue = {
     results,
     setResult,
     searchTerm,
     setSearchTerm,
     suggest,
+    isSearchOn,
   };
 
   return (

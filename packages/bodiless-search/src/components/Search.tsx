@@ -55,6 +55,7 @@ type SearchResultComponents = {
   SearchResultList: ComponentType<any>;
   SearchResultListItem: ComponentType<any>;
   SearchResultSummary: ComponentType<StylableProps>;
+  SearchResultMessage: ComponentType<StylableProps>;
 };
 
 type SearchResultItemComponents = {
@@ -117,6 +118,7 @@ const searchResultComponents: SearchResultComponents = {
   SearchResultList: Ul,
   SearchResultListItem: SearchResultItemClean,
   SearchResultSummary: P,
+  SearchResultMessage: H3,
 };
 
 export type SearchProps = DesignableComponentsProps<SearchComponents> &
@@ -124,27 +126,37 @@ HTMLProps<HTMLElement> & {
   onSubmit?: (query: string) => void,
 };
 type SearchResultProps = DesignableComponentsProps<SearchResultComponents> &
-HTMLProps<HTMLElement> & { resultCountMessage?: string, resultEmptyMessage?: string };
+HTMLProps<HTMLElement> & { resultCountMessage?: string, searchResultMessage?: string };
 
 const defaultResultCountMessage = 'Showing %count% result(s).';
 const defaultResultEmptyMessage = 'No content matches your request, please enter new keywords.';
 const SearchResultBase: FC<SearchResultProps> = ({
   components,
   resultCountMessage = defaultResultCountMessage,
-  resultEmptyMessage = defaultResultEmptyMessage,
+  searchResultMessage = defaultResultEmptyMessage,
 }) => {
   const searchResultContext = useSearchResultContext();
   const {
     SearchResultWrapper, SearchResultList, SearchResultListItem, SearchResultSummary,
+    SearchResultMessage,
   } = components;
-  const showResultCount = resultCountMessage.replace(
-    '%count%', searchResultContext.results.length.toString(),
-  );
+
+  let showResultCount = '';
+  let message = '';
+  if (searchResultContext.isSearchOn) {
+    showResultCount = 'searching ...';
+  } else {
+    showResultCount = resultCountMessage.replace(
+      '%count%', searchResultContext.results.length.toString(),
+    );
+    message = searchResultMessage;
+  }
+
   if (!searchResultContext.results.length) {
     return (
       <SearchResultWrapper>
         <SearchResultSummary>{showResultCount}</SearchResultSummary>
-        <H3>{resultEmptyMessage}</H3>
+        <SearchResultMessage>{message}</SearchResultMessage>
       </SearchResultWrapper>
     );
   }
