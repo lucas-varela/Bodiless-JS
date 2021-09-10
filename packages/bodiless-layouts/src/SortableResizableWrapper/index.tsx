@@ -62,7 +62,6 @@ const SortableResizableWrapper = SortableElement((props: Props) => {
     children,
     className,
     ui,
-    direction,
     ...resizableProps
   } = props;
   const {
@@ -79,6 +78,9 @@ const SortableResizableWrapper = SortableElement((props: Props) => {
       {children}
     </>
   );
+
+  const direction = document?.getElementsByTagName('html')[0].dir ?? DIRECTIONS.LTR;
+
   const ENABLED_DRAG_SIDES = {
     top: false,
     right: isEnabled && direction !== DIRECTIONS.RTL,

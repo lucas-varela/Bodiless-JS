@@ -27,7 +27,7 @@ import Helmet from 'react-helmet';
 // @ts-ignore Could not find a declaration file...
 import resolveConfig from 'tailwindcss/resolveConfig';
 import Layout from '../../../components/Layout';
-import { FlowContainerDefaultRTL } from '../../../components/FlowContainer';
+import { FlowContainerDefaultRTL, FlowContainerDefault } from '../../../components/FlowContainer';
 // @ts-ignore Could not find a declaration file...
 import tailWindConfig from '../../../../tailwind.config';
 
@@ -44,11 +44,11 @@ const snapDataFullWidth = getSnapFrom(
 
 const FlowContainerPage = (props: any) => (
   <Page {...props}>
-    <Helmet htmlAttributes={{ dir: 'rtl' }} />
+    <Helmet htmlAttributes={{ dir: 'rtl' }} defer={false} />
     <Layout>
       <H1>RTL FlowContainer Examples</H1>
       <H2>Default Flow Container RTL</H2>
-      <RTLFlowContainer
+      <FlowContainerDefault
         id="rtl-flow-container"
         nodeKey="rtl_default"
       />
