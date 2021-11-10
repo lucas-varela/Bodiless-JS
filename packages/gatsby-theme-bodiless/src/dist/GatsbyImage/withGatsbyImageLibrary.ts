@@ -17,7 +17,7 @@ import { withNodeKey } from '@bodiless/core';
 import { withImageLibrary } from '@bodiless/components-ui';
 import type { AsBodilessImage } from '@bodiless/components';
 import withGatsbyImageNode from './withGatsbyImageNode';
-import GatsbyImagePresets from './GatsbyImagePresets';
+import GatsbyImagePresets from '../GatsbyImagePresets';
 
 const withGatsbyImageLibrary = (preset: GatsbyImagePresets) => (
   asEditableImage: AsBodilessImage,

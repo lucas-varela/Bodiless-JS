@@ -19,7 +19,7 @@ import {
   WithNodeProps,
 } from '@bodiless/core';
 import { Token } from '@bodiless/fclasses';
-import GatsbyImagePresets from './GatsbyImagePresets';
+import GatsbyImagePresets from '../GatsbyImagePresets';
 
 const withGatsbyImageNode = (
   preset: GatsbyImagePresets,

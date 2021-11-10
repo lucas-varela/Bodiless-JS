@@ -19,7 +19,7 @@ import type { AsBodilessImage } from '@bodiless/components';
 import asGatsbyImage from './asGatsbyImage';
 import withGatsbyImageLogger from './withGatsbyImageLogger';
 import withGatsbyImageNode from './withGatsbyImageNode';
-import GatsbyImagePresets from './GatsbyImagePresets';
+import GatsbyImagePresets from '../GatsbyImagePresets';
 
 const withGatsbyImagePreset = (preset: GatsbyImagePresets) => (
   asEditableImage: AsBodilessImage & { meta?: TokenMeta },

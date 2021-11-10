@@ -15,7 +15,7 @@
 const path = require('path');
 const fg = require('fast-glob');
 const fs = require('fs');
-const { createDefaultContentPlugins } = require('./dist/DefaultContent');
+const { createDefaultContentPlugins } = require('./server/node/DefaultContent');
 
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,

@@ -39,7 +39,7 @@ import type {
   FixedObject,
   GatsbyImageOptionalProps,
 } from 'gatsby-image';
-import GatsbyImagePresets from './GatsbyImagePresets';
+import GatsbyImagePresets from '../GatsbyImagePresets';
 
 type BodilessImageComponents = {
   GatsbyImage: CT<GatsbyPluginImageProps>,

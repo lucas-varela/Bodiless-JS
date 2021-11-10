@@ -13,18 +13,12 @@
  */
 
 /* eslint-disable global-require */
-
 declare global {
   // eslint-disable-next-line
   var BODILESS_GATSBY_LOGS: string[];
 }
 
 const LOG_FILE = 'gatsby_error.log';
-
-const log = (message: string) => {
-  global.BODILESS_GATSBY_LOGS = global.BODILESS_GATSBY_LOGS || [];
-  global.BODILESS_GATSBY_LOGS.push(message);
-};
 
 /**
  * flush logs to a file and clear global object
@@ -71,7 +65,6 @@ const clear = () => {
 const hasLogs = () => global.BODILESS_GATSBY_LOGS && global.BODILESS_GATSBY_LOGS.length > 0;
 
 export {
-  log,
   flush,
   hasLogs,
   validate,

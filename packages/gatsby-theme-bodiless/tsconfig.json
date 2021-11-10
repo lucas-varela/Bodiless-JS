@@ -1,8 +1,6 @@
 {
   "extends": "../../tsconfig.settings.json",
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
     "rootDir": "src",
     "outDir": ".",
     "baseUrl": ".",
@@ -15,6 +13,7 @@
     "lib",
     "node_modules",
     "__tests__/**/*.*",
-    "src/**/__tests__/**/*.*"
+    "src/**/__tests__/**/*.*",
+    "src/dist/node/*"
    ]
 }

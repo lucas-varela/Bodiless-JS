@@ -14,7 +14,7 @@
 
 import asGatsbyImage, { isGatsbyImage, withoutGatsbyImageProps } from './asGatsbyImage';
 import withGatsbyImageNode from './withGatsbyImageNode';
-import GatsbyImagePresets from './GatsbyImagePresets';
+import GatsbyImagePresets from '../GatsbyImagePresets';
 import withGatsbyImageLogger from './withGatsbyImageLogger';
 import withGatsbyImagePreset from './withGatsbyImagePreset';
 import withGatsbyImageLibrary from './withGatsbyImageLibrary';

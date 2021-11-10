@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { mergeConfigs } from '../src/dist/tailwindcss';
+import { mergeConfigs } from '../src/dist/node/tailwindcss';
 
 describe('tailwindcss', () => {
   describe('mergeConfigs', () => {

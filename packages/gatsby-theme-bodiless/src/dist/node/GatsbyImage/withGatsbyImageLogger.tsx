@@ -15,8 +15,8 @@
 import React, { FC } from 'react';
 import { useNode } from '@bodiless/core';
 import { Token } from '@bodiless/fclasses';
-import log from '../utils/log';
-import GatsbyImagePresets from '../GatsbyImagePresets';
+import log from '../../utils/log';
+import GatsbyImagePresets from '../../GatsbyImagePresets';
 
 type Props = {
   preset: GatsbyImagePresets

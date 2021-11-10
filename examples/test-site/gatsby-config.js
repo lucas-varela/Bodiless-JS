@@ -3,7 +3,7 @@ const express = require('express');
 const {
   createDefaultContentPlugins,
   getSampleDefaultContentConfig,
-} = require('@bodiless/gatsby-theme-bodiless/dist/DefaultContent');
+} = require('@bodiless/gatsby-theme-bodiless/server/node/DefaultContent');
 const {
   getConfig: getSiteDefaultContentConfig,
 } = require('./src/components/Contentful');
