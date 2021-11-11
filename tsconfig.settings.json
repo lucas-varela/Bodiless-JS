@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "lib",
     "moduleResolution": "node",
-    "target": "es2015",
+    "target": "es5",
     "module": "es2015",
     "skipDefaultLibCheck": true,
     "noUnusedLocals": true,
