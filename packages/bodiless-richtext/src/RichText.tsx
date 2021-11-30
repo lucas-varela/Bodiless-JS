@@ -24,9 +24,8 @@ import pick from 'lodash/pick';
 import flow from 'lodash/flow';
 import isEmpty from 'lodash/isEmpty';
 import { createEditor, Editor } from 'slate';
-import type { Element } from 'slate';
 import {
-  Slate, withReact, useSlate, ReactEditor,
+  Slate, withReact, useSlate
 } from 'slate-react';
 import { observer } from 'mobx-react-lite';
 import {
@@ -212,7 +211,7 @@ const withEditorSettings = (components: RichTextComponents) => (editor: Editor) 
     .map(Component => Component.id);
   // eslint-disable-next-line no-param-reassign
   editor.isInline = (
-    element: Element,
+    element,
   ) => (inlineTypes.includes(element.type as string) ? true : isInline(element));
   return editor;
 };
@@ -241,13 +240,13 @@ const BasicRichText = React.memo((props: RichTextBaseProps) => {
   const finalUI = getUI(ui);
   const selectorButtons = getSelectorButtons(finalComponents).map(C => <C key={useUUID()} />);
 
-  const editor = useRef<ReactEditor>(
+  const editor = useRef<Editor>(
     flow(
       withReact,
       withHistory,
       withEditorSettings(finalComponents),
       withHtmlPaste(finalComponents),
-    )(createEditor()) as ReactEditor,
+    )(createEditor()) as Editor,
   );
 
   const initialValue$ = useInitialValue(initialValue);
