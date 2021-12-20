@@ -20,7 +20,6 @@ import React, {
   useCallback,
   useEffect,
   useState,
-  useMemo,
 } from 'react';
 import {
   A,
@@ -140,7 +139,7 @@ const SearchResultBase: FC<SearchResultProps> = ({
   searchResultMessage = defaultResultEmptyMessage,
 }) => {
   const searchResultContext = useSearchResultContext();
-  const { searchTerm, results } = searchResultContext;
+  const { results } = searchResultContext;
   const {
     SearchResultWrapper, SearchResultList, SearchResultListItem, SearchResultSummary, SearchHelmet,
     SearchResultMessage,
@@ -148,6 +147,7 @@ const SearchResultBase: FC<SearchResultProps> = ({
 
   let showResultCount = '';
   let message = '';
+  
   if (searchResultContext.isSearchOn) {
     showResultCount = 'searching ...';
   } else {
@@ -166,7 +166,8 @@ const SearchResultBase: FC<SearchResultProps> = ({
       </SearchResultWrapper>
     );
   }
-  return useMemo(() => (
+
+  return (
     <SearchResultWrapper>
       <SearchHelmet />
       <SearchResultSummary>{showResultCount}</SearchResultSummary>
@@ -178,7 +179,7 @@ const SearchResultBase: FC<SearchResultProps> = ({
         }
       </SearchResultList>
     </SearchResultWrapper>
-  ), [searchTerm, results]);
+  );
 };
 
 const SearchBoxBase: FC<SearchProps> = ({ components, ...props }) => {
