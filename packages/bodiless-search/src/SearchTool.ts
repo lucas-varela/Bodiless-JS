@@ -20,11 +20,27 @@ import path from 'path';
 import { v1 } from 'uuid';
 import type {
   SearchEngineInterface,
+  SearchToolInterface,
   TSearchConf,
-  TSearchIndexSettings,
+  // TSearchIndexSettings,
+  TLanguageSetting,
   TDocument,
 } from './types';
 import LunrSearch from './LunrSearch';
+
+export const env2string = (envVar: string, defaultVar?: string): string => {
+  if (typeof process.env[envVar] === 'undefined') {
+    return defaultVar || '';
+  }
+  return process.env[envVar] || '';
+};
+
+export const env2array = (envVar: string, defaultVar?: string[]): string[] => {
+  if (typeof process.env[envVar] === 'undefined') {
+    return defaultVar || [];
+  }
+  return process.env[envVar]!.split('|');
+};
 
 /**
  * Search function helper class
@@ -32,29 +48,27 @@ import LunrSearch from './LunrSearch';
  * - Select search engine for search related operations, default to Lunrjs.
  * - Build index with given source path and type of content.
  */
-class SearchTool {
+class SearchTool implements SearchToolInterface {
   searchEngine: SearchEngineInterface;
 
-  constructor(config?: TSearchConf) {
+  config: TSearchConf;
+
+  constructor(config: TSearchConf) {
+    this.config = config;
     this.searchEngine = config && config.searchEngine ? config.searchEngine : new LunrSearch();
+    this.searchEngine.setIndexConfig(this.config.indexConfig);
   }
 
-  generateIndex(settings: TSearchIndexSettings): void {
-    const {
-      sourcePath, sourceTypes, targetPath, indexConfig,
-    } = settings;
-
-    this.searchEngine.setIndexConfig(indexConfig);
-
-    const sourceFiles = this.findSourceFiles({ sourcePath, sourceTypes });
-    const documents = this.filesToDocument(sourceFiles, sourcePath);
-
-    this.searchEngine.addDocuments(documents);
-
-    const ind = this.searchEngine.exportIndex();
-    const targetPath$ = path.resolve(process.cwd(), targetPath);
-    fs.writeFile(targetPath$, ind, 'utf8', err => {
-      if (err) throw err;
+  generateIndex(): void {
+    this.config.languages.forEach(setting => {
+      const sourceFiles = this.findSourceFiles(setting);
+      const documents = this.filesToDocument(sourceFiles);
+      this.searchEngine.addDocuments(documents);
+      const ind = this.searchEngine.exportIndex();
+      const targetPath$ = path.resolve(process.cwd(), setting.indexFilePath, setting.indexFileName);
+      fs.writeFile(targetPath$, ind, 'utf8', err => {
+        if (err) throw err;
+      });
     });
   }
 
@@ -62,38 +76,38 @@ class SearchTool {
     this.searchEngine = searchEngine;
   }
 
-  findSourceFiles = (settings: {
-    sourcePath: string;
-    sourceTypes: string[];
-  }) => {
-    const { sourcePath, sourceTypes } = settings;
-    const path$ = path.resolve(process.cwd(), sourcePath);
-    if (!fs.existsSync(path$)) {
-      throw new Error(`Invalid source path: ${path$}`);
-    }
+  findSourceFiles = (settings: TLanguageSetting): string[] => {
+    const { sourcePaths, excludePaths } = settings;
+    return sourcePaths.map(source => {
+      const path$ = path.resolve(process.cwd(), source);
+      if (!fs.existsSync(path$)) {
+        throw new Error(`Invalid source path: ${path$}`);
+      }
 
-    const pattern = `**/+(${sourceTypes.map(v => `*.${v}`).join('|')})`;
-    return glob.sync(pattern, {
-      cwd: path$,
-      absolute: false,
-    });
+      const pattern = `**/+(${this.config.sourceTypes.map(v => `*.${v}`).join('|')})`;
+      return glob.sync(pattern, {
+        cwd: path$,
+        absolute: true,
+        ignore: excludePaths,
+      });
+    }).reduce((files, current) => files.concat(current));
   };
 
   /**
    * Returns index document created with given files.
    */
-  filesToDocument = (filePaths: string[], sourcePath: string): TDocument[] => {
+  filesToDocument = (filePaths: string[]): TDocument[] => {
     const documents: TDocument[] = [];
-    const selector = process.env.BODILESS_SEARCH_INDEX_SELECTOR || 'body *';
-    const exclude = process.env.BODILESS_SEARCH_INDEX_EXCLUDE_SELECTOR || 'script,noscript,style';
+    const selectors = this.config.contentSelectors;
+    const excluders = this.config.contentExcluders;
     filePaths
-      .filter(filePath => fs.statSync(path.join(sourcePath, filePath)).isFile())
+      .filter(filePath => fs.statSync(filePath).isFile())
       .forEach(filePath => {
         const mimeType = mime.getType(filePath);
         switch (mimeType) {
           case 'text/html': {
-            const html = fs.readFileSync(path.resolve(sourcePath, filePath)).toString();
-            const doc = this.htmlToDocument(html, selector, exclude);
+            const html = fs.readFileSync(filePath).toString();
+            const doc = this.htmlToDocument(html, selectors, excluders);
             const filePathClean = filePath.replace(/index.html$/i, '');
             if (!doc.title) {
               doc.title = filePathClean;
@@ -114,14 +128,14 @@ class SearchTool {
   /**
    * Create index document from HTML content.
    */
-  htmlToDocument = (html: string, selector: string, exclude: string): TDocument => {
+  htmlToDocument = (html: string, selectors: string[], excluders: string[]): TDocument => {
     const $ = cheerio.load(html);
     const title = $('h1').text().trim() || $('title').text().trim();
-    if (exclude) {
-      $(exclude).remove();
+    if (excluders) {
+      $(excluders.join(',')).remove();
     }
     // eslint-disable-next-line func-names
-    const body = $(selector).contents().map(function (this: cheerio.Element) {
+    const body = $(selectors.join(',')).contents().map(function (this: cheerio.Element) {
       return (this.type === 'text') ? $(this).text().trim() : '';
     }).get()
       .join(' ')
@@ -132,6 +146,92 @@ class SearchTool {
       id: v1(),
       title,
       body,
+    };
+  };
+}
+
+/**
+ * Utility class for loading search related configuration.
+ *
+ * Search setting parameters are used for build index and frontend
+ * search process. It's collected from environment variables, i.e.
+ *   - BODILESS_SEARCH_PAGE
+ *   - BODILESS_SEARCH_EXPIRES
+ *  etc.
+ *
+ * or search configuration file specified with environment variable
+ *   - BODILESS_SEARCH_CONFIG
+ */
+
+/**
+ * load setting parameters from environment variables. If BODILESS_SEARCH_CONFIG
+ * json configure file is defined, overrides all other search env variables.
+ */
+export class SearchConfig {
+  static getConfig = (): TSearchConf => {
+    const configFile = path.resolve(process.cwd(), env2string('BODILESS_SEARCH_CONFIG', ''));
+    if (configFile && fs.statSync(configFile).isFile()) {
+      const {
+        sourceTypes,
+        contentSelectors,
+        contentExcluders,
+        languages,
+        indexConfig,
+      } = JSON.parse(fs.readFileSync(configFile, 'utf8'));
+      return {
+        sourceTypes,
+        contentSelectors,
+        contentExcluders,
+        languages,
+        indexConfig,
+      };
+    }
+
+    const engine = env2string('BODILESS_SEARCH_ENGINE', '');
+    let searchEngine: SearchEngineInterface;
+    switch (engine) {
+      case 'lunr':
+      default:
+        searchEngine = new LunrSearch();
+        break;
+    }
+    const sourcePaths = env2array('BODILESS_SEARCH_SOURCE_PATH', ['./public']);
+    const sourceTypes = env2array('BODILESS_SEARCH_SOURCE_TYPE', ['html', 'htm']);
+    const indexFilePath = env2string('BODILESS_SEARCH_INDEX_PATH', './public');
+    const indexUrlName = '';
+    const indexFileName = env2string('BODILESS_SEARCH_INDEX_NAME', 'lunr.json');
+    const excludePaths = env2array('BODILESS_SEARCH_EXCLUDE_PATH', []);
+    const contentSelectors = env2array('BODILESS_SEARCH_INDEX_SELECTOR', ['body *']);
+    const contentExcluders = env2array(
+      'BODILESS_SEARCH_INDEX_EXCLUDE_SELECTOR',
+      ['script', 'noscript', 'style'],
+    );
+    const searchPath = env2string('BODILESS_SEARCH_PAGE', 'search');
+    const indexConfig = {
+      ref: 'id',
+      fields: [
+        { name: 'title', attributes: { boost: 2 } },
+        { name: 'body' },
+      ],
+    };
+    const languageSettings = {
+      name: 'English',
+      code: 'en',
+      sourcePaths,
+      excludePaths,
+      indexFilePath,
+      indexUrlName,
+      indexFileName,
+      searchPath,
+    };
+
+    return {
+      searchEngine,
+      sourceTypes,
+      contentSelectors,
+      contentExcluders,
+      languages: [languageSettings],
+      indexConfig,
     };
   };
 }

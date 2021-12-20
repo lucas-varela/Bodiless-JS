@@ -79,7 +79,7 @@ BODILESS_SEARCH_INDEX_SELECTOR='body *'
 ## CSS selectors used to exclude content element from indexing.
 BODILESS_SEARCH_INDEX_EXCLUDE_SELECTOR='script,noscript,style,.bg-gray-200,h1'
 
-## Number of charactors displayed in preview section.
+## Number of characters displayed in preview section.
 BODILESS_SEARCH_INDEX_PREVIEW_LENGTH='300'
 ```
 
@@ -289,7 +289,7 @@ Chrome)
 2. Click Local Storage and your site
 3. Then clear search:index file.
 
-### Defining What is Indexed
+### Defining What is Indexed.
 
 Indexing on your site is defined by the `BODILESS_SEARCH_INDEX_SELECTOR` env
 variable. It is recommended that you set it to the body of your content or body
@@ -302,6 +302,17 @@ and target article content specifically.
 
 In addition, you can exclude items from search via the env var `BODILESS_SEARCH_INDEX_EXCLUDE_SELECTOR`.
 By default we suggest adding `script`, `noscript`, `style` so these aren't indexed. 
+
+### Exclude Certain Resources From Indexing.
+
+Sometimes, there are pages you don't want to include in search result. You can specify 
+the page file or path name in environment variable `BODILESS_SEARCH_EXCLUDE_PATH` using [glob pattern](https://en.wikipedia.org/wiki/Glob_(programming)) and combine the list of file/path names with "|" character.
+
+For example, to exclude content under `404` folder, plus content from 404.html file, you 
+can specify as:
+```
+BODILESS_SEARCH_EXCLUDE_PATH='404/*|404.*'
+```
 
 #### Adding a `no-search` Class
 

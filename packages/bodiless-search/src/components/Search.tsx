@@ -58,6 +58,7 @@ type SearchResultComponents = {
   SearchResultListItem: ComponentType<any>;
   SearchResultSummary: ComponentType<StylableProps>;
   SearchHelmet: ComponentType<StylableProps>;
+  SearchResultMessage: ComponentType<StylableProps>;
 };
 
 type SearchResultItemComponents = {
@@ -121,6 +122,7 @@ const searchResultComponents: SearchResultComponents = {
   SearchResultListItem: SearchResultItemClean,
   SearchResultSummary: P,
   SearchHelmet: Div,
+  SearchResultMessage: H3,
 };
 
 export type SearchProps = DesignableComponentsProps<SearchComponents> &
@@ -128,34 +130,39 @@ HTMLProps<HTMLElement> & {
   onSubmit?: (query: string) => void,
 };
 type SearchResultProps = DesignableComponentsProps<SearchResultComponents> &
-HTMLProps<HTMLElement> & { resultCountMessage?: string, resultEmptyMessage?: string };
+HTMLProps<HTMLElement> & { resultCountMessage?: string, searchResultMessage?: string };
 
 const defaultResultCountMessage = 'Showing %count% result(s).';
 const defaultResultEmptyMessage = 'No content matches your request, please enter new keywords.';
 const SearchResultBase: FC<SearchResultProps> = ({
   components,
   resultCountMessage = defaultResultCountMessage,
-  resultEmptyMessage = defaultResultEmptyMessage,
+  searchResultMessage = defaultResultEmptyMessage,
 }) => {
   const searchResultContext = useSearchResultContext();
   const { searchTerm, results } = searchResultContext;
   const {
     SearchResultWrapper, SearchResultList, SearchResultListItem, SearchResultSummary, SearchHelmet,
+    SearchResultMessage,
   } = components;
-  const showResultCount = resultCountMessage.replace(
-    '%count%', results.length.toString(),
-  );
 
-  if (!results.length && searchTerm === '') {
-    return null;
+  let showResultCount = '';
+  let message = '';
+  if (searchResultContext.isSearchOn) {
+    showResultCount = 'searching ...';
+  } else {
+    showResultCount = resultCountMessage.replace(
+      '%count%', searchResultContext.results.length.toString(),
+    );
+    message = searchResultMessage;
   }
 
-  if (!results.length) {
+  if (!searchResultContext.results.length) {
     return (
       <SearchResultWrapper>
         <SearchHelmet />
         <SearchResultSummary>{showResultCount}</SearchResultSummary>
-        <H3>{resultEmptyMessage}</H3>
+        <SearchResultMessage>{message}</SearchResultMessage>
       </SearchResultWrapper>
     );
   }
