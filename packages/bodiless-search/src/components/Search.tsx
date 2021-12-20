@@ -34,6 +34,7 @@ import {
   DesignableComponentsProps,
   designable,
   DesignableProps,
+  Span,
 } from '@bodiless/fclasses';
 import { useSearchResultContext } from './SearchContextProvider';
 import { TSearchResult, Suggestion } from '../types';
@@ -49,6 +50,7 @@ export type SearchComponents = {
     suggestions: Suggestion[];
     searchTerm?: string;
   }>,
+  SuggestionAnnouncer: ComponentType<any>
 };
 
 type SearchResultComponents = {
@@ -82,6 +84,7 @@ export const searchComponents: SearchComponents = {
   SearchInput: SearchInputBase,
   SearchButton: Button,
   Suggestions: BaseSuggestions,
+  SuggestionAnnouncer: Span,
 };
 
 const searchResultItemComponents: SearchResultItemComponents = {
@@ -147,15 +150,11 @@ const SearchResultBase: FC<SearchResultProps> = ({
 
   let showResultCount = '';
   let message = '';
-  
-  if (searchResultContext.isSearchOn) {
-    showResultCount = 'searching ...';
-  } else {
-    showResultCount = resultCountMessage.replace(
-      '%count%', searchResultContext.results.length.toString(),
-    );
-    message = searchResultMessage;
-  }
+
+  showResultCount = resultCountMessage.replace(
+    '%count%', searchResultContext.results.length.toString(),
+  );
+  message = searchResultMessage;
 
   if (!searchResultContext.results.length) {
     return (
@@ -242,10 +241,11 @@ const SearchBoxBase: FC<SearchProps> = ({ components, ...props }) => {
     SearchInput,
     SearchButton,
     Suggestions,
+    SuggestionAnnouncer,
   } = components;
 
   return (
-    <SearchWrapper {...rest}>
+    <SearchWrapper role="search" {...rest}>
       <SearchInput
         value={queryString}
         onChange={onChangeHandler}
@@ -253,6 +253,9 @@ const SearchBoxBase: FC<SearchProps> = ({ components, ...props }) => {
         placeholder={placeholder}
       />
       <SearchButton onClick={onClickHandler} />
+      <SuggestionAnnouncer role="status" aria-live="assertive" style={{ position: 'absolute', top: '-10000px'}}>
+        {queryString !== '' && suggestions.length ? `${suggestions.length} results are available.` : null}
+      </SuggestionAnnouncer>
       {
         queryString !== '' && suggestions.length > 0
         && <Suggestions suggestions={suggestions} searchTerm={queryString} />
