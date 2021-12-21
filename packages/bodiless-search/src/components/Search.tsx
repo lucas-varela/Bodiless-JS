@@ -13,6 +13,7 @@
  */
 
 import flow from 'lodash/flow';
+import uniqueId from 'lodash/uniqueId';
 import React, {
   FunctionComponent as FC,
   ComponentType,
@@ -20,6 +21,7 @@ import React, {
   useCallback,
   useEffect,
   useState,
+  useRef,
 } from 'react';
 import {
   A,
@@ -49,6 +51,7 @@ export type SearchComponents = {
   Suggestions: ComponentType<DesignableProps<SuggestionListComponents> & {
     suggestions: Suggestion[];
     searchTerm?: string;
+    ariaId: string;
   }>,
   SuggestionAnnouncer: ComponentType<any>
 };
@@ -184,7 +187,10 @@ const SearchResultBase: FC<SearchResultProps> = ({
 const SearchBoxBase: FC<SearchProps> = ({ components, ...props }) => {
   const [queryString, setQueryString] = useState('');
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const ariaId = useRef(uniqueId('bl_search_'));
   const searchResultContext = useSearchResultContext();
+  const shouldShowSuggestions = queryString !== '' && suggestions.length > 0;
+
   const onChangeHandler = useCallback((event: any) => {
     event.preventDefault();
     const queryString$ = event.target.value;
@@ -251,14 +257,29 @@ const SearchBoxBase: FC<SearchProps> = ({ components, ...props }) => {
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
         placeholder={placeholder}
+        role="combobox"
+        aria-autocomplete="list"
+        aria-expanded={shouldShowSuggestions}
+        aria-owns={ariaId.current}
       />
       <SearchButton onClick={onClickHandler} />
-      <SuggestionAnnouncer role="status" aria-live="assertive" style={{ position: 'absolute', top: '-10000px'}}>
-        {queryString !== '' && suggestions.length ? `${suggestions.length} results are available.` : null}
+      <SuggestionAnnouncer 
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        style={{ position: 'absolute', top: '-10000px'}}
+      >
+        {/* @TODO: the text below should be translatable. */}
+        {shouldShowSuggestions ? `${suggestions.length} search suggestions.` : null}
       </SuggestionAnnouncer>
       {
-        queryString !== '' && suggestions.length > 0
-        && <Suggestions suggestions={suggestions} searchTerm={queryString} />
+        shouldShowSuggestions && (
+          <Suggestions 
+            suggestions={suggestions} 
+            searchTerm={queryString} 
+            ariaId={ariaId.current}
+          />
+        )
       }
     </SearchWrapper>
   );
