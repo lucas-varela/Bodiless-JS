@@ -18,7 +18,7 @@ import glob from 'glob';
 import SearchTool, { SearchConfig } from '../src/SearchTool';
 import type { TLanguageSetting } from '../src/types';
 
-process.env.BODILESS_SEARCH_CONFIG = path.resolve(__dirname, 'search.config.json.example');
+process.env.BODILESS_SEARCH_CONFIG = path.resolve(__dirname, '..', 'search.config.json.example');
 const config = SearchConfig.getConfig();
 const searchTool = new SearchTool(config);
 describe('Search Tool', () => {
