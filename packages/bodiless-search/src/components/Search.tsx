@@ -22,6 +22,7 @@ import React, {
   useEffect,
   useState,
   useRef,
+  useMemo,
 } from 'react';
 import {
   A,
@@ -130,15 +131,20 @@ const searchResultComponents: SearchResultComponents = {
   SearchResultMessage: H3,
 };
 
-export type SearchProps = DesignableComponentsProps<SearchComponents> &
-HTMLProps<HTMLElement> & {
+export type SearchProps = DesignableComponentsProps<SearchComponents> & HTMLProps<HTMLElement> & {
   onSubmit?: (query: string) => void,
+  suggetionTotalMessage?: string,
+  suggestionMessage?: string,
 };
-type SearchResultProps = DesignableComponentsProps<SearchResultComponents> &
-HTMLProps<HTMLElement> & { resultCountMessage?: string, searchResultMessage?: string };
+
+type SearchResultProps = DesignableComponentsProps<SearchResultComponents> & HTMLProps<HTMLElement> & { 
+  resultCountMessage?: string, 
+  searchResultMessage?: string 
+};
 
 const defaultResultCountMessage = 'Showing %count% result(s).';
 const defaultResultEmptyMessage = 'No content matches your request, please enter new keywords.';
+
 const SearchResultBase: FC<SearchResultProps> = ({
   components,
   resultCountMessage = defaultResultCountMessage,
@@ -184,12 +190,33 @@ const SearchResultBase: FC<SearchResultProps> = ({
   );
 };
 
-const SearchBoxBase: FC<SearchProps> = ({ components, ...props }) => {
+const defaultSuggetionTotalMessage = '%total% search suggestions.';
+const defaultSuggestionMessage = '%suggestion%, %count% results.';
+
+const SearchBoxBase: FC<SearchProps> = ({ 
+  components,
+  suggetionTotalMessage = defaultSuggetionTotalMessage,
+  suggestionMessage = defaultSuggestionMessage,
+  ...props 
+}) => {
   const [queryString, setQueryString] = useState('');
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const ariaId = useRef(uniqueId('bl_search_'));
   const searchResultContext = useSearchResultContext();
   const shouldShowSuggestions = queryString !== '' && suggestions.length > 0;
+
+  const announcerMessage = useMemo(() => {
+    if (!shouldShowSuggestions) return '';
+
+    const totalResults = suggetionTotalMessage.replace(
+      '%total%', String(Math.min(suggestions.length, 5))
+    );
+    const suggestionList = suggestions.slice(0, 5).map(s => {
+      return suggestionMessage.replace('%suggestion%', s.text).replace('%count%', String(s.count));
+    }).join(' ');
+
+    return `${totalResults} ${suggestionList}`;
+  }, [suggestions, shouldShowSuggestions]);
 
   const onChangeHandler = useCallback((event: any) => {
     event.preventDefault();
@@ -269,8 +296,7 @@ const SearchBoxBase: FC<SearchProps> = ({ components, ...props }) => {
         aria-atomic="true"
         style={{ position: 'absolute', top: '-10000px'}}
       >
-        {/* @TODO: the text below should be translatable. */}
-        {shouldShowSuggestions ? `${suggestions.length} search suggestions.` : null}
+        {announcerMessage}
       </SuggestionAnnouncer>
       {
         shouldShowSuggestions && (
