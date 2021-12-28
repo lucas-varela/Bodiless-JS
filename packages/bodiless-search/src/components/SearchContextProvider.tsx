@@ -29,8 +29,7 @@ type TSearchResultContextValue = {
   suggest: (term: string) => Suggestion[],
 };
 
-// @todo: load search config.
-const conf = JSON.parse(process.env.BODILESS_SEARCH_PARAMS || '');
+const conf = JSON.parse(process.env.BODILESS_SEARCH_PARAMS || '{}');
 const searchClient = new SearchClient(conf);
 
 /**
@@ -56,6 +55,7 @@ export const SearchResultProvider: FC = ({ children }) => {
 
   const didMountRef = useRef(false);
   const searchTermRef = useRef('');
+
   useEffect(() => {
     if (!didMountRef.current) {
       didMountRef.current = true;
@@ -76,7 +76,6 @@ export const SearchResultProvider: FC = ({ children }) => {
         search(searchTerm);
         searchTermRef.current = searchTerm;
       });
-      // window.location.href = getSearchPagePath(searchTerm);
     }
   });
 

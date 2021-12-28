@@ -28,14 +28,14 @@ import type {
 } from './types';
 import LunrSearch from './LunrSearch';
 
-export const env2string = (envVar: string, defaultVar?: string): string => {
+const env2string = (envVar: string, defaultVar?: string): string => {
   if (typeof process.env[envVar] === 'undefined') {
     return defaultVar || '';
   }
   return process.env[envVar] || '';
 };
 
-export const env2array = (envVar: string, defaultVar?: string[]): string[] => {
+const env2array = (envVar: string, defaultVar?: string[]): string[] => {
   if (typeof process.env[envVar] === 'undefined') {
     return defaultVar || [];
   }
@@ -170,6 +170,7 @@ class SearchTool implements SearchToolInterface {
 export class SearchConfig {
   static getConfig = (): TSearchConf => {
     const configFile = path.resolve(process.cwd(), env2string('BODILESS_SEARCH_CONFIG', ''));
+
     if (configFile && fs.statSync(configFile).isFile()) {
       const {
         sourceTypes,
@@ -178,6 +179,7 @@ export class SearchConfig {
         languages,
         indexConfig,
       } = JSON.parse(fs.readFileSync(configFile, 'utf8'));
+      
       return {
         sourceTypes,
         contentSelectors,
@@ -187,14 +189,16 @@ export class SearchConfig {
       };
     }
 
-    const engine = env2string('BODILESS_SEARCH_ENGINE', '');
     let searchEngine: SearchEngineInterface;
+    const engine = env2string('BODILESS_SEARCH_ENGINE', '');
+    
     switch (engine) {
       case 'lunr':
       default:
         searchEngine = new LunrSearch();
         break;
     }
+    
     const sourcePaths = env2array('BODILESS_SEARCH_SOURCE_PATH', ['./public']);
     const sourceTypes = env2array('BODILESS_SEARCH_SOURCE_TYPE', ['html', 'htm']);
     const indexFilePath = env2string('BODILESS_SEARCH_INDEX_PATH', './public');

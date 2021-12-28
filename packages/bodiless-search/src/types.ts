@@ -36,7 +36,6 @@ export interface SearchEngineInterface {
 export type TDocument = { [key: string]: string; };
 export type TPreview = { [key: string]: string; };
 
-// @todo: languages support
 /**
  * Type describes a language index setting.
  *
@@ -93,16 +92,6 @@ export type TIndexConfig = {
   ref: string,
   fields: TField[],
 };
-
-// @todo: cleanup
-
-// export type TSearchIndexSettings = {
-//   sourcePath: string,
-//   sourceTypes: string[],
-//   targetPath: string,
-//   indexConfig: TIndexConfig,
-//   excludePages: string[],
-// };
 
 export type TSearchResult = {
   id: number,

@@ -27,32 +27,5 @@ const config: TSearchConf = SearchConfig.getConfig();
 
 const tool = new SearchTool(config);
 
-// @todo: cleanup
-
-/**
-  * Search index creation configures
-  *
-  * - sourcePath: Valid data source folder.
-  * - sourceType: Specified data file extensions for indexing.
-  * - targetPath: Target folder for saving generated index file.
-  * - indexConfig: Document index configuration.
-  */
-// const settings: TSearchIndexSettings = {
-//   sourcePath: process.env.BODILESS_SEARCH_SOURCE_PATH || './public',
-//   sourceTypes: process.env.BODILESS_SEARCH_SOURCE_TYPE ?
-//        process.env.BODILESS_SEARCH_SOURCE_TYPE.split('|') : ['html', 'htm'],
-//   targetPath: process.env.BODILESS_SEARCH_INDEX_PATH ?
-//        process.env.BODILESS_SEARCH_INDEX_PATH : './public/default.idx',
-//   excludePages: process.env.BODILESS_SEARCH_EXCLUDE_PATH ?
-//        process.env.BODILESS_SEARCH_EXCLUDE_PATH.split('|') : [],
-//   indexConfig: {
-//     ref: 'id',
-//     fields: [
-//       { name: 'title', attributes: { boost: 2 } },
-//       { name: 'body' },
-//     ],
-//   },
-// };
-
 // Create and save index to target path.
 tool.generateIndex();
