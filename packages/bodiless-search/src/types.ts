@@ -107,3 +107,8 @@ export type Suggestion = {
 };
 
 export type TSearchResults = TSearchResult[];
+
+export type TSourceMap = {
+  path: string,
+  files: string[]
+};

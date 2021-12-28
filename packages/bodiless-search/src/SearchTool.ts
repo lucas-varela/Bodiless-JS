@@ -22,9 +22,9 @@ import type {
   SearchEngineInterface,
   SearchToolInterface,
   TSearchConf,
-  // TSearchIndexSettings,
   TLanguageSetting,
   TDocument,
+  TSourceMap,
 } from './types';
 import LunrSearch from './LunrSearch';
 
@@ -76,52 +76,68 @@ class SearchTool implements SearchToolInterface {
     this.searchEngine = searchEngine;
   }
 
-  findSourceFiles = (settings: TLanguageSetting): string[] => {
+  findSourceFiles = (settings: TLanguageSetting): TSourceMap[] => {
     const { sourcePaths, excludePaths } = settings;
+
     return sourcePaths.map(source => {
       const path$ = path.resolve(process.cwd(), source);
+
       if (!fs.existsSync(path$)) {
         throw new Error(`Invalid source path: ${path$}`);
       }
 
       const pattern = `**/+(${this.config.sourceTypes.map(v => `*.${v}`).join('|')})`;
-      return glob.sync(pattern, {
-        cwd: path$,
-        absolute: true,
-        ignore: excludePaths,
-      });
-    }).reduce((files, current) => files.concat(current));
+      
+      return {
+        path: source,
+        files: glob.sync(pattern, {
+          cwd: path$,
+          absolute: true,
+          ignore: excludePaths,
+        })
+      };
+    });
   };
 
   /**
    * Returns index document created with given files.
    */
-  filesToDocument = (filePaths: string[]): TDocument[] => {
+  filesToDocument = (sources: TSourceMap[]): TDocument[] => {
     const documents: TDocument[] = [];
     const selectors = this.config.contentSelectors;
     const excluders = this.config.contentExcluders;
-    filePaths
-      .filter(filePath => fs.statSync(filePath).isFile())
-      .forEach(filePath => {
-        const mimeType = mime.getType(filePath);
-        switch (mimeType) {
-          case 'text/html': {
-            const html = fs.readFileSync(filePath).toString();
-            const doc = this.htmlToDocument(html, selectors, excluders);
-            const filePathClean = filePath.replace(/index.html$/i, '');
-            if (!doc.title) {
-              doc.title = filePathClean;
+    
+    sources.forEach(source => {
+      source.files
+        .filter(filePath => fs.statSync(filePath).isFile())
+        .forEach(filePath => {
+          const mimeType = mime.getType(filePath);
+
+          switch (mimeType) {
+            case 'text/html': {
+              const html = fs.readFileSync(filePath).toString();
+              const doc = this.htmlToDocument(html, selectors, excluders);
+              const filePathClean = filePath.replace(/index.html$/i, '');
+
+              if (!doc.title) {
+                doc.title = filePathClean;
+              }
+
+              const link = path.relative(path.join(process.cwd(), source.path), filePathClean);
+
+              documents.push({
+                ...doc,
+                link,
+              });
+
+              break;
             }
-            documents.push({
-              ...doc,
-              link: filePathClean,
-            });
-            break;
+            default:
+              throw new Error(`Only HTML is supported for indexing, ${mimeType} is given.`);
           }
-          default:
-            throw new Error(`Only HTML is supported for indexing, ${mimeType} is given.`);
-        }
-      });
+        });
+    });
+    
     return documents;
   };
 
