@@ -118,12 +118,11 @@ class SearchTool implements SearchToolInterface {
               const html = fs.readFileSync(filePath).toString();
               const doc = this.htmlToDocument(html, selectors, excluders);
               const filePathClean = filePath.replace(/index.html$/i, '');
+              const link = path.relative(path.join(process.cwd(), source.path), filePathClean);
 
               if (!doc.title) {
-                doc.title = filePathClean;
+                doc.title = link;
               }
-
-              const link = path.relative(path.join(process.cwd(), source.path), filePathClean);
 
               documents.push({
                 ...doc,
