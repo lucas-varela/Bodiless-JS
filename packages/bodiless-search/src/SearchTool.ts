@@ -80,21 +80,31 @@ class SearchTool implements SearchToolInterface {
     const { sourcePaths, excludePaths } = settings;
 
     return sourcePaths.map(source => {
-      const path$ = path.resolve(process.cwd(), source);
+      const sourcePath = typeof source === 'string' ? source : source.path;
+      const folderPath = path.resolve(process.cwd(), sourcePath);
+      const exclude = typeof source !== 'string' && source.exclude || excludePaths;
 
-      if (!fs.existsSync(path$)) {
-        throw new Error(`Invalid source path: ${path$}`);
+      if (!fs.existsSync(folderPath)) {
+        throw new Error(`Invalid source path for the ${settings.name} language: ${folderPath}`);
       }
 
       const pattern = `**/+(${this.config.sourceTypes.map(v => `*.${v}`).join('|')})`;
+
+      const files = glob.sync(pattern, {
+        cwd: folderPath,
+        absolute: true,
+        ignore: exclude,
+      });
+
+      if (process.env.BODILESS_SEARCH_DEBUG_PATHS === '1') {
+        console.log(`[${settings.name}] Source path: ${folderPath}`);
+        console.log(`[${settings.name}] Excluded paths: `, exclude);
+        console.log(`[${settings.name}] Found files: `, files);
+      }
       
       return {
-        path: source,
-        files: glob.sync(pattern, {
-          cwd: path$,
-          absolute: true,
-          ignore: excludePaths,
-        })
+        path: sourcePath,
+        files: files,
       };
     });
   };

@@ -36,6 +36,11 @@ export interface SearchEngineInterface {
 export type TDocument = { [key: string]: string; };
 export type TPreview = { [key: string]: string; };
 
+export type TSourcePath = {
+  path: string,
+  exclude?: string[],
+};
+
 /**
  * Type describes a language index setting.
  *
@@ -52,7 +57,7 @@ export type TPreview = { [key: string]: string; };
 export type TLanguageSetting = {
   name: string,
   code: string,
-  sourcePaths: string[],
+  sourcePaths: Array<string | TSourcePath>,
   excludePaths: string[],
   indexFileName: string,
   indexUrlName: string,

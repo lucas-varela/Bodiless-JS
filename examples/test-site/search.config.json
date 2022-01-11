@@ -24,8 +24,7 @@
         "public"
       ],
       "excludePaths": [
-        "fr",
-        "404"
+        "404*/**"
       ],
       "indexFileName": "lunr.en.json",
       "indexUrlName": "",
