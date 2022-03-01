@@ -38,15 +38,6 @@ const useExternalLinkToggle = (props: any) => {
   return !!(href && regexp.test(href));
 };
 
-const useDisabledLinkToggle = (props: any) => {
-  const { href } = props;
-  if (!href) {
-    return true;
-  }
-  const regexp = /^$/;
-  return !!(href && regexp.test(href));
-};
-
 const useIsDownloadLink = (...types: string[]) => ({ href }: any) => {
   const types$ = types.length > 0 ? types : ['doc', 'docx', 'pdf'];
   const regexp = new RegExp(`\\.(${types$.join('|')})$`);
@@ -65,5 +56,5 @@ const anchorTo = (elementId: string) => {
 };
 
 export {
-  useExternalLinkToggle, useDisabledLinkToggle, useIsDownloadLink, asEditableLink, anchorTo,
+  useExternalLinkToggle, useIsDownloadLink, asEditableLink, anchorTo,
 };

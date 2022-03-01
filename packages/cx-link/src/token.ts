@@ -18,12 +18,7 @@ import {
 import { withSidecarNodes, withNodeKey } from '@bodiless/core';
 import { cxElement } from '@bodiless/cx-elements';
 import { asLinkToken } from './LinkClean';
-import {
-  useExternalLinkToggle,
-  asEditableLink,
-  useIsDownloadLink,
-  useDisabledLinkToggle
-} from './util';
+import { useExternalLinkToggle, asEditableLink, useIsDownloadLink } from './util';
 
 /**
  * Token which causes link to display as an external link.
@@ -50,16 +45,6 @@ const WithExternalStyles = asLinkToken({
 });
 
 /**
- * Token which causes link to display with disabled style.
- */
-const WithDisabledStyles = asLinkToken({
-  Flow: flowIf(useDisabledLinkToggle),
-  Theme: {
-    Wrapper: 'text-opacity-60',
-  },
-});
-
-/**
  * Token which causes link to display as an downloadable icon link
  */
 const WithDownloadStyles = asLinkToken({
@@ -79,7 +64,7 @@ const Default = asLinkToken({
    * Canvasx typography and colors.
    */
   Theme: {
-    _: as(WithDownloadStyles, WithExternalStyles, WithDisabledStyles),
+    _: as(WithDownloadStyles, WithExternalStyles),
     // @todo these should apply tokens from the cxElement collection.
     Wrapper: as(cxElement.Link, cxElement.WithTextPrimaryInteractiveColor),
   },
