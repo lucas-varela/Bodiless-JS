@@ -1,7 +1,9 @@
 {
   "Components": {
     "Image.md": "./doc/Image.md",
-    "Link.md": "./doc/Link.md",
+    "Link": {
+      "README.md": "./doc/Link.md"
+    },
     "List.md": "./doc/List.md",
     "Chameleon.md": "./doc/Chameleon.md",
     "Editable.md": "./doc/editable.md",
