@@ -39,7 +39,7 @@ consistent.
 ### Move typography tokens.
 
 If it does not exist already, create a `/src/components/Elements` directory
-at the root of your project.  In this, create a `tokens.ts` file, and ddd
+at the root of your project.  In this, create a `tokens.ts` file, and add
 the following lines there:
 
 ```ts
