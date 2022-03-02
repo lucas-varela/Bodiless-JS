@@ -1,5 +1,5 @@
 {
   "Components": {
-    "CX_Elements": "./doc/README.md"
+    "CX_Elements.md": "./doc/CX_Elements.md"
   }
 }
