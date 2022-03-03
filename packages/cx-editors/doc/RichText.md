@@ -6,12 +6,13 @@ Component](/Components/Editors/RichText). While Bodiless Rich Text is a generic 
 providing a sensible default combination of its generic tokens (i.e., features and styles), to help
 meet typical site-use expectations.
 
-By default, there are three options for the Rich Text Editor: _Simple_, _Basic_, and _Full_.
+By default, the only option available for the CX Rich Text Editor is the _Full_ Rich Text Editor.
 
 ## Content Editor Details
 
-There is no change to the Editor experience by the CX Editor package, and, thus, you can refer to
-the [Bodiless Rich Text Editor : Content Editor Details](../RichText#content-editor-details).
+Other than potentially seeing different buttons available, there is no change to the Editor
+experience by the CX Editor package, and, thus, you can refer to the [Bodiless Rich Text Editor :
+Content Editor Details](../RichText#content-editor-details).
 
 ## Site Builder Details
 
