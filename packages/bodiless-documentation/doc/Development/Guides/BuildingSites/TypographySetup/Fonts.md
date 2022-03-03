@@ -1,43 +1,139 @@
 # Fonts
 
 Custom fonts can be used on a Bodiless site and here are some suggested ways to
-add and use them:
+add and use them.  
+
+?> TIP Performance-wise the best recommendation is to self hosts the fonts.
 
 ## Adding Fonts to a Bodiless Site
 
-* [gatsby-plugin-google-fonts](https://github.com/didierfranc/gatsby-plugin-google-fonts)
-  * This plugin is enabled by default in development. To use in production builds, set
-  `GOOGLE_FONTS_ENABLED` to `1` in your .env.site file.
+### Via Google Fonts
+
+We recommend using [gatsby-plugin-google-fonts](https://github.com/didierfranc/gatsby-plugin-google-fonts) and it is part of the bodiless but not enabled.
+
+  1. To use in production builds, set `GOOGLE_FONTS_ENABLED` to `1` in your .env.site file.
+  
+  1. Within in a package's or sites `gatsby-ssr.js` include the appropriate googleapis css file.  
+
+       ```
+        export const onRenderBody = (
+        { setPostBodyComponents },
+      ) => {
+        setPostBodyComponents([
+          <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+            rel="stylesheet"
+          />,
+        ]);
+      };
+       ```
+
+?> Tip We do recommend adding the display of 'swap'  (Google Resource)[https://developers.google.com/web/updates/2016/02/font-display#swap] and this &display=swap at end for performance boost.
+
+### Via Hosted
+
+We recommend loading in the gatsby-ssr.js to skip hydration and add in the post body.  This will help with performance. 
+
+  1. Within in a package's or sites `gatsby-ssr.js` include the appropriate vendor's css file.  
+
+    ```
+        export const onRenderBody = (
+        { setPostBodyComponents },
+      ) => {
+        setPostBodyComponents([
+    <style
+      dangerouslySetInnerHTML={{
+      __html: `@import url('https://use.typekit.net/xkg0dss.css');`,
+      }}
+    />,
+    ```
+
+?> Tip If the service offers display option of 'swap' please enble for a performance boost. This may be within the service and/or optional paramter if available.
+
+### Via Typefaces
+
 * Using [Open Source Typefaces npm packages](https://github.com/KyleAMathews/typefaces) built by others
   * Follow directions for the package to install and use.
-* Load them directly with self hosting via this [tutorial](https://dev.to/iangloude/4-steps-to-self-hosted-fonts-in-gatsby-aj2).
 
-## Using Fonts with Tailwind
+### Hosted Directly
+
+This is best way as fonts are usually small and packaged within the webbundle of the site and best performance option.
+
+1. In your brand package, suggested brand-elements package, create a folder assets/font and place the fonts.  
+1. In your packages, site.tailwind.config.js file add plugin font-face via addBase to import the fonts.
+1. Extend fontFamily in your to include the font.
+1. Use the new font by using the prefix and name of the font you defined.  (eg. font-linkicons)
+
+```
+const plugin = require('tailwindcss/plugin');
+
+module.exports = {
+  purge: [
+    './lib/**/!(*.d).{ts,js,jsx,tsx}',
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        linkicons: ['linkicons'],
+      },
+    },
+  },
+  plugins: [
+    plugin(({ addBase }) => {
+      addBase({
+        '@font-face': {
+          fontFamily: 'linkicons',
+          fontWeight: 400,
+          fontStyle: 'normal',
+          src: 'url(\'@bodiless/cx-link/assets/font/linkicons.woff2\')',
+        },
+      });
+    }),
+  ],
+};
+```
+
+?> Tip: Suggest to primarily use WOFF2:
+Of the modern font fonts, WOFF2 is the newest, has the widest browser support, and offers the best compression. Because it uses Brotli, WOFF2 compresses 30% better than WOFF.
+
+## Applying a font 
 
 Once the fonts are available via one of the methods above, they can be applied in one of two ways:
 
-* Site wide:
-  * This can be done by adding the definition to apply the font in
-    `src/css/style.css`.
-  
-       ```
-       @tailwind base;
+### Applying a font to entire site
 
-       body {
-         @apply font-custom_font;
-       }
+If you want to apply the font to entire site, we recommend the following practice:
 
-       @tailwind components;
+1. In /cx-layout/src/components/Helmet/Helmet.token.ts, within asHelmetToken() and in the 
+*Theme* Domain, provide the site's font class.  
 
-       @tailwind utilities;
-       ```
+```
+const Default = asHelmetToken({
+  Theme: {
+    HTMLHelmet: as(
+      'font-DMSans',
+    ),
+  }
+});
 
-  * For more information recommend reading Tailwind's
-    [Base Style Documentation](https://tailwindcss.com/docs/adding-base-styles/)
+
+export const cxHelmet = { Default }
+```
+
+1. Ensure this Helmet token is applied within your Layout tokens.
+
+````
+const Base = asLayoutToken({
+  Components: {
+    Helmet: as(cxHelmet.Default),
+  },
+````
+
+### Applying a font to specific token
 
 * The fonts can be added at elemental level by adding classes to the specific
-  elements within `src/components/Elements.token.ts`
+  token.
 
         ```
-        const asHeader1 = addClasses('text-3xl font-custom_font')
+        const asHeader1 = asElementToken('text-3xl font-linkicons')
         ```
