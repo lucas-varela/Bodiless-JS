@@ -61,6 +61,7 @@ This is best way as fonts are usually small and packaged within the webbundle of
 
 1. In your brand package, suggested brand-elements package, create a folder assets/font and place the fonts.  
 1. In your packages, site.tailwind.config.js file add plugin font-face via addBase to import the fonts.
+1. In the package.json, make sure your files section exports the assets so they are bundled with the package.  eg. `"files": ["/assets"]`
 1. Extend fontFamily in your to include the font.
 1. Use the new font by using the prefix and name of the font you defined.  (eg. font-linkicons)
 
