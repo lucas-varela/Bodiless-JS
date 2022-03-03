@@ -1,3 +1,3 @@
-# CanvasX FlowContainer Tokens
+# CX FlowContainer Tokens
 
 TBD

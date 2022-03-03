@@ -1,20 +1,26 @@
-# CanvasX Rich Text Editor Component
+# CX Rich Text Editor Component
 
-The CanvasX Rich Text Editor extend the [Bodiless Rich Text](../../bodiless/Components/RichText) and provides default
-editors to be used on site.  By default there are three options for the Rich Text Editor: Simple, Basic, and
-Full.
+The CX Rich Text Editor Component is based on the [BodilessJS Rich Text Editor
+Component](/Components/Editors/RichText). While Bodiless Rich Text is a generic rich text editor
+(RTE) component with tokens that can be combined however you choose, CX Rich Text builds upon it,
+providing a sensible default combination of its generic tokens (i.e., features and styles), to help
+meet typical site-use expectations.
+
+By default, there are three options for the Rich Text Editor: _Simple_, _Basic_, and _Full_.
 
 ## Content Editor Details
 
-There is no change to editor experience by CanvasX Editor package and thus can refer to [Bodiless Rich Text: Content Editor](../../bodiless/Components/RichText?id=content-editor-details)
+There is no change to the Editor experience by the CX Editor package, and, thus, you can refer to
+the [Bodiless Rich Text Editor : Content Editor Details](../RichText#content-editor-details).
 
 ## Site Builder Details
 
-At site or global regional/brand library, they can compose the tokens with your site specific tokens and editors.
+At site or global regional/brand library, they can compose the tokens with your site specific tokens
+and editors.
 
-1. Create a `src/components/Editors/Editor.token.ts`  where you can assign your site/brand specific tokens to each.  (Import & Export as needed)
-
-    ```
+01. Create a `src/components/Editors/Editor.token.ts`  where you can assign your site/brand specific
+    tokens to each.  (Import & Export as needed)
+    ```js
     const withQuoteBlockMeta = flow(
       asBlock,
       withButton('format_quote'),
@@ -59,9 +65,9 @@ At site or global regional/brand library, they can compose the tokens with your 
       withFullFeaturedDesign,
     };
     ```
-1. Create a `src/components/Editors/Editor.ts`  where you can compose your site/brand specific tokens to each editor:  (Import & Export as needed)
-
-    ```
+01. Create a `src/components/Editors/Editor.ts`  where you can compose your site/brand specific
+    tokens to each editor:  (Import & Export as needed)
+    ```js
     const EditorSimple = flow(
       withSimpleDesign,
     )(EditorBasicClean);
@@ -78,17 +84,14 @@ At site or global regional/brand library, they can compose the tokens with your 
     const withEditorBasic = withEditor(EditorBasic);
     const withEditorFull = withEditor(EditorFull);
     ```
-1. Create a `src/components/Editors/index.tsx`  where you can export all tokens and schemas from Editors.
-
-    ```
+01. Create a `src/components/Editors/index.tsx`  where you can export all tokens and schemas from
+    Editors.
+    ```js
     export * from './Editors';
     export * from './Editors.token';
     ```
 
-### API
-
-Please see [Rich Text API](../../Development/API/@canvasx/editors/globals)
-
 ## Architectural Details
 
-None needed. For more information see [Bodiless Rich Text: Architectural](../../bodiless/Components/RichText?id=architectural-details)
+None needed. For architectural information, see [Bodiless Rich Text : Architectural
+Details](../RichText#architectural-details).
