@@ -17,41 +17,17 @@ call out to help direct to the specific Tailwind documentation.
 ## Tailwind Configuration File
 
 Your site's Tailwind configuration file, `site.tailwind.config.js`, can be found in the root
-directory of the site.
+directory of the site or within a package.
 
 Adding custom styling can be done by editing `site.tailwind.config.js`, following [Tailwind's
 documentation](https://tailwindcss.com/docs/configuration).
 
 If your site doesn't have a Tailwind configuration file in its root directory, then your site will
-use all of Tailwind's default settings and they'll be placed into a generated `index.css` file.
+use all of Tailwind's default settings as well as packages that include tailwind.  Bodiless has a mechanism that will merge all the tailwind configuration files coming from all packages and produce a single css file.
 
-The Starter Kit has an empty Tailwind configuration, meaning that the starter site (out of the box)
-uses Tailwind's default settings.
+?> **Important**  If the classes are duplicated in the site and package, SITE's css will always win.
 
-## Extend vs Replace
-Tailwind allows replacing or extending the settings. If site builder is using
-Bodiless components, which may be using default tailwind classes, we suggest to
-[extend](https://tailwindcss.com/docs/theme/#extending-the-default-theme)
-instead of replace.
-
-```
-    extend: {
-      colors: {
-        brand_blue: '#004c97',
-        brand_lightblue: '#017eb3',
-        brand_mediumblue: '#009cde',
-      },
-    },  
-```
-
-This will add additional brand colors to all the default tailwind colors. 
-
-When the static site builds it utilizes
-[tailwind purge css feature](https://tailwindcss.com/docs/controlling-file-size#removing-unused-css)
-to remove unused css classes and this will keep the css file small for best
-performance.
-
-## Building with Tailwind
+## Making Changes with Tailwind
 
 Each time site builder makes a change in tailwind.config.js, she will need to
 rerun the build process. This is done in either `npm run start` or
@@ -71,14 +47,6 @@ classes can be prefixed with responsive size.
 For more information, see [responsive
 breakpoints](./Responsiveness#Breakpoints).
 
-## Setting maximum container width of a site
-
-If a site has a maximum container width, they can be set with
-[max-width
-breakpoints](https://tailwindcss.com/docs/breakpoints/#max-width-breakpoints)
-and limit the size of the containers at different breakpoints. This is done via
-the same method as [responsive breakpoints](./Responsiveness#Breakpoints).
-
 ### Using Responsive Classes
 
 Every utility class in Tailwind can be applied conditionally at different
@@ -93,7 +61,7 @@ There are cases that TailwindCSS doesn't support or it may be easier to not
 rely on Tailwind. This can be achieved by including the css file and referencing
 those classes instead of the tailwind classes.  
 
-The custom css files can be included imported either in gatsby-browser.js file,
+The custom css files can be included imported either in gatsby-ssr.js file,
 within the pages, or within the component that is using them.
 
 ?> **Recommendation** is to keep the css file as close to possible to the
@@ -106,68 +74,31 @@ For example:
   with the component.
 
 By doing the above, this custom css will only be loaded for pages that
-use the component and help with performance. While BodilessJS runs with
-[tailwind purge css feature](https://tailwindcss.com/docs/controlling-file-size#removing-unused-css)
-tool this is only processing on tailwind css and not on any custom css included.
+use the component and help with performance.
 
 ?> **Tip** As a site developer it is always good practice to remove css that isn't
 being used if updates/changes are being made.
 
 Common usages for using custom css:
-* Setting background images 
+* Complex css
 * Defining ::before and ::after pseudo-elements  
   * or alternative use https://github.com/yutahaga/tailwindcss-pseudo-elements to
     extend tailwind.
-* Gradients
-  * or alternative use https://github.com/benface/tailwindcss-gradients to extend
-    tailwind.
 
 ## Tailwind configuration for a package
 
-1. Create tailwind configuration file.
+1. Add a site.tailwind.config.js file to the root of the package.
 
-    ```sh
-    npx tailwindcss init
-    ```
+```
+const plugin = require('tailwindcss/plugin');
 
-1. Configure [CSS Purging](#configure-css-puring).
+module.exports = {
+  purge: [
+    './lib/**/!(*.d).{ts,js,jsx,tsx}',
+  ],
+  theme: {},
+  plugins: [],
+};
+```
 
-    Set purging paths to the compiled templates containing tailwind classes. Assuming your package compilation output directory is `lib`, your purge configuration will be
-
-    ```js
-    purge: [
-      './lib/**/!(*.d).{ts,js,jsx,tsx}',
-    ],
-    ```
-
-1. Export a function to merge your package tailwind configs with site configs.
-
-    * for @bodiless packages
-
-       Whitelist the bodiless package in `packages/gatsby-theme-bodiless/src/dist/tailwindcss/getBodilessConfigs.ts`
-
-    * for non-@bodiless packages
-
-      Export a function that merges your package tailwind configuration with site configuration. You may leverage `mergeConfigs` and `getTailwindConfigs` from `@bodiless/gatsby-theme-bodiless`.
-
-      ```js
-      import {
-        mergeConfigs,
-        getTailwindConfigs,
-      } from '@bodiless/gatsby-theme-bodiless/dist/tailwindcss';
-
-      const packageMergeConfigs = siteConfig => mergeConfigs(siteConfig, getTailwindConfigs(['yourpackagename']));
-
-      export default packageMergeConfigs;
-      ```
-
-## Configure CSS Purging
-
-1. Provide an array of paths to all of your template files using the purge option of `tailwind.config.js`:
-
-    ```js
-    purge: [
-      './src/**/!(*.d).{ts,js,jsx,tsx}',
-    ],
-    ```
-> :warning: **If you are configuring purgin for a package**: Paths should point to the compiled templates.
+2. Within "files" add '/site.tailwind.config.js' to make sure its exported with the package.

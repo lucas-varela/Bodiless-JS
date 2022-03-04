@@ -10,15 +10,20 @@ This section describes the building of a site with BodilessJS & usign the Canvas
 @jones as we build out the cx-packages we want to link to each individual and really contain the documentation to the specific package.  So what ever cx-pacakges already exist and match this page, link them up.
 
 1. Create site
+
+   - Overview of [Building a Site using Bodiless](./TypographySetup/BuildingOverview)
     - Create and initialize a new site repository as described in [the documentation for local development](../../../About/GettingStarted/ResourcesShared/LocalDevelopment.md).
     - Provide overview of monorepo structure
     * [Bodiless Starter Components](./ComponentsStarterKit)
+
 1. Define Typography for the site.
-    - This step will define and implement basic elements of the design system (typography, spacing, colors).
-    - Overview of [Building a Site using Bodiless](./TypographySetup/BuildingOverview)
-    - [Defining Typography](./TypographySetup/Typography)
-    - * [Using Tailwind with Bodiless](./TypographySetup/TailwindGuide)
-      * [Using Custom Fonts](./TypographySetup/Fonts)
+
+   This step will define and implement basic elements of the design system (typography, spacing, colors).
+
+      1. Before starting it best to have a clear understanding of [Using Tailwind with Bodiless](./TypographySetup/TailwindGuide)
+      2. [Defining Typography](./TypographySetup/Typography)
+      3. [Using Custom Fonts](./TypographySetup/Fonts)
+
 1. Text Editors
    - Implement the basic text editors for the site which includes a plain editor and Rich text editor.
    - @jones link into the Editors page site building section.
