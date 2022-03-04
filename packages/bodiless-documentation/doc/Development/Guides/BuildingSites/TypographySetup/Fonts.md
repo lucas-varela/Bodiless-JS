@@ -97,44 +97,19 @@ module.exports = {
 ?> Tip: Suggest to primarily use WOFF2:
 Of the modern font fonts, WOFF2 is the newest, has the widest browser support, and offers the best compression. Because it uses Brotli, WOFF2 compresses 30% better than WOFF.
 
-## Applying a font 
+## Applying a font
 
-Once the fonts are available via one of the methods above, they can be applied in one of two ways:
+* Once the fonts are available via one of the methods above, they can be applied in one of two ways:
 
 ### Applying a font to entire site
 
-If you want to apply the font to entire site, we recommend the following practice:
-
-1. In /cx-layout/src/components/Helmet/Helmet.token.ts, within asHelmetToken() and in the 
-*Theme* Domain, provide the site's font class.  
-
-```
-const Default = asHelmetToken({
-  Theme: {
-    HTMLHelmet: as(
-      'font-DMSans',
-    ),
-  }
-});
-
-
-export const cxHelmet = { Default }
-```
-
-1. Ensure this Helmet token is applied within your Layout tokens.
-
-````
-const Base = asLayoutToken({
-  Components: {
-    Helmet: as(cxHelmet.Default),
-  },
-````
+View [Typography/Applying Classes to entire site](./Typography.md#applying-classes-to-entire-site) for instructions.
 
 ### Applying a font to specific token
 
 * The fonts can be added at elemental level by adding classes to the specific
   token.
 
-        ```
-        const asHeader1 = asElementToken('text-3xl font-linkicons')
-        ```
+  ```
+  const asHeader1 = asElementToken('text-3xl font-linkicons')
+  ```

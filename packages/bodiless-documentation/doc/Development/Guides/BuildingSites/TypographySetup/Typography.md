@@ -50,3 +50,30 @@ You can define a custom collection of tokens to use within your site.
   });
 
   ````
+
+### Applying Classes to entire site
+
+If you want to apply the classes to entire site, we recommend the following practice:
+
+1. In /cx-layout/src/components/Helmet/Helmet.token.ts, within asHelmetToken() and in the 
+*Theme* Domain, provide the site's font class.  
+
+```
+const Default = asHelmetToken({
+  Theme: {
+    HTMLHelmet: 'font-DMSans font-base text-TestMyColor1',
+  }
+});
+
+
+export const cxHelmet = { Default }
+```
+
+1. Ensure this Helmet token is applied within your Layout tokens.
+
+````
+const Base = asLayoutToken({
+  Components: {
+    Helmet: as(cxHelmet.Default),
+  },
+````
