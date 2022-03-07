@@ -1,8 +1,8 @@
 # CanvasX Elements
 
-CanvasX Elements is composed of [element tokens](https://johnsonandjohnson.github.io/Bodiless-JS/#/Design/DesignSystem?id=element-tokens) to implement the CanvasX design system.
+CanvasX Elements is composed of [element tokens](../Design/DesignSystem?id=element-tokens) to implement the CanvasX design system.
 
-It consists of the following type of component clement tokens and all are in the associated tokens folders:
+It consists of the following type of component element tokens and all are in the associated tokens folders:
 
 * Color
 * Font Size
@@ -19,7 +19,7 @@ There is no interaction by the Content Editor with the CanvasX element tokens, o
 
 The site builder has ability to use any of the token CanvasX elements which are in cxElement collection or individually.
 
-#### Usage:
+#### Usage
 
 import cxElements from @bodiless/cx-elements or the specific Element token
 
@@ -37,6 +37,10 @@ Or use from cxELement collection & can be within `as()` or `flowHOC()` if combin
       cxColor.TextPrimaryBodyCopy,
     ),
   ```
+
+### CXElement Site Specific Typography
+
+The site builder may need to override a specific token or specific set of tokens and the following is [best methodology](./SiteTypography) for doing do.
 
 ### Helper utilities
 
@@ -110,7 +114,7 @@ The above example will apply the same meta to all element tokens.
 
 ### Shadowing CXElement tokens
 
-TBD @coden working on ticket.
+For more information on shadowing CXElement tokens, read [CX Shadow](./CX_Shadow.md)
 
 ## Architectural Details
 

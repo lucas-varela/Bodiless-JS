@@ -1,0 +1,100 @@
+# CanvasX Site Typography Setup/Override
+
+The site typography consists of updating fonts, colors, font sizes and very elemental tokens.
+
+## Step 1: Setup Fonts
+
+THe CX starter has utilized the DM Sans font from Google API.  If your designs, require a different fonts, please refer to [font documentation guide](../../Development/Guides/etc.).
+
+## Step 2: Font Size & Line Heights
+
+The CanvasX Defined has defined the following [font sizes](https://xd.adobe.com/view/fd6e4dde-2ecf-480a-aaaf-f5043cb04bf0-a83d/screen/d0c37949-f384-4a14-ad34-011d39ef62ba/specs/) and they have been converted into REM point system on a base 16.
+
+To facilitate converting a custom font size into REM, please refer to this [XLS Template](TBD).
+
+### Option 1: Shadow cxFontSize *Preferred solution
+
+Provide the Shadowing function as defined in [Shadow](./CXShadowing)
+
+File to shadow:  [cxFontSize](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-elements/src/components/Element/FontSize/tokens/cxFontSize.ts)
+
+### Option 2: Override in site.tailwind.config.js file
+
+Within your package/site's site.tailwind.config.js, you can replace the tailwind elements with your own font sizes & line height & optionally spacing.
+
+  ```js
+  module.exports = {
+    theme: {
+      fontSize: {
+        xs: ['0.75rem', '1.125rem'],
+        sm: ['0.875rem', '1.25rem'],
+        base: ['1rem', '1.375rem'],
+        lg: ['1.75rem', '1.875rem'],
+        xl: ['1.625rem', '2rem'],
+        '2xl': ['2rem', '2.25rem'],
+        '3xl': ['2.563rem', '2.813rem'],
+        'm-xs': ['0.688rem', '0.938rem'],
+        'm-sm': ['0.75rem', '1rem'],
+        'm-base': ['0.875rem', '1.125rem'],
+        'm-lg': ['1.125rem', '1.375rem'],
+        'm-xl': ['1.438rem', '1.625rem'],
+        'm-2xl': ['1.813rem', '2.125rem'],
+        'm-3xl': ['2.25rem', '2.5rem'],
+      },
+    },
+  },
+  ```
+
+## Step 3: Define Colors for Site
+
+The CanvasX Defined has defined the following [colors](https://xd.adobe.com/view/fd6e4dde-2ecf-480a-aaaf-f5043cb04bf0-a83d/screen/96d7b2f3-6afb-45fb-b808-075a24af2434/specs/).
+
+### Option 1: Shadow cxColor *Preferred solution
+
+Provide the Shadowing function as defined in [Shadow](./CXShadowing)
+
+File to shadow: [cxColor](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-elements/src/components/Element/Color/tokens/cxColor.ts)
+
+### Option 2: Override in site.tailwind.config.js file
+
+  ```js
+  module.exports = {
+    theme: {
+      colors: {
+        'cx-primary': {
+          brand: '#CA081B',
+          'card-bg': '#ffffff',
+          'page-bg': '#F4F4F4',
+          interactive: '#000099',
+          'interactive-active': '#000341',
+          divider: '#D8D8D8',
+          'body-copy': '#63666A',
+          'header-copy': '#212121',
+        },
+        'cx-secondary': {
+          eyebrow: '#CC0099',
+          'footer-bg': '#2B2B33',
+        },
+      },
+    },
+  },
+  ```
+
+## Step 4: Override other CX tokens
+
+The CanvasX design as specified Header, body, eyebrown and link tokens and some specific text decoration tokens per designs linked above.  They can be shadowed which is recommendation with changes or additions or redefined at package/site level. 
+
+### Option 1: Shadow cxColor *Preferred solution
+
+Provide the Shadowing function as defined in [Shadow](./CXShadowing)
+
+File to shadow:  [cxTypography](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-elements/src/components/Element/Typography/tokens/cxTypography.ts)
+File to shadow:  [cXTextDecoration](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-elements/src/components/Element/TextDecoration/tokens/cxTextDecoration.ts)
+
+### Option 1: Define custom tokens at package level
+
+The site builder can define their own custom tokens at package level.
+
+## Step 5: Applying typography at site level
+
+Follow instructions at [Apply classes at site level](../../Development/Guides/BuildingSites/TypographySetup/Typography?id=applying-classes-to-entire-site)

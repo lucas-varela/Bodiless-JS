@@ -2,18 +2,17 @@
 
 The typography of starts with the defining the font, font size, line-heights with package/site's site.tailwind.confg.js.  
 
-
 ## CanvasX Elements
 
-The cavnasx-elements package provides opinionated typography that can be used as is or if need parts can be overridden by the site.
+The canvasx-elements package provides opinionated typography that can be used as is or if need parts can be overridden by the site.
 
 For more infomation of specific details of typography is best to review (cx-elements)[link to package code]
 
 If you plan on leveraging other CanvasX components, we recommend leveraging all or parts of Canvasx-elements.
 
-For more details on usage, please follow the (CanvasX Elements Typography Guide)[LINK].
+For more details on usage, please follow the [CanvasX Elements Typography Guide](../../../../Components/CX_Elements/CX_SiteTypography).
 
-## Developing your Typography with Leveraging CanvasX Elements
+## Developing your Typography without Leveraging CanvasX Elements
 
 The following section defines a high level overview of defining your typography.  For best practices, we do recommend following patterns see in cx-elements package.
 
@@ -55,8 +54,7 @@ You can define a custom collection of tokens to use within your site.
 
 If you want to apply the classes to entire site, we recommend the following practice:
 
-1. In /cx-layout/src/components/Helmet/Helmet.token.ts, within asHelmetToken() and in the 
-*Theme* Domain, provide the site's font class.  
+1. Within asHelmetToken() and in the *Theme* Domain, provide the site's font class.  (TBD link to Helmet doc)
 
 ```
 const Default = asHelmetToken({
