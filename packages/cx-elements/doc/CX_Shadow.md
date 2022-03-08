@@ -1,3 +1,3 @@
-# Shadowing CX Tokens
+# Shadowing CanvasX Tokens
 
 TBD

@@ -1,10 +1,10 @@
-# CX Rich Text Editor Component
+# CanvasX Rich Text Editor Component
 
-The CX Rich Text Editor Component is based on the [BodilessJS Rich Text Editor
+The CanvasX Rich Text Editor Component is based on the [BodilessJS Rich Text Editor
 Component](/Components/Editors/RichText). While Bodiless Rich Text is a generic rich text editor
 (RTE) component with tokens that can be combined however you choose, CX Rich Text builds upon it,
-providing a sensible default combination of its generic [CanvasX tokens](../../CX_Elements/), to help
-meet typical site-use expectations.
+providing a sensible default combination of its generic [CanvasX tokens](../../CX_Elements/), to
+help meet typical site-use expectations.
 
 By default, the only option available for the CX Rich Text Editor is the _Full_ Rich Text Editor.
 
@@ -18,38 +18,40 @@ Content Editor Details](../RichText#content-editor-details).
 
 ### Usage of the CX Rich Text Editor
 
-The following can be applied to any Slot as in the follow example.
+What's shown in the following example can be applied to any Slot.
 
-    ```js
-      Editors: {
-        Content: as(cxRichText.Default)(RichTextClean);
-      },
-      Schema: {
-        Content: withNode('content'),
-      }
-    ```
+```js
+  Editors: {
+    Content: as(cxRichText.Default)(RichTextClean);
+  },
+  Schema: {
+    Content: withNode('content'),
+  }
+```
 
-We recommend the Editor component & tokens are defined in Editors Domain and what node is defined in Schema Domain.
+We recommend that the Editor Component and tokens be defined in the Editors Domain, and the node be
+defined in the Schema Domain.
 
 ### Overriding Rich Text Editor
 
-#### For Overriding specific existing styles usined CanvasX Rich Text Editor
+#### Overriding Specific Existing Styles Using CanvasX Rich Text Editor
 
-See [CanvasX Site Typography](../CX_Elements/CX_SiteTypography)
+See [CanvasX Site Typography](../../CX_Elements/CX_SiteTypography).
 
-#### Shadowing *Preferred method
+#### Shadowing (*Preferred Method)
 
-Provide the Shadowing function as defined in [Shadown](../CX_Elements/CX_Shadow)
+Provide the Shadowing function as defined in [Shadow](../../CX_Elements/CX_Shadow).
 
-File to shadow: [cxRichText](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-editors/src/components/RichText/tokens/cxRichText.ts)
+File to shadow:
+[`cxRichText`](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-editors/src/components/RichText/tokens/cxRichText.ts)
 
 ### Extending Default CanvasX Rich Text Editor
 
 At site or global regional/brand library, they can compose the tokens with your site specific tokens
 and editors.
 
-01. Create a `src/components/Editors/RichText.tokens.ts`  where you can assign your site/brand specific
-    tokens to each.  (Import & Export as needed)
+01. Create a `src/components/Editors/RichText.tokens.ts` where you can assign your site/brand
+    specific tokens to each. (`import` and `export` as needed.)
 
     ```js
     const withQuoteBlockMeta = flowHoc(
@@ -70,11 +72,15 @@ and editors.
     });
     ```
 
-    `withQuoteBlockMeta` creates a token that will be designable Span and adds new quote button to editor.  
-    `BrandRichText` starts with the existing cxRichText functionality and in both Core/Componets, it spreads existing funcitonality across these two domains and the new tokens are added.
+    - `withQuoteBlockMeta` creates a token that will be a designable Span and adds a new quote
+      button to the editor.
+    - `BrandRichText` starts with the existing `cxRichText` functionality, and, in both
+      Core/Components, it spreads existing functionality across these two domains and the new tokens
+      are added.
 
 01. Create a `src/components/Editors/index.tsx`  where you can export all tokens and schemas from
     Editors.
+
     ```js
     export BrandRichText from './RichText.tokens';
     ```

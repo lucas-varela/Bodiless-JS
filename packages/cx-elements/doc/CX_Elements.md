@@ -1,8 +1,10 @@
 # CanvasX Elements
 
-CanvasX Elements is composed of [element tokens](../Design/DesignSystem?id=element-tokens) to implement the CanvasX design system.
+CanvasX Elements is composed of [element tokens](/Design/DesignSystem#element-tokens) to implement
+the CanvasX design system.
 
-It consists of the following type of component element tokens and all are in the associated tokens folders:
+It consists of the following types of component element tokens, and they are all in associated
+tokens folders:
 
 * Color
 * Font Size
@@ -11,64 +13,69 @@ It consists of the following type of component element tokens and all are in the
 
 ## Content Editor Details
 
-There is no interaction by the Content Editor with the CanvasX element tokens, only with tokens once composed into components.
+There is no interaction by the Content Editor with the CanvasX element tokens, only with tokens once
+they've been composed into components.
 
 ## Site Builder Details
 
-### CXElement tokens
+### CX Element Tokens
 
-The site builder has ability to use any of the token CanvasX elements which are in cxElement collection or individually.
+The Site Builder has the ability to use any of the token CanvasX elements which are in the
+`cxElement` collection or that exist independently.
 
 #### Usage
 
-import cxElements from @bodiless/cx-elements or the specific Element token
+Import `cxElements` from `@bodiless/cx-elements`, or from a specific Element token.
 
-If singular token being is used and directly from specific Element token
+If a singular token is being used, and is directly from a specific Element token:
 
-    ```
-    Header1: cxColor.TextPrimaryBodyCopy,
-    ```
+```js
+Header1: cxColor.TextPrimaryBodyCopy,
+```
 
-Or use from cxELement collection & can be within `as()` or `flowHOC()` if combining multiple tokens:
+Or use from `cxELement` collection; it can be within `as()` or `flowHOC()` if combining multiple
+tokens:
 
-  ```
-    BoldBody: as(
-      cxElement.Bold,
-      cxColor.TextPrimaryBodyCopy,
-    ),
-  ```
+```js
+BoldBody: as(
+  cxElement.Bold,
+  cxColor.TextPrimaryBodyCopy,
+),
+```
 
-### CXElement Site Specific Typography
+### CX Element Site-Specific Typography
 
-The site builder may need to override a specific token or specific set of tokens and the following is [best methodology](./SiteTypography) for doing do.
+The Site Builder may need to override a specific token, or a specific set of tokens, and the
+following is the [best methodology](./SiteTypography) for doing do.
 
-### Helper utilities
+### Helper Utilities
 
 The package also includes some helper tokens that are very useful in token composition:
 
-* `asCxTokenSpec` :  Creates a token definition utility for a clean component and will allow tokens to be assigned to any of the slots within your clean component.
+* `asCxTokenSpec` : Creates a token definition utility for a clean component, and will allow tokens
+  to be assigned to any of the slots within your clean component.
 
-Usage:
+  * Usage:
 
-    ```
+    ```jsx
     const asLayoutToken = asCxTokenSpec<LayoutComponents>();
     ```
 
-* `asMetaToken` :  Creates a token which applies the given metadata.
+* `asMetaToken` : Creates a token which applies the given metadata.
 
-Usage:
+  * Usage:
 
-    ```
+    ```jsx
     TBD
     ```
 
-Explanation: TBD
+    * Explanation: TBD
 
-* `asElementToken` : Creates an element level token where only the _ design key is allowed.
+* `asElementToken` : Creates an element level token where only the `_` design key is allowed.
 
-Usage:
+  * Usage:
 
-    ```
+    ```jsx
     const Link = asElementToken({
       Core: {
         _: cxFontSize.Base,
@@ -83,47 +90,51 @@ Usage:
       Meta: meta,
     });
     ```
-The above example creates an element token that combines classes in the core & theme domains as well assigns the associated meta data for the token.
 
-* asFluidToken : Creates a token for a component with a fluid design (one in which any design key is allowed).
+    * The above example creates an element token that combines classes in the core and theme
+      domains, as well as assigns the associated metadata for the token.
 
-Explanation: TBD
+* `asFluidToken` : Creates a token for a component with a fluid design (one in which any design key
+  is allowed).
 
-Usage:
+  * Usage:
 
-```
-TBD 
-```
+    ```jsx
+    TBD
+    ```
 
-* asTokenGroup : Creates a group of element tokens with shared meta.
+  * Explanation: TBD
 
-Usage:
+* `asTokenGroup` : Creates a group of element tokens with shared meta.
 
-```
-default asTokenGroup(meta)({
-  Base: 'text-m-base lg:text-base',
-  XXXL: 'text-m-3xl lg:text-3xl',
-  XXL: 'text-m-2xl lg:text-2xl',
-  XL: 'text-m-xl lg:text-xl',
-  L: 'text-m-lg lg:text-lg',
-  XS: 'text-m-xs lg:text-xs',
-});
-```
+  * Usage:
 
-The above example will apply the same meta to all element tokens.
+    ```jsx
+    default asTokenGroup(meta)({
+      Base: 'text-m-base lg:text-base',
+      XXXL: 'text-m-3xl lg:text-3xl',
+      XXL: 'text-m-2xl lg:text-2xl',
+      XL: 'text-m-xl lg:text-xl',
+      L: 'text-m-lg lg:text-lg',
+      XS: 'text-m-xs lg:text-xs',
+    });
+    ```
 
-### Shadowing CXElement tokens
+    * The above example will apply the same meta to all element tokens.
 
-For more information on shadowing CXElement tokens, read [CX Shadow](./CX_Shadow.md)
+### Shadowing CX Element Tokens
+
+For more information on shadowing CX Element tokens, read [CX Shadow](./CX_Shadow.md).
 
 ## Architectural Details
 
-When adding new Element tokens to cx-elements package:
+When adding new Element tokens to the `cx-elements` package:
 
-* Add to existing Element if its fits the associated component token or create an new component token with applicable name.
+* Add to existing Element if it fits the associated component token, or create a new component token
+  with applicable name.
 
-If creating new component token:
+If creating a new component token:
 
 * Create a static version of the component.
-* Add Relevent metadata.
+* Add relevant metadata.
 * Remember to export all.
