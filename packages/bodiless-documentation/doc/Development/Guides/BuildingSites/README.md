@@ -25,7 +25,7 @@ components — instead of utilizing those offered by CanvasX — will work.
     01. [Using Custom Fonts](./TypographySetup/Fonts)
 
 01. Text Editors:
-    - Implement the basic text editors for the site, which includes a plain editor and Rich text
+    - Implement the basic text editors for the site, which includes a Rich Text editor and Plain Text
       editor.
       - For an overview of the editors, see [CanvasX Editors](/Components/Editors/CX_Editors/).
     - `RichText`: Use tokens from `cx-Elements` to define available text styling options.
