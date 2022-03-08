@@ -6,6 +6,9 @@ components — instead of utilizing those offered by CanvasX — will work.
 
 ## Overview
 
+!> **PLEASE NOTE:** This page is still in-progress; **Steps #1 and #4–18** are _incomplete_ and
+**COMING SOON**.
+
 01. Create site:
     - Overview of [Building a Site using Bodiless](./BuildingOverview):
       - Create and initialize a new site repository as described in the documentation for [Getting
