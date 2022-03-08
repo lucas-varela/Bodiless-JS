@@ -1,77 +1,99 @@
 # Typography
 
-The typography of starts with the defining the font, font size, line-heights with package/site's site.tailwind.confg.js.  
+The typography starts with defining the font, font size, and line-heights within your
+package/site's `site.tailwind.config.js`.
 
 ## CanvasX Elements
 
-The canvasx-elements package provides opinionated typography that can be used as is or if need parts can be overridden by the site.
+The `cx-elements` package provides opinionated typography that can be used as is, or, if needed,
+parts can be overridden by your site.
 
-For more infomation of specific details of typography is best to review (cx-elements)[link to package code]
+For more information on specific details of typography, it is best to review
+[`cx-elements`](https://github.com/johnsonandjohnson/Bodiless-JS/tree/main/packages/cx-elements).
 
-If you plan on leveraging other CanvasX components, we recommend leveraging all or parts of Canvasx-elements.
+If you plan on leveraging other CanvasX components, we recommend leveraging all or parts of
+`cx-elements`.
 
-For more details on usage, please follow the [CanvasX Elements Typography Guide](../../../../Components/CX_Elements/CX_SiteTypography).
+For more details on usage, please follow the [CanvasX Elements Typography
+Guide](../../../../Components/CX_Elements/CX_SiteTypography).
 
-## Developing your Typography without Leveraging CanvasX Elements
+## Developing Your Typography without Leveraging CanvasX Elements
 
-The following section defines a high level overview of defining your typography.  For best practices, we do recommend following patterns see in cx-elements package.
+The following section defines a high-level overview of defining your typography. For best practices,
+we recommend following patterns seen in the `cx-elements` package.
 
-### Font Sizes & Line heights
+### Font Sizes & Line Heights
 
-If your site is defining custom font sizes and line-heights, these are set within the package/site's site.tailwind.confg.js.
+If your site is defining custom font sizes and line-heights, these are set within the package/site's
+`site.tailwind.config.js`.
 
-?> **TIP**   Tailwind provides ability to specify font sizes with default line-height and this simplifies the process:
-https://tailwindcss.com/docs/font-size#providing-a-default-line-height  or if your design clals for letter-spacing as well they can all three be defined together as one: https://tailwindcss.com/docs/font-size#providing-a-default-letter-spacing
+?> **Tip:** Tailwind provides the ability to specify font sizes with default line-height, and this
+simplifies the process: [Providing a default
+line-height](https://tailwindcss.com/docs/font-size#providing-a-default-line-height).  
+Or, if your design calls for letter-spacing as well, all three can be defined together as one:
+[Providing a default
+letter-spacing](https://tailwindcss.com/docs/font-size#providing-a-default-letter-spacing).
 
 ### Colors
 
-If your site is (defining custom colors)[https://tailwindcss.com/docs/customizing-colors#adding-additional-colors], these are set within the package/site's site.tailwind.confg.js.
+If your site is [defining custom
+colors](https://tailwindcss.com/docs/customizing-colors#adding-additional-colors), these are set
+within your package/site's `site.tailwind.config.js`.
 
-### Element Tokens for Headers, Links, Body and other tokens
+### Element Tokens for Headers, Links, Body, and Other Tokens
 
-You can define a custom collection of tokens to use within your site.  
+You can define a custom collection of tokens to use within your site.
 
-?> **TIP** While you have choice of using the tailwind class or a token, we do recommend if you are reusing a class repeatedly, then make a token for it.  In the future, its quick to change one occurrence than search through files and replace the specific class.
+?> **Tip:** While you have the choice of using the Tailwind class or a token, we recommend that if
+you are reusing a class repeatedly, then make a token for it. In the future, it's quicker to change
+one occurrence than to search through files and replace the specific class.
 
-1. Recommend starting an Elements folder in your package and start defining tokens during creation.   Keeping the files small and specific to function/defintion will be better maintainable and easier for others to understand.
-2. Tokens can be defined individually or within a group if they share the (meta)[http://localhost:8005/___docs/#/Development/Architecture/FClasses?id=metadata-and-filters].
+01. We recommend starting with an Elements folder in your package, and start defining tokens during
+    creation. Keeping the files small and specific to function/definition will be easier to
+    maintain, and easier for others to understand.
 
-  ````
-  // Individual Element Token
-  const H1 = asElementToken('text-xxl, font-bold, text-mycolor1, mb-5 lg:mb-6');
+01. Tokens can be defined individually, or within a group if they share
+    [metadata](/Development/Architecture/FClasses?id=metadata-and-filters).
 
-  // Shared Element Token
-  export default asTokenGroup(meta)({
-    BGMyColor1: 'bg-mycolor1',
-    TextMyColor1: 'text-mycolor1',
-    BGMyColor2: 'bg-mycolor2',
-    TextMyColor2: 'text-mycolor2',  
-  });
+    ```js
+    // Individual Element Token
+    const H1 = asElementToken('text-xxl, font-bold, text-mycolor1, mb-5 lg:mb-6');
 
-  ````
+    // Shared Element Token
+    export default asTokenGroup(meta)({
+      BGMyColor1: 'bg-mycolor1',
+      TextMyColor1: 'text-mycolor1',
+      BGMyColor2: 'bg-mycolor2',
+      TextMyColor2: 'text-mycolor2',
+    });
+    ```
 
-### Applying Classes to entire site
+### Applying Classes to Your Entire Site
 
-If you want to apply the classes to entire site, we recommend the following practice:
+If you want to apply the classes to your entire site, we recommend the following practice:
 
-1. Within asHelmetToken() and in the *Theme* Domain, provide the site's font class.  (TBD link to Helmet doc)
+01. Within `asHelmetToken()`, and in the _Theme_ Domain, provide the site's font class.
+    <!-- TODO: TBD link to Helmet doc -->
 
-```
-const Default = asHelmetToken({
-  Theme: {
-    HTMLHelmet: 'font-DMSans font-base text-TestMyColor1',
-  }
-});
+01. In `/cx-layout/src/components/Helmet/Helmet.token.ts`, within `asHelmetToken()`, and in the
+    _Theme_ Domain, provide the site's font class.
 
+    ```js
+    const Default = asHelmetToken({
+      Theme: {
+        HTMLHelmet: 'font-DMSans font-base text-TestMyColor1',
+      }
+    });
 
-export const cxHelmet = { Default }
-```
+    export const cxHelmet = { Default };
+    ```
 
-1. Ensure this Helmet token is applied within your Layout tokens.
+01. Ensure this Helmet token is applied within your Layout tokens.
 
-````
-const Base = asLayoutToken({
-  Components: {
-    Helmet: as(cxHelmet.Default),
-  },
-````
+    ```js
+    const Base = asLayoutToken({
+      Components: {
+        Helmet: as(cxHelmet.Default),
+      },
+    });
+    ```
