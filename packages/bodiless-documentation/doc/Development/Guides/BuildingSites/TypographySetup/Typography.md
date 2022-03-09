@@ -3,7 +3,7 @@
 The typography starts with defining the font, font size, and line-heights within your
 package/site's `site.tailwind.config.js`.
 
-## CanvasX Elements
+## Getting Started with CanvasX Elements: Prebuilt Typography
 
 The `cx-elements` package provides opinionated typography that can be used as is, or, if needed,
 parts can be overridden by your site.
@@ -14,8 +14,8 @@ For more information on specific details of typography, it is best to review
 If you plan on leveraging other CanvasX components, we recommend leveraging all or parts of
 `cx-elements`.
 
-For more details on usage, please follow the [CanvasX Elements Typography
-Guide](../../../../Components/CX_Elements/CX_SiteTypography).
+For more details on usage and getting started using this package, please follow the [CanvasX
+Elements Typography Guide](../../../../Components/CX_Elements/CX_SiteTypography).
 
 ## Developing Your Typography without Leveraging CanvasX Elements
 
@@ -24,8 +24,8 @@ we recommend following patterns seen in the `cx-elements` package.
 
 ### Font Sizes & Line Heights
 
-If your site is defining custom font sizes and line-heights, these are set within the package/site's
-`site.tailwind.config.js`.
+If your site is defining custom font sizes and line-heights, these are set within your
+[package/site's `site.tailwind.config.js`](./TailwindGuide#tailwind-configuration-file).
 
 ?> **Tip:** Tailwind provides the ability to specify font sizes with default line-height, and this
 simplifies the process: [Providing a default
@@ -38,7 +38,7 @@ letter-spacing](https://tailwindcss.com/docs/font-size#providing-a-default-lette
 
 If your site is [defining custom
 colors](https://tailwindcss.com/docs/customizing-colors#adding-additional-colors), these are set
-within your package/site's `site.tailwind.config.js`.
+within your [package/site's `site.tailwind.config.js`](./TailwindGuide#tailwind-configuration-file).
 
 ### Element Tokens for Headers, Links, Body, and Other Tokens
 

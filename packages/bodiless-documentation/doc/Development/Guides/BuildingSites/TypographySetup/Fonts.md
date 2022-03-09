@@ -66,13 +66,13 @@ boost. This may be within the service and/or an optional parameter, if available
 This is best way, as fonts are usually small and packaged within the web bundle of the site, and is
 the best performance option.
 
-01. In your brand package, suggested brand-elements package, create a folder assets/font and place
-    the fonts.
-01. In your package's `site.tailwind.config.js` file, add the plugin `font-face` via `addBase` to
-    import the fonts.
+01. In your brand package (suggested: `BRAND-elements` package), create a folder `assets/font`, and
+    place the fonts.
 01. In the `package.json`, make sure your `files` section exports the assets so they are bundled
     with the package (e.g., `"files": ["/assets"]`).
-01. Extend `fontFamily` in your theme to include the font.
+01. In your package's `site.tailwind.config.js` file, add the plugin `font-face` via `addBase` to
+    import the fonts.
+01. Extend `fontFamily` in the Tailwind `theme` section to include the font.
 01. Use the new font by using the prefix and name of the font you defined (e.g., `font-linkicons`).
 
 ```js

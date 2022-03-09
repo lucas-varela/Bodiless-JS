@@ -1,7 +1,7 @@
 # CanvasX Elements
 
 CanvasX Elements is composed of [element tokens](/Design/DesignSystem#element-tokens) to implement
-the CanvasX design system.
+an opinionated CanvasX design system.
 
 It consists of the following types of component element tokens, and they are all in associated
 tokens folders:
@@ -18,10 +18,10 @@ they've been composed into components.
 
 ## Site Builder Details
 
-### CX Element Tokens
+### Usage of CX Element Tokens As Is
 
 The Site Builder has the ability to use any of the token CanvasX elements which are in the
-`cxElement` collection or that exist independently.
+`cxElement` collection.
 
 #### Usage
 
@@ -33,7 +33,7 @@ If a singular token is being used, and is directly from a specific Element token
 Header1: cxColor.TextPrimaryBodyCopy,
 ```
 
-Or use from `cxELement` collection; it can be within `as()` or `flowHOC()` if combining multiple
+Or use from `cxElement` collection; it can be within `as()` or `flowHOC()` if combining multiple
 tokens:
 
 ```js
@@ -43,10 +43,10 @@ BoldBody: as(
 ),
 ```
 
-### CX Element Site-Specific Typography
+### Using CX Element Tokens, but Customizing for Site-Specific Typography
 
 The Site Builder may need to override a specific token, or a specific set of tokens, and the
-following is the [best methodology](./SiteTypography) for doing do.
+following is a how-to guide to apply the [best methodology](./SiteTypography) for doing so.
 
 ### Helper Utilities
 

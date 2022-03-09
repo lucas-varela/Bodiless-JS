@@ -5,10 +5,18 @@ auto-superscripting, if necessary.
 
 ## Content Editor Details
 
-The plain editor has no options, and the user can click on the text and edit as necessary. If the
-auto-superscript token is applied, when the focus is removed from the component being edited, if the
-string entered by the Content Editor has any special characters configured to be superscript, they
-will be automatically superscripted.
+The plain editor has no options, and the user can click on the text and edit as necessary.
+
+### Auto-Superscripting is Enabled on Plain Text Editor
+
+An auto-superscript feature may be applied to a Plain Text Editor, which will automatically
+superscript a configured set of special characters.
+
+If enabled, the auto-superscript feature will trigger and superscript applicable text:
+
+- Once focus is removed from the component being edited;
+- If the string entered by the Content Editor has any special characters configured to be
+  superscript.
 
 ## Site Builder Details
 

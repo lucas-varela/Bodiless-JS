@@ -1,6 +1,6 @@
 # CanvasX Site Typography Setup/Override
 
-The site typography consists of updating fonts, colors, font sizes, and very elemental tokens.
+The site typography consists of updating fonts, colors, font sizes, and basic tokens (e.g., `h1`).
 
 ## Step 1: Setup Fonts
 
@@ -14,9 +14,8 @@ The CanvasX Design has defined the following [font
 sizes](https://xd.adobe.com/view/fd6e4dde-2ecf-480a-aaaf-f5043cb04bf0-a83d/screen/d0c37949-f384-4a14-ad34-011d39ef62ba/specs/),
 and they have been converted into the REM point system using base 16.
 
-<!-- TODO: Provide link to XLS Template when available. -->
 To facilitate converting a custom font size into REM units, please refer to this [XLS
-Template](TBD).
+Template](./assets/PXtoREMTemplate.xlsx).
 
 ### Option 1: Shadow `cxFontSize` (*Preferred Solution)
 
@@ -96,7 +95,7 @@ The CanvasX Design is as specified Header, body, eyebrow, link, and some specifi
 tokens, per designs linked above. They can be shadowed, which is the recommendation with tokens
 changed, added, or redefined at package/site level.
 
-### Option 1: Shadow `cxColor` (*Preferred Solution)
+### Option 1: Shadowing (*Preferred Solution)
 
 Provide the Shadowing function as defined in [Shadow](./CX_Shadow).
 
@@ -105,7 +104,7 @@ Files to shadow:
 - [`cxTypography`](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-elements/src/components/Element/Typography/tokens/cxTypography.ts)
 - [`cXTextDecoration`](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-elements/src/components/Element/TextDecoration/tokens/cxTextDecoration.ts)
 
-### Option 1: Define Custom Tokens at Package Level
+### Option 2: Define Custom Tokens at Package Level
 
 The Site Builder can define their own custom tokens at package level.
 

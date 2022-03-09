@@ -27,12 +27,15 @@ components — instead of utilizing those offered by CanvasX — will work.
 01. Text Editors:
     - Implement the basic text editors for the site, which includes a plain editor and Rich text
       editor.
-      - For an overview of the editors, see [CanvasX Editors](/Components/Editors/CX_Editors/).
-    - `RichText`: Use tokens from `cx-Elements` to define available text styling options.
-      - See: [CX Rich Text Editor Component : Site Builder Details](/Components/Editors/CX_Editors/CX_RTE_Editor#site-builder-details)
-    - `EditorPlain`: If your brand/site's font(s) require a superscript ® (registered trademark)
-      symbol, implement a version of the plain text editor which applies this CX token.
-      - See: [CX Plain Text Editor Component : Site Builder Details](/Components/Editors/CX_Editors/CX_PlainEditor#site-builder-details)
+      - For an overview of implementing the editors, see [CanvasX
+        Editors](/Components/Editors/CX_Editors/).
+      - `RichText`: Use tokens from `cx-Elements` to define available text styling options.
+        - See: [CX Rich Text Editor Component : Site Builder
+          Details](/Components/Editors/CX_Editors/CX_RTE_Editor#site-builder-details)
+      - `EditorPlain`: If your brand/site's font(s) require a superscript ® (registered trademark)
+        symbol, implement a version of the plain text editor which applies this CX token.
+        - See: [CX Plain Text Editor Component : Site Builder
+          Details](/Components/Editors/CX_Editors/CX_PlainEditor#site-builder-details)
 
 01. FlowContainer/Layout Tool:
     - Implement the basic layout editors for the site.
@@ -80,8 +83,8 @@ components — instead of utilizing those offered by CanvasX — will work.
       [identify components and variations](./IdentifyingComponentsGuide) for some useful tips.
 
 01. Multi-language:
-    - If your site requires multi-language, we recommend bringing in the i18 CanvasX packages and
-      many components are depending on toggle data between languages.
+      <!-- TODO: Complete bullet when able. -->
+    - If your site requires multi-language, we recommend bringing in the i18 package... TBD
 
 01. Cards:
     - Implement a site's card tokens. Use the image, editor, and list, etc. tokens from previous

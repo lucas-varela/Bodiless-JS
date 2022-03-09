@@ -34,24 +34,24 @@ defined in the Schema Domain.
 
 ### Overriding Rich Text Editor
 
-#### Overriding Specific Existing Styles Using CanvasX Rich Text Editor
-
-See [CanvasX Site Typography](../../CX_Elements/CX_SiteTypography).
-
-#### Shadowing (*Preferred Method)
+#### Via Shadowing (*Preferred Method)
 
 Provide the Shadowing function as defined in [Shadow](../../CX_Elements/CX_Shadow).
 
 File to shadow:
 [`cxRichText`](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-editors/src/components/RichText/tokens/cxRichText.ts)
 
+#### Via Overriding Specific Existing Styles Using CanvasX Rich Text Editor
+
+See [CanvasX Site Typography](../../CX_Elements/CX_SiteTypography).
+
 ### Extending Default CanvasX Rich Text Editor
 
-At site or global regional/brand library, they can compose the tokens with your site specific tokens
-and editors.
+At site or global regional/brand library level, a site can compose a set of new tokens to meet the
+design requirements, and provide additional Rich Text functionality (typically, via buttons).
 
-01. Create a `src/components/Editors/RichText.tokens.ts` where you can assign your site/brand
-    specific tokens to each. (`import` and `export` as needed.)
+01. Create a `src/components/Editors/RichText.tokens.ts` where you can create/use your site/brand
+    specific tokens for each. (`import` and `export` as needed.)
 
     ```js
     const withQuoteBlockMeta = flowHoc(

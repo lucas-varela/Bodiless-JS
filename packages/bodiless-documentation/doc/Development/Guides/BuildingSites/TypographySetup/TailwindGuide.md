@@ -15,6 +15,9 @@ documentation or suggested best practices.
 
 ## Tailwind Configuration File
 
+For configuration, Tailwind uses a `tailwind.config.js` file, but, in Bodiless, we use a
+`site.tailwind.config.js` file at the package and site level.
+
 Your site's Tailwind configuration file, `site.tailwind.config.js`, can be found in the root
 directory of the site or within a package.
 
@@ -22,12 +25,35 @@ Adding custom styling can be done by editing `site.tailwind.config.js`, followin
 documentation](https://tailwindcss.com/docs/configuration).
 
 If your site doesn't have a Tailwind configuration file in its root directory, then your site will
-use all of Tailwind's default settings as well as packages that include Tailwind. Bodiless has a
-mechanism that will merge all the Tailwind configuration files coming from all packages and produce
-a single CSS file.
+use all of Tailwind's default settings as well as packages that include Tailwind.
+
+Bodiless sites have a mechanism to discover all packages' and sites' Tailwind config files
+(`site.tailwind.config.js`), and combine them into a single Tailwind file during the build process.
+To utilize this, you must follow the naming convention described in the [next
+section](#tailwind-configuration-for-a-package).
+
+Tailwind provides a feature that if a class is not found in the code base, the CSS will be purged
+and thus reduce the CSS bundle.
 
 !> **IMPORTANT:** If the classes are duplicated in the site and the package, **the site's CSS will
 always win**.
+
+### Tailwind Configuration for a Package
+
+01. Add a `site.tailwind.config.js` file to the root of the package.
+    ```js
+    const plugin = require('tailwindcss/plugin');
+
+    module.exports = {
+      purge: [
+        './lib/**/!(*.d).{ts,js,jsx,tsx}',
+      ],
+      theme: {},
+      plugins: [],
+    };
+    ```
+01. Within `files` of the `package.json`, add `/site.tailwind.config.js` to make sure it's exported
+    with the package.
 
 ## Determine Whether to Use Extend vs Replace
 
@@ -88,9 +114,9 @@ easy to translate `rem` to `px`.
 
 Each time a site builder makes a change in `tailwind.config.js`, they will need to rerun the build
 process. This can be done with either `npm run start` or `npm run build`, and it will generate CSS
-that is automatically included for the site.
+that is automatically included for the site and its packages.
 
-!> **IMPORTANT:** For Tailwind config changes to be updated, you must restart or rebuild to see the
+!> **IMPORTANT:** For Tailwind config changes to be visible, you must restart or rebuild to see the
 changes.
 
 ## Responsiveness with Tailwind
@@ -138,29 +164,3 @@ Common cases for using custom CSS:
 
 - Complex CSS that generates a specific styling
 - Classes that are not available in Tailwind.
-
-## Tailwind Purge Whitelist Auto-Discovery
-
-Bodiless and CanvasX sites have a mechanism to discover all packages' and sites' Tailwind config
-files and combine them into one Tailwind file during the build. To utilize this, you must follow the
-naming convention as described in the next section.
-
-Tailwind provides a feature that if a class is not found in the code base, the CSS will be purged
-and thus reduce the CSS bundle.
-
-### Tailwind Configuration for a Package
-
-01. Add a `site.tailwind.config.js` file to the root of the package.
-    ```
-    const plugin = require('tailwindcss/plugin');
-
-    module.exports = {
-      purge: [
-        './lib/**/!(*.d).{ts,js,jsx,tsx}',
-      ],
-      theme: {},
-      plugins: [],
-    };
-    ```
-01. Within `files` of the `package.json`, add `/site.tailwind.config.js` to make sure it's exported
-    with the package.

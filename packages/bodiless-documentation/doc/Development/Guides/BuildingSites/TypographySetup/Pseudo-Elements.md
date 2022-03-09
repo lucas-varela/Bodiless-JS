@@ -3,20 +3,22 @@
 Pseudo-elements are somewhat of a challenge within Tailwind and Bodiless. Review the examples on
 this page for guidance.
 
-For links, we highly recommend any icons added to links be implemented as pseudo-elements. This
-helps accessibility with links, and doesn't interfere with the Bodiless editor link functionality in
-Edit Mode.
+## Suggested Usages
+
+- Links with icons: For links, we highly recommend any icons added to links be implemented as
+  pseudo-elements. This helps accessibility with links, and doesn't interfere with the Bodiless
+  editor link functionality in Edit Mode.
 
 A pseudo-element class can be defined in a package/site's `tailwind.config.js` file, utilizing the
 Tailwind plugin's [`addUtilities`](https://tailwindcss.com/docs/plugins#adding-utilities)
 functionality.
 
-The following example defines the `cx-external::after` with [self-hosted icon
-font](./Fonts#via-hosted), content, and additional styling. To use, apply `cx-external-link` to any
-token.
+### Pseudo-Element Using an Icon Font
 
-In this instance, we chose to use a small self-hosted IcoMoon font so the icon can easily be
-recolored and grow with text size. Images could be used as well, and set via background image.
+The following example defines the `cx-external::after` with a [self-hosted icon
+font](./Fonts#via-hosted), content, and additional styling.
+
+To use, apply `cx-external-link` to any token.
 
 _(Code excerpt from `site.tailwind.config.js` file's `module.exports = {}` section.)_
 
@@ -39,6 +41,11 @@ plugin(({ addUtilities }) => {
   );
 }),
 ```
+
+In this instance, we chose to use a small self-hosted IcoMoon font so the icon can easily be
+recolored and grow with text size. Images could be used as well, and set via background image.
+
+### Pseudo-Element Defining a Separator
 
 Here is another example where we transform a breadcrumb separator that switches between `before` and
 `after` depending upon `html` direction. The class `breadcrumb-list-item` is applied to the token.
