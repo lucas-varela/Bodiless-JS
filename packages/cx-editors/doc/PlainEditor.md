@@ -1,54 +1,74 @@
 # CanvasX Plain Text Editor Component
 
-The CanvasX Plain text editor is defining the placeholder and setting up to allow auto Superscripting if necessary.
+The CanvasX Plain Text Editor consists of defining the placeholder, and setting it up to allow
+auto-superscripting, if necessary.
 
 ## Content Editor Details
 
-The plain editor has no options and the user can click in the text and edit as necessary.  If auto superscript token is applied, when the focus is removed from the component being edited, if the string entered by content editor has any special characters configured to be superscript, they will be auto superscripted.
+The plain editor has no options, and the user can click on the text and edit as necessary.
+
+### Auto-Superscripting is Enabled on Plain Text Editor
+
+An auto-superscript feature may be applied to a Plain Text Editor, which will automatically
+superscript a configured set of special characters.
+
+If enabled, the auto-superscript feature will trigger and superscript applicable text:
+
+- Once focus is removed from the component being edited;
+- If the string entered by the Content Editor has any special characters configured to be
+  superscript.
 
 ## Site Builder Details
 
-The following can be applied to any Slot as in the follow example.
+What's shown in the following example can be applied to any Slot.
 
 ### Usage
 
-    ```js
-      Editors: {
-        Content: as(cxEditorPlain.Default)(EditorPlainClean)
-      },
-      Schema: {
-        Content: withNode('content'),
-      }
-    ```
+```js
+  Editors: {
+    Content: as(cxEditorPlain.Default)(EditorPlainClean)
+  },
+  Schema: {
+    Content: withNode('content'),
+  }
+```
 
-We recommend the Editor component & tokens are defined in Editors Domain and what node is defined in Schema Domain.
+We recommend that the Editor Component and tokens be defined in the Editors Domain, and the node be
+defined in the Schema Domain.
 
-### Auto Superscripting
+### Auto-Superscripting
 
-By default, the editor provide `WithAutoSuperscript` token that can be applied to your plain text editor allowing special characters to be superscripted.
+By default, the editor provides the `WithAutoSuperscript` token, which can be applied to your plain
+text editor, allowing special characters to be superscripted.
 
-The first parameter is list of characters that will be wrapped with < sup > tag.  The token defaults to "®™.
-The second paramter allows you to apply a class to the < sup > tag. The token defaults to `align-baseline`.
+The first parameter is the list of characters that will be wrapped with a `<sup>` tag. The token
+defaults to "®™" (the _registered trademark_ and _trademark_ symbols). The second parameter allows
+you to apply a class to the `<sup>` tag. The token defaults to the `align-baseline` class.
 
 #### Usage
 
-The following composes default plain editor with custom superscript token:
+The following composes a default plain editor with a custom superscript token:
 
-  ```js
-  const WithCustomAutoSuperscript = asElementToken({
+```js
+const WithCustomAutoSuperscript = asElementToken({
   Behavior: {
     _: withAutoSuperscript('©®™℠', 'align-super'),
   },
-  });
+});
 
-  const EditorWithCustomAutoSuperscript = as(
-    cxEditorPlain.Default,
-    WithCustomAutoSuperscript
-    withNodeKey('plain-with-super'),
-  )(EditorPlainClean);
-  ```
+const EditorWithCustomAutoSuperscript = as(
+  cxEditorPlain.Default,
+  WithCustomAutoSuperscript,
+  withNodeKey('plain-with-super'),
+)(EditorPlainClean);
+```
 
-?> **TIP** Some fonts have the trademark characters already raised to the correct position and do not need < sup > tag, while other fonts you need to apply < sup > and raise the characters by styling.   Please check your font and determine if you need AutoSuperscript on plain text editor.   Note the content editor don't have the ability to apply the superscript when using the plain text editor, so its important to apply this token if your font doesn't look superscripted.
+?> **Tip:** Some fonts have the trademark characters already raised to the correct position and do
+not need `<sup>` tags, while other fonts will need you to apply `<sup>` tags and raise the
+characters by styling. Please check your font and determine if you need `AutoSuperscript` on your
+plain text editor. Note the Content Editor doesn't have the ability to apply superscript when using
+the plain text editor, so it's important to apply this token if your font doesn't look
+superscripted.
 
 ## Architectural Details
 
