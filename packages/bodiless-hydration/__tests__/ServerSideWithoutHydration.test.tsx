@@ -15,7 +15,6 @@ describe('when using withoutHydration at the server side', () => {
     const withoutHydration = createWithoutHydration('production');
     const DryComponent = withoutHydration()(InteractiveComponent);
     const serialized = ReactDOMServer.renderToString(<DryComponent />);
-
     const $ = cheerio.load(serialized);
 
     expect($('[data-no-hydrate]').length).toBe(1); // wrapper should exist
