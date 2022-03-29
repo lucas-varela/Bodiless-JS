@@ -54,7 +54,7 @@ export const createStaticReplacementPlugin = ({ include, logging }: PluginOption
         // eslint-disable-next-line no-param-reassign
         resource.request = newRequest;
       } catch (e) {
-        if (logging) {
+        if (logging !== false) {
           console.warn(`[Static replacement] Not replacing ${resource.request}: unable to resolve ${newResource}`);
         }
       }
