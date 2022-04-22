@@ -14,21 +14,21 @@
 
 import React, { FC } from 'react';
 
-import { Div, designable, Span } from '@bodiless/fclasses';
+import { Div, designable } from '@bodiless/fclasses';
 import { asVitalTokenSpec } from '@bodiless/vital-elements';
+import { SearchBoxClean, SearchResultClean } from '@bodiless/vital-search';
 import { DesktopSearchComponents, DesktopSearchProps } from './types';
-import SearchIcon from '../assets/SearchIcon';
 
 const desktopSearchComponents: DesktopSearchComponents = {
   Wrapper: Div,
-  Icon: SearchIcon,
-  Label: Span,
+  Search: SearchBoxClean,
+  Results: SearchResultClean
 };
 
 const DesktopSearchBase: FC<DesktopSearchProps> = ({ components: C }) => (
   <C.Wrapper>
-    <C.Icon />
-    <C.Label />
+    <C.Search />
+    <C.Results />
   </C.Wrapper>
 );
 

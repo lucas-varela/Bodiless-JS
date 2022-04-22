@@ -19,6 +19,7 @@ import {
   flowIf,
   not,
 } from '@bodiless/fclasses';
+import { withSearchResult } from '@bodiless/search';
 import { asLayoutToken } from '../LayoutClean';
 import { vitalFooter } from '../../Footer';
 import { vitalHeader } from '../../Header';
@@ -31,7 +32,7 @@ import { StyleGuide } from './StyleGuide';
   */
 const Base = asLayoutToken({
   Core: {
-    _: withBurgerMenuProvider,
+    _: as(withBurgerMenuProvider, withSearchResult),
   },
   Components: {
     Helmet: vitalHelmet.Default,

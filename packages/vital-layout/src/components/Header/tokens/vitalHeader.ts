@@ -69,7 +69,7 @@ const Base = asHeaderToken({
       }),
     ),
     DesktopSearch: vitalDesktopSearch.Default,
-    UtilityMenu: vitalMenu.Utility,
+    // UtilityMenu: vitalMenu.Utility,
     // @TODO: Replace LanguageButton placeholder.
     LanguageButton: WithLanguageButton,
     WhereToBuy: vitalLink.WhereToBuy,

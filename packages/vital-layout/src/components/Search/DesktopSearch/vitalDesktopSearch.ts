@@ -13,22 +13,27 @@
  */
 
 import { addProps } from '@bodiless/fclasses';
+import { vitalSearchBox, vitalSearchResult } from '@bodiless/vital-search';
 import { asDesktopSearchToken } from './DesktopSearchClean';
 
 /**
  * Token that defines a basic header.
  */
 const Base = asDesktopSearchToken({
+  Components: {
+    Search: vitalSearchBox.Default,
+    Results: vitalSearchResult.Default,
+  },
   Layout: {
     Wrapper: 'flex items-center',
   },
   Spacing: {
     Wrapper: 'px-4 lg:pl-0 lg:pr-5',
-    Icon: 'm-3'
+    // Icon: 'm-3'
   },
-  Content: {
-    Label: addProps({ children: 'Search' })
-  }
+  // Content: {
+  //   Label: addProps({ children: 'Search' })
+  // }
 });
 
 const Default = asDesktopSearchToken({
