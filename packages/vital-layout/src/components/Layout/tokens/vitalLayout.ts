@@ -19,7 +19,7 @@ import {
   flowIf,
   not,
 } from '@bodiless/fclasses';
-import { withSearchResult } from '@bodiless/search';
+import { withSearchResult } from '@bodiless/vital-search';
 import { asLayoutToken } from '../LayoutClean';
 import { vitalFooter } from '../../Footer';
 import { vitalHeader } from '../../Header';

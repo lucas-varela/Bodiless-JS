@@ -12,7 +12,6 @@
  * limitations under the License.
  */
 
-import { addProps } from '@bodiless/fclasses';
 import { vitalSearchBox, vitalSearchResult } from '@bodiless/vital-search';
 import { asDesktopSearchToken } from './DesktopSearchClean';
 
