@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { vitalSearchBox, vitalSearchResult } from '@bodiless/vital-search';
+import { vitalSearchBox } from '@bodiless/vital-search';
 import { asDesktopSearchToken } from './DesktopSearchClean';
 
 /**
@@ -21,18 +21,13 @@ import { asDesktopSearchToken } from './DesktopSearchClean';
 const Base = asDesktopSearchToken({
   Components: {
     Search: vitalSearchBox.Default,
-    Results: vitalSearchResult.Default,
   },
   Layout: {
     Wrapper: 'flex items-center',
   },
   Spacing: {
     Wrapper: 'px-4 lg:pl-0 lg:pr-5',
-    // Icon: 'm-3'
   },
-  // Content: {
-  //   Label: addProps({ children: 'Search' })
-  // }
 });
 
 const Default = asDesktopSearchToken({

@@ -2,6 +2,7 @@ import {
   addClassesIf,
   as,
 } from '@bodiless/fclasses';
+import { vitalColor } from '@bodiless/vital-elements';
 // import { withSearchDataLayerSuggestion } from '@canvasx/gtm';
 import {
   asSearchSuggestionToken,
@@ -39,7 +40,7 @@ const vitalSearchSuggestion = {
 
 const DefaultSearchSuggestionList = asSearchSuggestionListToken({
   Theme: {
-    Wrapper: 'border border-black bg-white',
+    Wrapper: as(vitalColor.BgPrimaryCard, 'border border-black'),
   },
   Layout: {
     Wrapper: 'absolute top-full z-50 w-full',

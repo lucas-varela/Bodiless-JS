@@ -16,19 +16,17 @@ import React, { FC } from 'react';
 
 import { Div, designable } from '@bodiless/fclasses';
 import { asVitalTokenSpec } from '@bodiless/vital-elements';
-import { SearchBoxClean, SearchResultClean } from '@bodiless/vital-search';
+import { SearchBoxClean } from '@bodiless/vital-search';
 import { DesktopSearchComponents, DesktopSearchProps } from './types';
 
 const desktopSearchComponents: DesktopSearchComponents = {
   Wrapper: Div,
   Search: SearchBoxClean,
-  Results: SearchResultClean
 };
 
 const DesktopSearchBase: FC<DesktopSearchProps> = ({ components: C }) => (
   <C.Wrapper>
     <C.Search />
-    <C.Results />
   </C.Wrapper>
 );
 

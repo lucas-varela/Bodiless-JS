@@ -1,39 +1,27 @@
-import { I, addProps, as } from '@bodiless/fclasses';
-import { withChild } from '@bodiless/core';
-import { withLgResponsiveVariants, asLgResponsiveToken } from '@bodiless/vital-elements';
+import { as } from '@bodiless/fclasses';
+import { withLgResponsiveVariants, asLgResponsiveToken, vitalColor } from '@bodiless/vital-elements';
 import { asSearchBoxToken } from './BoxClean';
 import { vitalSearchSuggestionList } from '../Suggestion';
-
-const withSearchIcon = (icon = 'search') => as(
-  withChild(
-    as(
-      'font-material-icons cursor-pointer not-italic font-normal pr-1 leading-1.05',
-      addProps({
-        children: icon,
-      }),
-    )(I),
-  ),
-);
+import SearchIcon from './assets/SearchIcon';
+import { withChild } from '../../../bodiless-core/lib';
 
 const Desktop = asSearchBoxToken({
   Theme: {
-    SearchWrapper: 'sm:w-1/2 border text-blue bg-white border-blue',
-    SearchInput: 'outline-none',
+    SearchWrapper: as(vitalColor.BgPrimaryCard, 'border bg-white border-search-gray'),
+    SearchInput: 'focus:outline-none',
   },
   Layout: {
-    SearchWrapper: 'relative flex',
+    SearchWrapper: 'relative flex items-center',
     SearchInput: 'flex-grow',
     SearchButton: 'flex items-center',
   },
   Spacing: {
-    SearchWrapper: 'mb-1',
     SearchInput: 'px-2',
+    SearchButton: 'mx-1',
   },
   Components: {
+    SearchButton: withChild(SearchIcon),
     Suggestions: as(vitalSearchSuggestionList.Default),
-  },
-  Content: {
-    SearchButton: withSearchIcon('search'),
   },
 });
 
@@ -78,5 +66,4 @@ const vitalSearchBox = {
 
 export {
   vitalSearchBox,
-  withSearchIcon,
 };

@@ -19,36 +19,18 @@ const twConfig = {
     './lib/**/!(*.d).{ts,js,jsx,tsx}',
   ],
   theme: {
-    extend: {
-      screens: {
-        sm: '640px',
-        md: '768px',
-        lg: '1024px',
-        xl: '1280px',
-      },
-      padding: {
-        '15px': '15px',
-      },
-      margin: {
-        '9px': '9px',
-      },
-      fontFamily: {
-        'material-icons': 'Material Icons',
-      },
-      colors: {
-        teal: {
-          100: '#e6fffa',
-          200: '#b2f5ea',
-          300: '#81e6d9',
-          400: '#4fd1c5',
-          500: '#38b2ac',
-          600: '#319795',
-          700: '#2c7a7b',
-          800: '#285e61',
-          900: '#234e52',
-        },
+    colors: {
+      search: {
+        gray: '#888',
       },
     },
+  },
+  variants: {
+    borderWidth: ['hover'],
+    extend: {
+      display: ['direction'],
+      margin: ['direction'],
+    }
   },
 };
 

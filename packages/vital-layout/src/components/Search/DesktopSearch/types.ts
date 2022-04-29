@@ -18,7 +18,6 @@ import { ComponentOrTag, DesignableComponentsProps } from '@bodiless/fclasses';
 export type DesktopSearchComponents = {
   Wrapper: ComponentOrTag<any>,
   Search: ComponentOrTag<any>,
-  Results: ComponentOrTag<any>,
 };
 
 export type DesktopSearchProps =
