@@ -1,15 +1,18 @@
 {
   "name": "@bodiless/vital-search",
-  "sideEffects": false,
   "version": "1.0.0-beta.9",
   "description": "Provide search VitalDS components and tokens for site builders.",
   "author": "Dewen Li <dli94@its.jnj.com>",
   "license": "UNLICENSED",
   "main": "lib/index.js",
+  "sideEffects": false,
   "typings": "lib/index.d.ts",
+  "bin": {
+    "create-search-index": "./bin/create-search-index"
+  },
   "files": [
     "/lib",
-    "/canvasx.docs.json",
+    "/bodiless.docs.json",
     "/tailwind.config.js",
     "/doc"
   ],

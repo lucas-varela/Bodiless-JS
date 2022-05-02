@@ -52,7 +52,15 @@ const Default = asFluidToken({
   },
 });
 
+const Search = asFluidToken({
+  ...vitalPage.Default,
+  Components: {
+    _default: on(GenericTemplateClean)(vitalGenericTemplate.Search)
+  }
+});
+
 export default {
   ...vitalPage,
   Default,
+  Search,
 };

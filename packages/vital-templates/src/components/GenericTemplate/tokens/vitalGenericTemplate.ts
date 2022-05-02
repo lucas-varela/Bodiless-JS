@@ -17,12 +17,15 @@ import {
   as,
   Img,
   addProps,
+  replaceWith,
 } from '@bodiless/fclasses';
 import { vitalImage } from '@bodiless/vital-image';
 import { LayoutClean, vitalLayout } from '@bodiless/vital-layout';
 import { vitalFlowContainer } from '@bodiless/vital-flowcontainer';
 import { withNodeKey } from '@bodiless/core';
 import { vitalSpacing, vitalTypography } from '@bodiless/vital-elements';
+import { Fragment } from 'react';
+import { SearchLayoutClean, vitalSearchLayout } from '@bodiless/vital-search';
 import { asGenericTemplateToken } from '../GenericTemplateClean';
 import { GenericTemplateNodeKeys } from '../constants';
 
@@ -61,6 +64,16 @@ const Default = asGenericTemplateToken({
   },
 });
 
+const Search = asGenericTemplateToken(Default, {
+  Components: {
+    Breadcrumb: addProps({ children: 'Search', }),
+    TopContent: replaceWith(Fragment),
+    Content: on(SearchLayoutClean)(vitalSearchLayout.Default),
+    BottomContent: replaceWith(Fragment),
+  }
+});
+
 export default {
   Default,
+  Search,
 };
