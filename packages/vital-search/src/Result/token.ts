@@ -22,15 +22,17 @@ const vitalSearchResultListItem = {
 };
 
 const DefaultSearchResult = asSearchResultToken({
-  Theme: {
-    SearchResultSummary: 'capitalize',
-  },
   Components: {
     SearchResultListItem: as(vitalSearchResultListItem.Default),
     // @todo uncomment after implementing gtm package
     // SearchHelmet: startWith(GTMDataLayerSearchResultHelmet),
   },
-
+  Theme: {
+    SearchResultSummary: 'capitalize',
+  },
+  Spacing: {
+    SearchResultSummary: 'mb-3'
+  },
 });
 
 const vitalSearchResult = {

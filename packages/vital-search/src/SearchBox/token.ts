@@ -34,14 +34,14 @@ const Inline = asSearchBoxToken({
   ...Desktop,
   Theme: {
     SearchWrapper: 'w-1/2',
-    SearchInput: 'outline-none',
+    SearchInput: 'outline-none border border-search-gray',
   },
   Layout: {
     SearchWrapper: 'flex relative',
     SearchInput: 'flex-grow',
   },
   Spacing: {
-    SearchInput: 'mx-2',
+    SearchInput: 'mr-2 my-2 px-2 py-1',
   },
 });
 
