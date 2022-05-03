@@ -33,11 +33,10 @@ const Mobile = asSearchBoxToken({
 const Inline = asSearchBoxToken({
   ...Desktop,
   Theme: {
-    SearchWrapper: 'w-1/2',
     SearchInput: 'outline-none border border-search-gray',
   },
   Layout: {
-    SearchWrapper: 'flex relative',
+    SearchWrapper: 'flex relative w-1/2',
     SearchInput: 'flex-grow',
   },
   Spacing: {

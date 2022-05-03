@@ -33,7 +33,6 @@ const Search = (props: React.SVGProps<SVGSVGElement>) => (
       </clipPath>
     </defs>
   </svg>
-
 );
 
 const SearchIcon = stylable(Search);

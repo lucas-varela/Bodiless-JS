@@ -12,10 +12,9 @@
  * limitations under the License.
  */
 
-import pick from 'lodash/pick';
-// @ts-ignore no declaration.
-import { withResponsiveVariants } from '@bodiless/components';
 import { ComponentType } from 'react';
+import pick from 'lodash/pick';
+import { withResponsiveVariants } from '@bodiless/components';
 import resolvedConfigs from '@bodiless/fclasses/src/tailwindcss/resolveConfig';
 import { asVitalTokenSpec } from './tokenSpec';
 

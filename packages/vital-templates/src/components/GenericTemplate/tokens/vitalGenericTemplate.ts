@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 
+import { Fragment } from 'react';
 import {
   on,
   as,
@@ -24,7 +25,6 @@ import { LayoutClean, vitalLayout } from '@bodiless/vital-layout';
 import { vitalFlowContainer } from '@bodiless/vital-flowcontainer';
 import { withNodeKey } from '@bodiless/core';
 import { vitalSpacing, vitalTypography } from '@bodiless/vital-elements';
-import { Fragment } from 'react';
 import { SearchLayoutClean, vitalSearchLayout } from '@bodiless/vital-search';
 import { asGenericTemplateToken } from '../GenericTemplateClean';
 import { GenericTemplateNodeKeys } from '../constants';
