@@ -12,6 +12,9 @@
  * limitations under the License.
  */
 
-export { SearchTogglerClean, asSearchTogglerToken } from './SearchTogglerClean';
+export {
+  SearchTogglerClean,
+  asSearchMenuToggler,
+  asSearchTogglerToken,
+} from './SearchTogglerClean';
 export { vitalSearchToggler } from './vitalSearchToggler';
-export { SearchTogglerComponents, SearchTogglerProps } from './types';

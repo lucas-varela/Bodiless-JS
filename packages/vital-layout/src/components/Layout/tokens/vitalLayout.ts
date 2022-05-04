@@ -24,6 +24,7 @@ import { asLayoutToken } from '../LayoutClean';
 import { vitalFooter } from '../../Footer';
 import { vitalHeader } from '../../Header';
 import { vitalHelmet } from '../../Helmet';
+import { withSearchMenuProvider } from '../../Search';
 import { LayoutIds } from './constants';
 import { StyleGuide } from './StyleGuide';
 
@@ -32,7 +33,7 @@ import { StyleGuide } from './StyleGuide';
   */
 const Base = asLayoutToken({
   Core: {
-    _: as(withBurgerMenuProvider, withSearchResult),
+    _: as(withBurgerMenuProvider, withSearchMenuProvider, withSearchResult),
   },
   Components: {
     Helmet: vitalHelmet.Default,

@@ -46,7 +46,7 @@ const DefaultSearchSuggestionList = asSearchSuggestionListToken({
     Wrapper: 'absolute top-full z-50 w-full',
   },
   Spacing: {
-    ItemWrapper: 'my-1',
+    ItemWrapper: 'my-2',
   },
   Components: {
     Item: as(vitalSearchSuggestion.Default),

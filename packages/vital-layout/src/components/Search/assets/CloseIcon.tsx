@@ -12,6 +12,22 @@
  * limitations under the License.
  */
 
-export { DesktopSearchClean, asDesktopSearchToken } from './DesktopSearchClean';
-export { vitalDesktopSearch } from './vitalDesktopSearch';
-export { DesktopSearchComponents, DesktopSearchProps } from './types';
+import React from 'react';
+import { stylable } from '@bodiless/fclasses';
+
+const Close = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="26"
+    height="26"
+    fill="none"
+    {...props}
+  >
+    <path d="m6 6 14 14M20 6 6 20" stroke="#212121" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+
+);
+
+const CloseIcon = stylable(Close);
+
+export default CloseIcon;

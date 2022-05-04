@@ -12,23 +12,66 @@
  * limitations under the License.
  */
 
-import React, { FC } from 'react';
-
-import { Div, designable } from '@bodiless/fclasses';
+import React, { FC, useCallback } from 'react';
+import { Div, designable, HOC } from '@bodiless/fclasses';
 import { asVitalTokenSpec } from '@bodiless/vital-elements';
 import { SearchTogglerComponents, SearchTogglerProps } from './types';
 import SearchIcon from '../assets/SearchIcon';
+import { useSearchMenuContext } from '../SearchMenuContext';
 
 const searchTogglerComponents: SearchTogglerComponents = {
   Wrapper: Div,
   Icon: SearchIcon,
 };
 
-const SearchTogglerBase: FC<SearchTogglerProps> = ({ components: C }) => (
-  <C.Wrapper>
+const SearchTogglerBase: FC<SearchTogglerProps> = ({ components: C, ...props }) => (
+  <C.Wrapper {...props}>
     <C.Icon />
   </C.Wrapper>
 );
+
+/**
+ * Adds the necessary behavior and ARIA props to the given Component
+ * so it behaves like a search menu toggler.
+ *
+ * This toggles a search menu wrapper. See {@link asSearchMenuWrapper}.
+ *
+ * This HOC needs to be inside a SearchMenuContext to work. The
+ * `vitalLayout.Default` token provides this context by default.
+ */
+const asSearchMenuToggler: HOC = Component => {
+  const AsSearchMenuToggler: FC<any> = props => {
+    const { isVisible, toggle, togglerId } = useSearchMenuContext();
+    const { onClick, ...rest } = props;
+
+    const handleOnClick = useCallback(() => {
+      if (onClick && typeof onClick === 'function') onClick();
+      toggle();
+    }, [onClick]);
+
+    const handleOnKeyPress = useCallback((event: KeyboardEvent) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        handleOnClick();
+      }
+    }, [handleOnClick]);
+
+    return (
+      <Component
+        id={togglerId}
+        onClick={handleOnClick}
+        tabIndex="0"
+        role="button"
+        onKeyPress={handleOnKeyPress}
+        aria-expanded={!!isVisible}
+        aria-label="Toggle search"
+        {...rest}
+      />
+    );
+  };
+
+  return AsSearchMenuToggler;
+};
 
 /**
  * Create a search toggler token.
@@ -39,5 +82,6 @@ const SearchTogglerClean = designable(searchTogglerComponents, 'SearchToggler')(
 
 export {
   SearchTogglerClean,
-  asSearchTogglerToken
+  asSearchMenuToggler,
+  asSearchTogglerToken,
 };

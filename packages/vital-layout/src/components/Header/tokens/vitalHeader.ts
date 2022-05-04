@@ -33,7 +33,7 @@ import {
 } from '@bodiless/fclasses';
 import { vitalLink } from '@bodiless/vital-link';
 import { vitalLogo } from '../../Logo';
-import { vitalDesktopSearch, vitalSearchToggler } from '../../Search';
+import { vitalSearch, vitalSearchToggler, asSearchMenuToggler } from '../../Search';
 import { asHeaderToken } from '../HeaderClean';
 import BurgerIcon from '../assets/BurgerIcon';
 
@@ -54,6 +54,7 @@ const WithLanguageButton = flowHoc(
 const Base = asHeaderToken({
   Core: {
     MenuToggler: asBurgerMenuToggler,
+    SearchToggler: asSearchMenuToggler,
   },
   Components: {
     SearchToggler: vitalSearchToggler.Default,
@@ -68,7 +69,8 @@ const Base = asHeaderToken({
         LanguageButton: WithLanguageButton,
       }),
     ),
-    DesktopSearch: vitalDesktopSearch.Default,
+    DesktopSearch: vitalSearch.Default,
+    MobileSearch: vitalSearch.Mobile,
     // UtilityMenu: vitalMenu.Utility,
     // @TODO: Replace LanguageButton placeholder.
     LanguageButton: WithLanguageButton,

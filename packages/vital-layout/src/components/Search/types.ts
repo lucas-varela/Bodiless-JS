@@ -12,29 +12,13 @@
  * limitations under the License.
  */
 
-import { vitalSearchBox } from '@bodiless/vital-search';
-import { asDesktopSearchToken } from './DesktopSearchClean';
+import { HTMLProps } from 'react';
+import { ComponentOrTag, DesignableComponentsProps } from '@bodiless/fclasses';
 
-/**
- * Token that defines a basic header.
- */
-const Base = asDesktopSearchToken({
-  Components: {
-    Search: vitalSearchBox.Default,
-  },
-  Layout: {
-    Wrapper: 'flex items-center',
-  },
-  Spacing: {
-    Wrapper: 'px-4 lg:pl-0 lg:pr-5',
-  },
-});
-
-const Default = asDesktopSearchToken({
-  ...Base,
-});
-
-export const vitalDesktopSearch = {
-  Base,
-  Default,
+export type SearchComponents = {
+  Wrapper: ComponentOrTag<any>,
+  Search: ComponentOrTag<any>,
 };
+
+export type SearchProps =
+    DesignableComponentsProps<SearchComponents> & HTMLProps<HTMLElement>;

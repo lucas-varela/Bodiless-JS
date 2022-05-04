@@ -1,5 +1,7 @@
 import { as } from '@bodiless/fclasses';
-import { withLgResponsiveVariants, asLgResponsiveToken, vitalColor } from '@bodiless/vital-elements';
+import {
+  withLgResponsiveVariants, asLgResponsiveToken, vitalColor, vitalSpacing
+} from '@bodiless/vital-elements';
 import { asSearchBoxToken } from './BoxClean';
 import { vitalSearchSuggestionList } from '../Suggestion';
 import SearchIcon from './assets/SearchIcon';
@@ -25,9 +27,13 @@ const Desktop = asSearchBoxToken({
   },
 });
 
-// @todo: apply mobile theme once available.
 const Mobile = asSearchBoxToken({
   ...Desktop,
+  Spacing: {
+    SearchWrapper: vitalSpacing.WithSiteMargin,
+    SearchInput: 'p-2',
+    SearchButton: 'mx-2'
+  },
 });
 
 const Inline = asSearchBoxToken({
@@ -36,7 +42,7 @@ const Inline = asSearchBoxToken({
     SearchInput: 'outline-none border border-search-gray',
   },
   Layout: {
-    SearchWrapper: 'flex relative w-1/2',
+    SearchWrapper: 'flex relative lg:w-1/2',
     SearchInput: 'flex-grow',
   },
   Spacing: {

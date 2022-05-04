@@ -4,7 +4,6 @@ import { DesignableComponentsProps } from '@bodiless/fclasses';
 export type SearchLayoutComponents = {
   Wrapper: ComponentType<any>;
   Header: ComponentType<any>;
-  Box: ComponentType<any>;
   Result: ComponentType<any>;
   Suggestions: ComponentType<any>;
 };

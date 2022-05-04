@@ -12,7 +12,10 @@
  * limitations under the License.
  */
 
+import { flowIf, startWith } from '@bodiless/fclasses';
+import { useIsSearchMenuVisible } from '../SearchMenuContext';
 import { asSearchTogglerToken } from './SearchTogglerClean';
+import CloseIcon from '../assets/CloseIcon';
 
 /**
  * Token that defines a basic header.
@@ -24,6 +27,9 @@ const Base = asSearchTogglerToken({
   Spacing: {
     Wrapper: 'my-4',
   },
+  Behavior: {
+    Icon: flowIf(useIsSearchMenuVisible)(startWith(CloseIcon))
+  }
 });
 
 const Default = asSearchTogglerToken({

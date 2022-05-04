@@ -18,14 +18,19 @@ import { stylable } from '@bodiless/fclasses';
 const Search = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="26.83"
-    height="26.83"
+    width="26"
+    height="26"
+    fill="none"
     {...props}
   >
-    <g data-name="Group 208" transform="translate(1.41 1.41)">
-      <circle data-name="Ellipse 21" cx="8.48" cy="8.48" r="8.48" transform="rotate(-45 14.49 6)" fill="none" stroke="#212121" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+    <g clipPath="url(#a)" stroke="#212121" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17.51 17.52A8.53 8.53 0 1 0 5.44 5.45a8.53 8.53 0 0 0 12.07 12.07ZM18.05 18.2l5.5 5.25" />
     </g>
-    <path data-name="Line 271" fill="none" stroke="#212121" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19.94 20.08 5.47 5.22" />
+    <defs>
+      <clipPath id="a">
+        <path fill="#fff" d="M0 0h26v26H0z" />
+      </clipPath>
+    </defs>
   </svg>
 );
 

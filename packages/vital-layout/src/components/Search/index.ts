@@ -14,15 +14,20 @@
 
 export {
   vitalSearchToggler,
+  asSearchMenuToggler,
   asSearchTogglerToken,
   SearchTogglerClean,
-  SearchTogglerComponents,
-  SearchTogglerProps,
 } from './SearchToggler';
 export {
-  vitalDesktopSearch,
-  asDesktopSearchToken,
-  DesktopSearchClean,
-  DesktopSearchComponents,
-  DesktopSearchProps,
-} from './DesktopSearch';
+  SearchClean,
+  asSearchMenuWrapper,
+  asSearchToken,
+} from './SearchClean';
+export { vitalSearch } from './vitalSearch';
+export {
+  SearchMenuContext,
+  useSearchMenuContext,
+  withSearchMenuProvider,
+  useIsSearchMenuHidden,
+  useIsSearchMenuVisible,
+} from './SearchMenuContext';
