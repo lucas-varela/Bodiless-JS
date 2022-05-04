@@ -264,7 +264,7 @@ BODILESS_SEARCH_CONFIG='my-custom.search.config.json'
 
 The public URL of your search index file, which your front-end will access when a search occurs. 
 
-For instance, in the examples above, we've created an english index file called `lunr.en.json`, 
+For instance, in the examples above, we've created an English index file called `lunr.en.json`, 
 which will be placed into our `public` folder. Since this folder represents the root of our site 
 (using the Gatsby framework), our search index URL would be `/lunr.en.json`.
 
@@ -273,7 +273,7 @@ If you don't set this variable, Bodiless will try to access `/default.idx` by de
 Example:
 
 ```shell
-BODILESS_SEARCH_INDEX_URL='/lunr.en.json' # using the english file created in the examples above
+BODILESS_SEARCH_INDEX_URL='/lunr.en.json' # using the English file created in the examples above
 ```
 
 #### `BODILESS_SEARCH_EXPIRES`
