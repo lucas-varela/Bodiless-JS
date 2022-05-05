@@ -38,6 +38,6 @@
     "@bodiless/core": "^1.0.0-beta.12",
     "@bodiless/fclasses": "^1.0.0-beta.12",
     "@bodiless/search": "^1.0.0-beta.12",
-    "@bodiless/vital-elements": "^1.0.0-beta.12"
+    "@bodiless/vital-elements": "^1.0.0-beta.14"
   }
 }
