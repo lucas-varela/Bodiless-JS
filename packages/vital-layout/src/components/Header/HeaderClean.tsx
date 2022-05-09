@@ -27,8 +27,8 @@ import {
   BurgerMenuClean,
   MenuClean,
 } from '@bodiless/vital-navigation';
+import { SearchTogglerClean, SearchClean } from '@bodiless/vital-search';
 import { LogoClean } from '../Logo';
-import { SearchTogglerClean, SearchClean } from '../Search';
 import type { HeaderComponents, HeaderProps } from './types';
 
 const headerComponents: HeaderComponents = {

@@ -32,8 +32,8 @@ import {
   withProps,
 } from '@bodiless/fclasses';
 import { vitalLink } from '@bodiless/vital-link';
+import { vitalSearch, vitalSearchToggler, asSearchMenuToggler } from '@bodiless/vital-search';
 import { vitalLogo } from '../../Logo';
-import { vitalSearch, vitalSearchToggler, asSearchMenuToggler } from '../../Search';
 import { asHeaderToken } from '../HeaderClean';
 import BurgerIcon from '../assets/BurgerIcon';
 

@@ -13,21 +13,9 @@
  */
 
 export {
-  vitalSearchToggler,
-  asSearchMenuToggler,
-  asSearchTogglerToken,
-  SearchTogglerClean,
-} from './SearchToggler';
-export {
   SearchClean,
   asSearchMenuWrapper,
   asSearchToken,
 } from './SearchClean';
+
 export { vitalSearch } from './vitalSearch';
-export {
-  SearchMenuContext,
-  useSearchMenuContext,
-  withSearchMenuProvider,
-  useIsSearchMenuHidden,
-  useIsSearchMenuVisible,
-} from './SearchMenuContext';

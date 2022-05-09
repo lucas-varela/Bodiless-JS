@@ -13,8 +13,8 @@
  */
 
 import { addClassesIf } from '@bodiless/fclasses';
-import { vitalSearchBox } from '@bodiless/vital-search';
-import { useIsSearchMenuHidden } from './SearchMenuContext';
+import { vitalSearchBox } from '../SearchBox';
+import { useIsSearchMenuHidden } from '../SearchMenuContext';
 import { asSearchToken, asSearchMenuWrapper } from './SearchClean';
 
 /**

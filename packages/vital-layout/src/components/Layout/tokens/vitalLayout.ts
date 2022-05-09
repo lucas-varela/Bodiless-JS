@@ -19,12 +19,11 @@ import {
   flowIf,
   not,
 } from '@bodiless/fclasses';
-import { withSearchResult } from '@bodiless/vital-search';
+import { withSearchResult, withSearchMenuProvider } from '@bodiless/vital-search';
 import { asLayoutToken } from '../LayoutClean';
 import { vitalFooter } from '../../Footer';
 import { vitalHeader } from '../../Header';
 import { vitalHelmet } from '../../Helmet';
-import { withSearchMenuProvider } from '../../Search';
 import { LayoutIds } from './constants';
 import { StyleGuide } from './StyleGuide';
 

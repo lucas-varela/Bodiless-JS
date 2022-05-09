@@ -16,9 +16,9 @@ import React, { FC } from 'react';
 
 import { Div, designable, HOC } from '@bodiless/fclasses';
 import { asVitalTokenSpec } from '@bodiless/vital-elements';
-import { SearchBoxClean } from '@bodiless/vital-search';
+import { SearchBoxClean } from '../SearchBox';
+import { useSearchMenuContext } from '../SearchMenuContext';
 import { SearchComponents, SearchProps } from './types';
-import { useSearchMenuContext } from './SearchMenuContext';
 
 const searchComponents: SearchComponents = {
   Wrapper: Div,
