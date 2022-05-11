@@ -12,6 +12,23 @@
  * limitations under the License.
  */
 
-export { default as SearchBoxClean, asSearchBoxToken } from './SearchBoxClean';
-export { default as vitalSearchBox } from './tokens';
-export { SearchBoxComponents } from './types';
+// import { GTMDataLayerSearchResultHelmet } from '@bodiless/vital-gtm';
+import {
+  asSearchResultListItemToken,
+} from '../SearchResultItemClean';
+
+const Default = asSearchResultListItemToken({
+  Theme: {
+    ItemH3: 'text-xl',
+    ItemAnchor: 'font-bold',
+    ItemParagraph: 'text-base',
+  },
+  Spacing: {
+    ItemList: 'mb-9',
+    ItemH3: 'mb-5',
+  },
+});
+
+export default {
+  Default,
+};

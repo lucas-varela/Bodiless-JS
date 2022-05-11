@@ -39,7 +39,7 @@ const SearchTogglerBase: FC<SearchTogglerProps> = ({ components: C, ...props }) 
  * This HOC needs to be inside a SearchMenuContext to work. The
  * `vitalLayout.Default` token provides this context by default.
  */
-const asSearchMenuToggler: HOC = Component => {
+export const asSearchMenuToggler: HOC = Component => {
   const AsSearchMenuToggler: FC<any> = props => {
     const { isVisible, toggle, togglerId } = useSearchMenuContext();
     const { onClick, ...rest } = props;
@@ -73,15 +73,11 @@ const asSearchMenuToggler: HOC = Component => {
   return AsSearchMenuToggler;
 };
 
+const SearchTogglerClean = designable(searchTogglerComponents, 'SearchToggler')(SearchTogglerBase);
+
 /**
  * Create a search toggler token.
  */
-const asSearchTogglerToken = asVitalTokenSpec<SearchTogglerComponents>();
+export const asSearchTogglerToken = asVitalTokenSpec<SearchTogglerComponents>();
 
-const SearchTogglerClean = designable(searchTogglerComponents, 'SearchToggler')(SearchTogglerBase);
-
-export {
-  SearchTogglerClean,
-  asSearchMenuToggler,
-  asSearchTogglerToken,
-};
+export default SearchTogglerClean;

@@ -12,6 +12,12 @@
  * limitations under the License.
  */
 
-export { default as SearchBoxClean, asSearchBoxToken } from './SearchBoxClean';
-export { default as vitalSearchBox } from './tokens';
-export { SearchBoxComponents } from './types';
+import { asVitalTokenSpec } from '@bodiless/vital-elements';
+import { SearchBox as SearchBoxClean } from '@bodiless/search';
+import { SearchBoxComponents } from './types';
+
+const asSearchBoxToken = asVitalTokenSpec<SearchBoxComponents>();
+
+export { asSearchBoxToken };
+
+export default SearchBoxClean;

@@ -12,6 +12,12 @@
  * limitations under the License.
  */
 
-export { default as SearchBoxClean, asSearchBoxToken } from './SearchBoxClean';
-export { default as vitalSearchBox } from './tokens';
-export { SearchBoxComponents } from './types';
+import { ComponentOrTag } from '@bodiless/fclasses';
+
+export type SearchResultComponents = {
+  SearchResultWrapper: ComponentOrTag<any>;
+  SearchResultList: ComponentOrTag<any>;
+  SearchResultListItem: ComponentOrTag<any>;
+  SearchResultSummary: ComponentOrTag<any>;
+  SearchHelmet: ComponentOrTag<any>;
+};

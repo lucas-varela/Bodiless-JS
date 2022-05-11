@@ -12,6 +12,9 @@
  * limitations under the License.
  */
 
-export { default as SearchBoxClean, asSearchBoxToken } from './SearchBoxClean';
-export { default as vitalSearchBox } from './tokens';
-export { SearchBoxComponents } from './types';
+export {
+  default as SearchMenuClean,
+  asSearchMenuWrapper, asSearchMenuToken
+} from './SearchMenuClean';
+export { default as vitalSearchMenu } from './tokens';
+export { SearchMenuComponents } from './types';

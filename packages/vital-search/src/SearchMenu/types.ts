@@ -12,6 +12,13 @@
  * limitations under the License.
  */
 
-export { default as SearchBoxClean, asSearchBoxToken } from './SearchBoxClean';
-export { default as vitalSearchBox } from './tokens';
-export { SearchBoxComponents } from './types';
+import { HTMLProps } from 'react';
+import { ComponentOrTag, DesignableComponentsProps } from '@bodiless/fclasses';
+
+export type SearchMenuComponents = {
+  Wrapper: ComponentOrTag<any>,
+  Search: ComponentOrTag<any>,
+};
+
+export type SearchMenuProps =
+    DesignableComponentsProps<SearchMenuComponents> & HTMLProps<HTMLElement>;

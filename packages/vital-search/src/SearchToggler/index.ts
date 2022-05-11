@@ -13,8 +13,9 @@
  */
 
 export {
-  SearchTogglerClean,
+  default as SearchTogglerClean,
   asSearchMenuToggler,
   asSearchTogglerToken,
 } from './SearchTogglerClean';
-export { vitalSearchToggler } from './vitalSearchToggler';
+export { default as vitalSearchToggler } from './tokens';
+export { SearchTogglerComponents } from './types';

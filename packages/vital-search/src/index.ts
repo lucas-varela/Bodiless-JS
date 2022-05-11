@@ -12,6 +12,16 @@
  * limitations under the License.
  */
 
-export { default as SearchBoxClean, asSearchBoxToken } from './SearchBoxClean';
-export { default as vitalSearchBox } from './tokens';
-export { SearchBoxComponents } from './types';
+export * from './SearchBox';
+export * from './SearchLayout';
+export * from './SearchMenu';
+export * from './SearchResult';
+export * from './SearchResultItem';
+export * from './SearchSuggestion';
+export * from './SearchSuggestions';
+export * from './SearchToggler';
+export * from './SearchMenuContext';
+
+// Re-export everything from @bodiless/search so site builders
+// only need to import @bodiless/vital-search in their sites.
+export * from '@bodiless/search';

@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-import { ComponentType } from 'react';
+import { ComponentOrTag } from '@bodiless/fclasses';
 
 export type SearchBoxComponents = {
-  SearchWrapper: ComponentType<any>;
-  SearchInput: ComponentType<any>;
-  SearchButton: ComponentType<any>;
-  Suggestions: ComponentType<any>;
+  SearchWrapper: ComponentOrTag<any>;
+  SearchInput: ComponentOrTag<any>;
+  SearchButton: ComponentOrTag<any>;
+  Suggestions: ComponentOrTag<any>;
 };

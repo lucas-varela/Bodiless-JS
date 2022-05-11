@@ -12,6 +12,27 @@
  * limitations under the License.
  */
 
-export { default as SearchBoxClean, asSearchBoxToken } from './SearchBoxClean';
-export { default as vitalSearchBox } from './tokens';
-export { SearchBoxComponents } from './types';
+import { flowIf, startWith } from '@bodiless/fclasses';
+import { useIsSearchMenuVisible } from '../../SearchMenuContext';
+import { asSearchTogglerToken } from '../SearchTogglerClean';
+import CloseIcon from '../../assets/CloseIcon';
+
+/**
+ * Token that defines a basic header.
+ */
+
+const Default = asSearchTogglerToken({
+  Layout: {
+    Wrapper: 'xl:hidden',
+  },
+  Spacing: {
+    Wrapper: 'my-4',
+  },
+  Behavior: {
+    Icon: flowIf(useIsSearchMenuVisible)(startWith(CloseIcon))
+  }
+});
+
+export default {
+  Default,
+};
