@@ -13,13 +13,13 @@
  */
 
 import { as } from '@bodiless/fclasses';
-import { vitalSearchResultItem } from '../../SearchResultItem';
+import { vitalSearchResult } from '../../SearchResult';
 // import { GTMDataLayerSearchResultHelmet } from '@bodiless/vital-gtm';
 import { asSearchResultsToken } from '../SearchResultsClean';
 
 const Default = asSearchResultsToken({
   Components: {
-    SearchResultListItem: as(vitalSearchResultItem.Default),
+    SearchResultListItem: as(vitalSearchResult.Default),
     // @todo uncomment after implementing gtm package
     // SearchHelmet: startWith(GTMDataLayerSearchResultHelmet),
   },

@@ -12,23 +12,7 @@
  * limitations under the License.
  */
 
-// import { GTMDataLayerSearchResultHelmet } from '@bodiless/vital-gtm';
-import {
-  asSearchResultListItemToken,
-} from '../SearchResultItemClean';
+import { asVitalTokenSpec } from '@bodiless/vital-elements';
+import { SearchResultComponents } from './types';
 
-const Default = asSearchResultListItemToken({
-  Theme: {
-    ItemH3: 'text-xl',
-    ItemAnchor: 'font-bold',
-    ItemParagraph: 'text-base',
-  },
-  Spacing: {
-    ItemList: 'mb-9',
-    ItemH3: 'mb-5',
-  },
-});
-
-export default {
-  Default,
-};
+export const asSearchResultToken = asVitalTokenSpec<SearchResultComponents>();

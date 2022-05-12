@@ -12,11 +12,6 @@
  * limitations under the License.
  */
 
-import { ComponentOrTag } from '@bodiless/fclasses';
-
-export type SearchResultItemComponents = {
-  ItemList: ComponentOrTag<any>;
-  ItemH3: ComponentOrTag<any>;
-  ItemAnchor: ComponentOrTag<any>;
-  ItemParagraph: ComponentOrTag<any>;
-};
+export { asSearchResultToken } from './SearchResultClean';
+export { default as vitalSearchResult } from './tokens';
+export { SearchResultComponents } from './types';

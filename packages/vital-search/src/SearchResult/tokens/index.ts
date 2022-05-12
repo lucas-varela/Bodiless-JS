@@ -12,7 +12,6 @@
  * limitations under the License.
  */
 
-import { asVitalTokenSpec } from '@bodiless/vital-elements';
-import { SearchResultItemComponents } from './types';
+import vitalSearchResult from './vitalSearchResult';
 
-export const asSearchResultListItemToken = asVitalTokenSpec<SearchResultItemComponents>();
+export default vitalSearchResult;

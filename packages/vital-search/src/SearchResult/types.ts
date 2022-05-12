@@ -12,6 +12,11 @@
  * limitations under the License.
  */
 
-import vitalSearchResultItem from './vitalSearchResultItem';
+import { ComponentOrTag } from '@bodiless/fclasses';
 
-export default vitalSearchResultItem;
+export type SearchResultComponents = {
+  ItemList: ComponentOrTag<any>;
+  ItemH3: ComponentOrTag<any>;
+  ItemAnchor: ComponentOrTag<any>;
+  ItemParagraph: ComponentOrTag<any>;
+};
