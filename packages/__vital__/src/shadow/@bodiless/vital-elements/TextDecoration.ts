@@ -12,7 +12,11 @@
  * limitations under the License.
  */
 
-import tokens, { SpacingMeta } from './vitalSpacing';
+import { asTokenGroup, vitalTextDecorationBase, TextDecorationMeta } from '@bodiless/vital-elements';
 
-export default tokens;
-export { SpacingMeta };
+const OverrideTextDecoration = asTokenGroup(TextDecorationMeta)({
+  ...vitalTextDecorationBase,
+  Bold: 'font-bold shadowed-bold-class',
+});
+
+export default OverrideTextDecoration;

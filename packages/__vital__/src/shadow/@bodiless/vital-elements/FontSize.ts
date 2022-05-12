@@ -12,7 +12,11 @@
  * limitations under the License.
  */
 
-import tokens, { SpacingMeta } from './vitalSpacing';
+import { asTokenGroup, vitalFontSizeBase, FontSizeMeta } from '@bodiless/vital-elements';
 
-export default tokens;
-export { SpacingMeta };
+const OverrideFontSize = asTokenGroup(FontSizeMeta)({
+  ...vitalFontSizeBase,
+  Base: 'text-m-base lg:text-base shadowed-textsizebase-class',
+});
+
+export default OverrideFontSize;

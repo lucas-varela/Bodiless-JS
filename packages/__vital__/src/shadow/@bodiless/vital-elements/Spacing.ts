@@ -12,7 +12,11 @@
  * limitations under the License.
  */
 
-import tokens, { SpacingMeta } from './vitalSpacing';
+import { asTokenGroup, vitalSpacingBase, SpacingMeta } from '@bodiless/vital-elements';
 
-export default tokens;
-export { SpacingMeta };
+const OverrideSpacing = asTokenGroup(SpacingMeta)({
+  ...vitalSpacingBase,
+  WithSiteMargin: 'mx-site-percent md:mx-md-site-percent 2xl:px-40 shadowed-sitemargin-class',
+});
+
+export default OverrideSpacing;

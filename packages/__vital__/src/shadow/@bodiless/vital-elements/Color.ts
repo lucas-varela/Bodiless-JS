@@ -12,7 +12,11 @@
  * limitations under the License.
  */
 
-import tokens, { SpacingMeta } from './vitalSpacing';
+import { asTokenGroup, vitalColorBase, ColorMeta} from '@bodiless/vital-elements';
 
-export default tokens;
-export { SpacingMeta };
+const OverrideColors = asTokenGroup(ColorMeta)({
+  ...vitalColorBase,
+  BgSecondaryFooter: 'bg-vital-secondary-footer-bg shadowed-bgsecondaryfooter-class',
+});
+
+export default OverrideColors;
