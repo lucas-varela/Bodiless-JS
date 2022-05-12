@@ -12,19 +12,21 @@
  * limitations under the License.
  */
 
+import { flowIf } from '@bodiless/fclasses';
+import { useNode } from '@bodiless/core';
 import { asElementToken } from '@bodiless/vital-elements';
-import { vitalEditorPlainBase } from '@bodiless/vital-editors';
-// import { vitalEditorPlainBase, withAutoSuperscript } from '@bodiless/vital-editors';
+import { vitalEditorPlainBase, withAutoSuperscript } from '@bodiless/vital-editors';
+
+/* Test case to get superscript working on /styleguide/editors-monofont */
+const isEditorMonoRepo = () => useNode().node.pagePath === '/styleguide/editors-monofont/';
 
 const Default = asElementToken({
-  ...vitalEditorPlainBase.Default
-  // Uncomment the following example will super script the
-  // following ®™© (as well as uncomment import)
-  /*
+  ...vitalEditorPlainBase.Default,
+  // if specific page will turn on auto superscripting for this page.
+  Flow: flowIf(isEditorMonoRepo),
   Behavior: {
     _: withAutoSuperscript('®™©', 'align-baseline'),
   },
-  */
 });
 
 export default {
