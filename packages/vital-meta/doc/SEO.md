@@ -131,3 +131,5 @@ shadowing](#customizing-via-shadowing-preferred-method), as described below.
 Define a Shadowing token collection as defined in [Shadow](../VitalElements/Shadow).
 
 File to shadow: `./lib/shadow/vital-meta/{MySeoHelmet}.js`
+
+For more details visit [Shadowing Meta](./ShadowingMeta)

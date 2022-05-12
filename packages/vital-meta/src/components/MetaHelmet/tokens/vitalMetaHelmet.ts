@@ -25,7 +25,7 @@ import {
   withSeoMetaForm, withShareMetaForm, withMetaHtmlAttributes, useIsHomePage,
 } from '../helpers';
 
-const asSimpleToken = (...tokens: Token[]) => asElementToken({
+const asSimpleMetaFieldToken = (...tokens: Token[]) => asElementToken({
   Core: {
     _: Array.isArray(tokens) ? as(...tokens) : tokens,
   },
@@ -33,30 +33,30 @@ const asSimpleToken = (...tokens: Token[]) => asElementToken({
 
 // SEO tokens
 
-const WithPageTitle = asSimpleToken(withTitle({
+const WithPageTitle = asSimpleMetaFieldToken(withTitle({
   name: 'title', label: 'Title', placeholder: 'Rec 30-65 character',
 })('page-title'));
 
-const WithPageDescription = asSimpleToken(withMeta({
+const WithPageDescription = asSimpleMetaFieldToken(withMeta({
   name: 'description',
   useFormElement: () => useMenuOptionUI().ComponentFormTextArea,
   label: 'Description',
   placeholder: 'Rec < 160 char',
 })('page-description'));
 
-const WithOrganizationAreaServed = asSimpleToken(withMeta({
+const WithOrganizationAreaServed = asSimpleMetaFieldToken(withMeta({
   name: 'areaServed', label: 'Organization Area Served',
 })('organization-area-served'));
 
-const WithOrganizationContactOption = asSimpleToken(withMeta({
+const WithOrganizationContactOption = asSimpleMetaFieldToken(withMeta({
   name: 'contactOption', label: 'Organization Contact Option',
 })('organization-contact-option'));
 
-const WithOrganizationContactType = asSimpleToken(withMeta({
+const WithOrganizationContactType = asSimpleMetaFieldToken(withMeta({
   name: 'contactType', label: 'Organization Contact Type',
 })('organization-contact-type'));
 
-const WithOrganizationTelephone = asSimpleToken(withMeta({
+const WithOrganizationTelephone = asSimpleMetaFieldToken(withMeta({
   name: 'telephone', label: 'Organization Telephone',
 })('organization-telephone'));
 
@@ -70,7 +70,7 @@ const WithHomePageSchemas = asElementToken({
   Flow: flowIf(useIsHomePage),
 });
 
-const WithHtml = asSimpleToken(
+const WithHtml = asSimpleMetaFieldToken(
   withMetaHtmlAttributes('Set at /src/data/site/meta$html.json', 'Set at /src/data/site/meta$html.json', 'html', 'site'),
 );
 
@@ -79,7 +79,6 @@ const WithSeoForm = asElementToken({
     _: as(withSeoMetaForm, asBodilessHelmet('meta') as HOC),
   },
 });
-
 const flowWithFinally = (
   ...finalTokens: Token[]
 ): FlowHoc<any> => (...tokens: TokenDef<any, any, any>[]) => flowHoc(
@@ -97,50 +96,49 @@ const SEO = asElementToken({
     WithPageTitle,
   },
 });
-
 // Social Share OG & UTM tokens
-const WithUTMCampaign = asSimpleToken(withMetaStatic({
+const WithUTMCampaign = asSimpleMetaFieldToken(withMetaStatic({
   name: 'utm_campaign',
 })({ nodeKey: 'utm-campaign', nodeCollection: 'site' }));
 
-const WithSiteName = asSimpleToken(withMetaStatic({
+const WithSiteName = asSimpleMetaFieldToken(withMetaStatic({
   name: 'og:site_name', attribute: 'property',
 })({ nodeKey: 'og-sitename', nodeCollection: 'site' }));
 
-const WithTwitterCard = asSimpleToken(withMetaStatic({
+const WithTwitterCard = asSimpleMetaFieldToken(withMetaStatic({
   name: 'twitter:card',
 })({ nodeKey: 'twitter-card', nodeCollection: 'site' }, 'summary'));
 
-const WithShareType = asSimpleToken(withMeta({
+const WithShareType = asSimpleMetaFieldToken(withMeta({
   name: 'og:type', attribute: 'property', label: 'OG Type',
 })({ nodeKey: 'og-type' }));
 
-const WithTwitterTitle = asSimpleToken(withMeta({
+const WithTwitterTitle = asSimpleMetaFieldToken(withMeta({
   name: 'twitter:title', label: 'Twitter Title',
 })('twitter-title'));
 
-const WithUTMContent = asSimpleToken(withMeta({
-  name: 'utm_content', label: 'utm-content',
+const WithUTMContent = asSimpleMetaFieldToken(withMeta({
+  name: 'utm_content', label: 'UTM Content',
 })('utm-content'));
 
-const WithShareDescription = asSimpleToken(withMeta({
+const WithShareDescription = asSimpleMetaFieldToken(withMeta({
   name: 'og:description',
   useFormElement: () => useMenuOptionUI().ComponentFormTextArea,
   label: 'Description',
   attribute: 'property',
 })('og-description'));
 
-const WithShareUrl = asSimpleToken(withMeta({
+const WithShareUrl = asSimpleMetaFieldToken(withMeta({
   name: 'og:url', label: 'Url', attribute: 'property',
 })('og-url'));
 
-const WithShareImage = asSimpleToken(withMeta({
+const WithShareImage = asSimpleMetaFieldToken(withMeta({
   name: 'og:image',
   label: 'Image (provide absolute URL)',
   attribute: 'property',
 })('og-image'));
 
-const WithShareTitle = asSimpleToken(withMeta({
+const WithShareTitle = asSimpleMetaFieldToken(withMeta({
   name: 'og:title', label: 'Title', attribute: 'property',
 })('og-title'));
 
@@ -152,6 +150,7 @@ const WithShareForm = asElementToken({
 
 // All Social Share OG & UTM tokens packaged
 const Share = asElementToken({
+  Flow: flowWithFinally(WithShareForm),
   Compose: {
     WithUTMCampaign,
     WithSiteName,
@@ -163,7 +162,6 @@ const Share = asElementToken({
     WithShareUrl,
     WithShareImage,
     WithShareTitle,
-    WithShareForm,
   },
 });
 
@@ -193,4 +191,5 @@ export {
   WithSeoForm,
   WithShareForm,
   WithHomePageSchemas,
+  asSimpleMetaFieldToken,
 };

@@ -15,7 +15,6 @@
 import { vitalSubMenuBase, asSubMenuToken } from '@bodiless/vital-navigation';
 import { addProps } from '@bodiless/fclasses';
 
-// SHADOWTODO FooterSubMenu is Not rendering
 const Footer = asSubMenuToken({
   ...vitalSubMenuBase.Footer,
   Compose: {

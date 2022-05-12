@@ -16,12 +16,6 @@ import { withMeta } from '@bodiless/components';
 import { asElementToken } from '@bodiless/vital-elements';
 import {
   vitalMetaHelmetBase,
-  // WithHtml,
-  // WithHomePageSchemas,
-  // WithPageDescription,
-  // WithPageTitle,
-  // WithSeoForm,
-  WithShareForm,
   WithShareDescription,
   WithShareImage,
   WithShareTitle,
@@ -31,49 +25,30 @@ import {
   WithTwitterCard,
   WithTwitterTitle,
   WithUTMCampaign,
-  WithUTMContent
+  WithUTMContent,
+  asSimpleMetaFieldToken,
 } from '@bodiless/vital-meta';
-import { Token, as } from '@bodiless/fclasses';
 
-const asSimpleToken = (...tokens: Token[]) => asElementToken({
-  Core: {
-    _: Array.isArray(tokens) ? as(...tokens) : tokens,
-  },
-});
-
-const WithMetaKeywords = asSimpleToken(withMeta({
+const WithMetaKeywords = asSimpleMetaFieldToken(withMeta({
   name: 'keywords',
   label: 'Keywords',
   placeholder: 'No more than 10 keyword phrases',
 })('page-keywords'));
 
-/*
- * SHADOWTODO I think there order problem as this didn't work.
- * Recomposing the whole thing worked.
-*/
 const SEO = asElementToken({
+  ...vitalMetaHelmetBase.SEO,
   Compose: {
-    ...vitalMetaHelmetBase.SEO.Compose,
     WithMetaKeywords,
+    ...vitalMetaHelmetBase.SEO.Compose,
   },
 });
 
-// const SEO = asElementToken({
-//   Compose: {
-//     WithHtml,
-//     WithHomePageSchemas,
-//     WithMetaKeywords, // Added
-//     WithPageDescription,
-//     WithPageTitle,
-//     WithSeoForm,
-//   },
-// });
-
-const WithTwitterDescription = asSimpleToken(withMeta({
+const WithTwitterDescription = asSimpleMetaFieldToken(withMeta({
   name: 'twitter:description', label: 'Twitter Description',
 })('twitter-description'));
 
 const Share = asElementToken({
+  ...vitalMetaHelmetBase.Share,
   Compose: {
     WithUTMCampaign,
     WithSiteName,
@@ -86,7 +61,6 @@ const Share = asElementToken({
     WithShareUrl,
     WithShareImage,
     WithShareTitle,
-    WithShareForm,
   },
 });
 
