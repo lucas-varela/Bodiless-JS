@@ -18,13 +18,6 @@ const twConfig = {
   content: [
     './lib/**/!(*.d).{ts,js,jsx,tsx}',
   ],
-  theme: {
-    colors: {
-      search: {
-        gray: '#888',
-      },
-    },
-  },
   variants: {
     borderWidth: ['hover'],
     extend: {

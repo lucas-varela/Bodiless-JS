@@ -13,6 +13,7 @@
  */
 
 import { as } from '@bodiless/fclasses';
+import { vitalTypography } from '@bodiless/vital-elements';
 import { vitalSearchResult } from '../../SearchResult';
 // import { GTMDataLayerSearchResultHelmet } from '@bodiless/vital-gtm';
 import { asSearchResultsToken } from '../SearchResultsClean';
@@ -24,10 +25,7 @@ const Default = asSearchResultsToken({
     // SearchHelmet: startWith(GTMDataLayerSearchResultHelmet),
   },
   Theme: {
-    SearchResultSummary: 'capitalize',
-  },
-  Spacing: {
-    SearchResultSummary: 'mb-3'
+    SearchResultSummary: vitalTypography.Eyebrow,
   },
 });
 

@@ -20,7 +20,11 @@ import { asSearchSuggestionsToken } from '../SearchSuggestionsClean';
 
 const Default = asSearchSuggestionsToken({
   Theme: {
-    Wrapper: as(vitalColor.BgPrimaryCard, 'border border-black'),
+    Wrapper: as(
+      vitalColor.BgPrimaryCard,
+      vitalColor.BorderSecondarySearch,
+      'border',
+    ),
   },
   Layout: {
     Wrapper: 'absolute top-full z-50 w-full',

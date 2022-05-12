@@ -23,7 +23,11 @@ import SearchIcon from '../assets/SearchIcon';
 
 const Desktop = asSearchBoxToken({
   Theme: {
-    SearchWrapper: as(vitalColor.BgPrimaryCard, 'border bg-white border-search-gray'),
+    SearchWrapper: as(
+      vitalColor.BgPrimaryCard,
+      vitalColor.BorderSecondarySearch,
+      'border'
+    ),
     SearchInput: 'focus:outline-none',
   },
   Layout: {
@@ -53,7 +57,7 @@ const Mobile = asSearchBoxToken({
 const Inline = asSearchBoxToken({
   ...Desktop,
   Theme: {
-    SearchInput: 'outline-none border border-search-gray',
+    SearchInput: as(vitalColor.BorderSecondarySearch, 'outline-none border'),
   },
   Layout: {
     SearchWrapper: 'flex relative lg:w-1/2',

@@ -13,19 +13,19 @@
  */
 
 // import { GTMDataLayerSearchResultHelmet } from '@bodiless/vital-gtm';
+import { vitalTypography } from '@bodiless/vital-elements';
 import {
   asSearchResultToken,
 } from '../SearchResultClean';
 
 const Default = asSearchResultToken({
   Theme: {
-    ItemH3: 'text-xl',
-    ItemAnchor: 'font-bold',
-    ItemParagraph: 'text-base',
+    ItemH3: vitalTypography.H3,
+    ItemParagraph: vitalTypography.Body,
   },
   Spacing: {
     ItemList: 'mb-9',
-    ItemH3: 'mb-5',
+    ItemH3: 'mb-3',
   },
 });
 
