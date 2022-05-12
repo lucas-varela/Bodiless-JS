@@ -11,3 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+module.exports = ({ componentName, packageName = 'unknown' }) => {
+  const requirePath = `./lib/shadow/${packageName}/${componentName}`;
+  try {
+    return require.resolve(requirePath);
+  } catch (e) {
+    return false;
+  }
+};
