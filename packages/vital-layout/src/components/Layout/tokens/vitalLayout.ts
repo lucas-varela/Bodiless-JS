@@ -19,7 +19,6 @@ import {
   flowIf,
   not,
 } from '@bodiless/fclasses';
-import { withSearchResult, withSearchMenuProvider } from '@bodiless/vital-search';
 import { asLayoutToken } from '../LayoutClean';
 import { vitalFooter } from '../../Footer';
 import { vitalHeader } from '../../Header';
@@ -70,15 +69,8 @@ const Default = asLayoutToken({
   },
 });
 
-const WithSearchContext = asLayoutToken({
-  Compose: {
-    _: as(withSearchMenuProvider, withSearchResult),
-  }
-});
-
 export default {
   Base,
   Default,
-  WithSearchContext,
   StyleGuide,
 };

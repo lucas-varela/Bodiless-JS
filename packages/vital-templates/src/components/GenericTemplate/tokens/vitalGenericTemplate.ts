@@ -64,13 +64,7 @@ const Default = asGenericTemplateToken({
   },
 });
 
-const WithSearchContext = asGenericTemplateToken({
-  Compose: {
-    PageWrapper: as(vitalLayout.WithSearchContext),
-  },
-});
-
-const Search = asGenericTemplateToken(Default, WithSearchContext, {
+const Search = asGenericTemplateToken(Default, {
   Components: {
     Breadcrumb: addProps({ children: 'Search', }),
     TopContent: replaceWith(Fragment),
@@ -81,6 +75,5 @@ const Search = asGenericTemplateToken(Default, WithSearchContext, {
 
 export default {
   Default,
-  WithSearchContext,
   Search,
 };

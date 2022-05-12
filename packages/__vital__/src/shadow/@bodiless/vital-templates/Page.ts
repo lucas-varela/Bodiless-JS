@@ -12,7 +12,25 @@
  * limitations under the License.
  */
 
-import __vital__Page from './__vital__Page';
-import __vital__PageStatic from './__vital__Page.bl-static';
+import {
+  on,
+} from '@bodiless/fclasses';
+import { asFluidToken } from '@bodiless/vital-elements';
+import {
+  vitalPageBase,
+  GenericTemplateClean,
+  vitalGenericTemplate,
+} from '@bodiless/vital-templates';
 
-export { __vital__Page, __vital__PageStatic };
+const Default = asFluidToken({
+  ...vitalPageBase.Default,
+  Components: {
+    _default: on(GenericTemplateClean)(vitalGenericTemplate.Default),
+    Search: on(GenericTemplateClean)(vitalGenericTemplate.Search),
+  },
+});
+
+export default {
+  ...vitalPageBase,
+  Default,
+};
