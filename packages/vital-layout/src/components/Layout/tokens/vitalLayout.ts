@@ -32,7 +32,7 @@ import { StyleGuide } from './StyleGuide';
   */
 const Base = asLayoutToken({
   Core: {
-    _: as(withBurgerMenuProvider, withSearchMenuProvider, withSearchResult),
+    _: withBurgerMenuProvider,
   },
   Components: {
     Helmet: vitalHelmet.Default,
@@ -70,8 +70,15 @@ const Default = asLayoutToken({
   },
 });
 
+const WithSearchContext = asLayoutToken({
+  Compose: {
+    _: as(withSearchMenuProvider, withSearchResult),
+  }
+});
+
 export default {
   Base,
   Default,
+  WithSearchContext,
   StyleGuide,
 };

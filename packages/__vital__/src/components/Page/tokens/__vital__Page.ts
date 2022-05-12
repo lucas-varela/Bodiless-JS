@@ -48,6 +48,7 @@ const Default = asFluidToken({
     _default: on(GenericTemplateClean)(
       flowIf(isHomePage)(as(NoBreadcrumbsGeneric)),
       flowIf(negate(isHomePage))(as(vitalGenericTemplate.Default)),
+      vitalGenericTemplate.WithSearchContext,
     ),
   },
 });
