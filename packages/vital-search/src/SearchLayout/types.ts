@@ -12,14 +12,13 @@
  * limitations under the License.
  */
 
-import { ComponentType } from 'react';
-import { DesignableComponentsProps } from '@bodiless/fclasses';
+import { ComponentOrTag, DesignableComponentsProps } from '@bodiless/fclasses';
 
 export type SearchLayoutComponents = {
-  Wrapper: ComponentType<any>;
-  Header: ComponentType<any>;
-  Result: ComponentType<any>;
-  Suggestions: ComponentType<any>;
+  Wrapper: ComponentOrTag<any>;
+  Header: ComponentOrTag<any>;
+  Result: ComponentOrTag<any>;
+  Suggestions: ComponentOrTag<any>;
 };
 
 export type SearchLayoutProps = DesignableComponentsProps<SearchLayoutComponents>;
