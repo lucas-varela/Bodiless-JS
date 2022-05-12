@@ -12,6 +12,6 @@
  * limitations under the License.
  */
 
-export { asSearchResultToken } from './SearchResultClean';
-export { default as vitalSearchResult } from './tokens';
-export { SearchResultComponents } from './types';
+export { default as SearchResultsClean, asSearchResultsToken } from './SearchResultsClean';
+export { default as vitalSearchResults } from './tokens';
+export { SearchResultsComponents } from './types';

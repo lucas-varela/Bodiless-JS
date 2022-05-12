@@ -15,9 +15,9 @@
 import { as } from '@bodiless/fclasses';
 import { vitalSearchResultItem } from '../../SearchResultItem';
 // import { GTMDataLayerSearchResultHelmet } from '@bodiless/vital-gtm';
-import { asSearchResultToken } from '../SearchResultClean';
+import { asSearchResultsToken } from '../SearchResultsClean';
 
-const Default = asSearchResultToken({
+const Default = asSearchResultsToken({
   Components: {
     SearchResultListItem: as(vitalSearchResultItem.Default),
     // @todo uncomment after implementing gtm package

@@ -13,6 +13,9 @@
  */
 
 import { asVitalTokenSpec } from '@bodiless/vital-elements';
-import { SearchResultComponents } from './types';
+import { SearchResult as SearchResultsClean } from '@bodiless/search';
+import { SearchResultsComponents } from './types';
 
-export const asSearchResultToken = asVitalTokenSpec<SearchResultComponents>();
+export const asSearchResultsToken = asVitalTokenSpec<SearchResultsComponents>();
+
+export default SearchResultsClean;

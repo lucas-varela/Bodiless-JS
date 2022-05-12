@@ -16,7 +16,7 @@ import { addProps, as } from '@bodiless/fclasses';
 import { vitalTypography } from '@bodiless/vital-elements';
 // import { withSearchDataLayer } from '@bodiless/vital-gtm';
 import { asSearchLayoutToken } from '../SearchLayoutClean';
-import { vitalSearchResult } from '../../SearchResult';
+import { vitalSearchResults } from '../../SearchResults';
 
 const DefaultSearchLayout = asSearchLayoutToken({
   // @todo uncomment after implementing gtm package
@@ -24,7 +24,7 @@ const DefaultSearchLayout = asSearchLayoutToken({
   //   Box: as(withSearchDataLayer),
   // },
   Components: {
-    Result: as(vitalSearchResult.Default),
+    Result: as(vitalSearchResults.Default),
   },
   Theme: {
     Header: vitalTypography.H1,

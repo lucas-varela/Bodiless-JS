@@ -14,7 +14,7 @@
 
 import { ComponentOrTag } from '@bodiless/fclasses';
 
-export type SearchResultComponents = {
+export type SearchResultsComponents = {
   SearchResultWrapper: ComponentOrTag<any>;
   SearchResultList: ComponentOrTag<any>;
   SearchResultListItem: ComponentOrTag<any>;

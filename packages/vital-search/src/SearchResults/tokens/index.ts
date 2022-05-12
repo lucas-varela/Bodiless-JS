@@ -12,6 +12,6 @@
  * limitations under the License.
  */
 
-import vitalSearchResult from './vitalSearchResult';
+import vitalSearchResults from './vitalSearchResults';
 
-export default vitalSearchResult;
+export default vitalSearchResults;
