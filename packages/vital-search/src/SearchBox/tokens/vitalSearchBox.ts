@@ -14,14 +14,12 @@
 
 import { withChild } from '@bodiless/core';
 import { as } from '@bodiless/fclasses';
-import {
-  withLgResponsiveVariants, asLgResponsiveToken, vitalColor, vitalSpacing
-} from '@bodiless/vital-elements';
+import { vitalColor, vitalSpacing } from '@bodiless/vital-elements';
 import { asSearchBoxToken } from '../SearchBoxClean';
 import { vitalSearchSuggestions } from '../../SearchSuggestions';
 import SearchIcon from '../assets/SearchIcon';
 
-const Desktop = asSearchBoxToken({
+const Default = asSearchBoxToken({
   Theme: {
     SearchWrapper: as(
       vitalColor.BgPrimaryCard,
@@ -46,7 +44,7 @@ const Desktop = asSearchBoxToken({
 });
 
 const Mobile = asSearchBoxToken({
-  ...Desktop,
+  ...Default,
   Spacing: {
     SearchWrapper: vitalSpacing.WithSiteMargin,
     SearchInput: 'p-2',
@@ -55,7 +53,7 @@ const Mobile = asSearchBoxToken({
 });
 
 const Inline = asSearchBoxToken({
-  ...Desktop,
+  ...Default,
   Theme: {
     SearchInput: as(vitalColor.BorderSecondarySearch, 'outline-none border'),
   },
@@ -68,21 +66,8 @@ const Inline = asSearchBoxToken({
   },
 });
 
-const ResponsiveSearchBox = asLgResponsiveToken({
-  Theme: {
-    _default: as(Mobile),
-    lg: as(Desktop),
-  },
-  Core: {
-    _: withLgResponsiveVariants,
-    _default: 'lg:hidden',
-    lg: 'hidden lg:flex',
-  },
-});
-
 export default {
-  Default: ResponsiveSearchBox,
-  Desktop,
+  Default,
   Mobile,
   Inline,
 };

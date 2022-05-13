@@ -13,4 +13,3 @@
  */
 
 export * from './tokenSpec';
-export * from './ResponsiveBreakpoints';
