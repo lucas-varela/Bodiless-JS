@@ -85,17 +85,10 @@ const useWrapperId = (element: HTMLElement | null) => {
   return createHash('md5').update(selector || '').digest('hex');
 };
 
-const withoutHydrationEditServerSide: WithoutHydrationFunction = (
-) => WrappedComponent => props => (
-  <>
-    <WrappedComponent {...props} />
-  </>
-);
-
 const withoutHydrationServerSide: WithoutHydrationFunction = (
   { WrapperElement = DEFAULT_WRAPPER } = {}
 ) => WrappedComponent => props => (
-  <WrapperElement data-no-hydrate style={{ display: 'contents' }}>
+  <WrapperElement data-no-hydrate style={isEditClientSide ? {} : { display: 'contents' }}>
     <WrappedComponent {...props} />
   </WrapperElement>
 );
@@ -197,7 +190,7 @@ const withoutHydrationClientSide: WithoutHydrationFunction = ({
  */
 export const withoutHydration: WithoutHydrationFunction = (options) => {
   if (isStaticClientSide) return withoutHydrationClientSide(options);
-  if (isEditClientSide) return withoutHydrationEditServerSide(options);
+
   return withoutHydrationServerSide(options);
 };
 
