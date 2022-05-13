@@ -14,4 +14,5 @@
 
 export { asSearchResultToken } from './SearchResultClean';
 export { default as vitalSearchResult } from './tokens';
+export { default as vitalSearchResultBase } from './tokens/vitalSearchResult';
 export { SearchResultComponents } from './types';

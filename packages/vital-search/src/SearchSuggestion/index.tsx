@@ -14,4 +14,5 @@
 
 export { asSearchSuggestionToken } from './SearchSuggestionClean';
 export { default as vitalSearchSuggestion } from './tokens';
+export { default as vitalSearchSuggestionBase } from './tokens/vitalSearchSuggestion';
 export { SearchSuggestionComponents } from './types';

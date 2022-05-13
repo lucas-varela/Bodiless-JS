@@ -14,4 +14,5 @@
 
 export { default as SearchLayoutClean, asSearchLayoutToken } from './SearchLayoutClean';
 export { default as vitalSearchLayout } from './tokens';
+export { default as vitalSearchLayoutBase } from './tokens/vitalSearchLayout';
 export { SearchLayoutComponents } from './types';
