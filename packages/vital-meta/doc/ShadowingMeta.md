@@ -2,7 +2,7 @@
 
 Define a Shadowing token collection as defined in [Shadow](../VitalElements/Shadow).
 
-File to shadow: `/packages/{my-package}/src/shadow/vital-meta/MetaHelmet.js`
+File to shadow: `/packages/{my-package}/src/shadow/@bodiless/vital-meta/MetaHelmet.js`
 
 The method for shadowing the SEO or Share component is dependent on if you want to add fields to the
 beginning or end of the form (prepend/append), or if you want to control the order of the fields
