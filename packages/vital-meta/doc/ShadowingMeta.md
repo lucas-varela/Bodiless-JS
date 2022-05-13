@@ -2,38 +2,44 @@
 
 Define a Shadowing token collection as defined in [Shadow](../VitalElements/Shadow).
 
-File to shadow: `/packages/PACKAGENAME/src/shadow/vital-meta/MetaHelmet.js`
+File to shadow: `/packages/{my-package}/src/shadow/vital-meta/MetaHelmet.js`
 
-Shadowing the SEO or Share component method is dependent of if you want to add fields to end of form or if you want to control the order of the fields (i.e. you want an additional field in the middle.)   
+The method for shadowing the SEO or Share component is dependent on if you want to add fields to the
+beginning or end of the form (prepend/append), or if you want to control the order of the fields
+(e.g., you want an additional field in the middle of the form).
 
-## Defining new meta data fields
+## Define New Meta Data Fields
 
-`asSimpleMetaFieldToken` is a token that you can compose a new field using `withMeta`
+`asSimpleMetaFieldToken` is a token that you can use to compose a new field using `withMeta`:
 
 ```js
 const WithMetaKeywords = asSimpleMetaFieldToken(withMeta({
-  // Meta Data name that will render i.e. <meta name="keywords" ... >
+  // Meta Data name that will render (i.e., <meta name="keywords" ... >).
   name: 'keywords',
-  // Label on Form
+  // Label on Form.
   label: 'Keywords'
-  // Placerholder value on form to give best practices to Content Editor,
+  // Placeholder value on form to give best practices to Content Editor.
   placeholder: 'No more than 10 keyword phrases',
 })('page-keywords')); // page-keywords is the node key that will be used.
 
 const WithTwitterDescription = asSimpleMetaFieldToken(withMeta({
-  // Meta Data name that will render i.e. <meta name="twitter:description" ... >  
+  // Meta Data name that will render (i.e., <meta name="twitter:description" ... >).
   name: 'twitter:description',
-  // Label on Form
+  // Label on Form.
   label: 'Twitter Description',
 })('twitter-description')); // twitter-description is the node key that will be used.
 ```
 
-## Method to shadow if you want to just add a new field at beginning or end:
+## Shadowing Method to Prepend/Append a New Field to the Form
 
-If you place the new field before vitalMetaHelmetBase.SEO.Compose, it will place the new field at end of the form.
-If you place the new field after vitalMetaHelmetBase.SEO.Compose, it will place the new field at beginning of the form.
+Use this method for shadowing if you want to add fields to the beginning or end of the form.
 
-```
+- If you place the new field _after_ `vitalMetaHelmetBase.SEO.Compose`, it will place the new field
+  at the _beginning_ of the form.
+- If you place the new field _before_ `vitalMetaHelmetBase.SEO.Compose`, it will place the new field
+  at the _end_ of the form.
+
+```js
 const SEO = asElementToken({
   ...vitalMetaHelmetBase.SEO,
   Compose: {
@@ -48,15 +54,15 @@ export default {
 };
 ```
 
+## Shadowing Method to Control the Order of the Fields
 
-## Method to shadow if want to control the order of the fields:
+All field tokens are exposed to the Site Builder if you wish to recompose the form and customize
+what fields your site will use for sharing.
 
-All field tokens are exposed to the Site Builder if you wish to recompose the form and customize what fields your site will use for sharing.
-
-TIP: As you compose the token you will to do it in reverse order of the order of fields on form as they appear.
+?> **Tip:** As you compose the token, you will to do it in reverse order of the order of the fields
+as they appear on the form.
 
 ```js
-
 const Share = asElementToken({
   ...vitalMetaHelmetBase.Share,
   Compose: {
