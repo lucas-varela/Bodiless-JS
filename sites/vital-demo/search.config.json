@@ -28,7 +28,8 @@
       ],
       "excludePaths": [
         "404*/**",
-        "search/**"
+        "search/**",
+        "styleguide/**"
       ],
       "indexFileName": "lunr.en.json",
       "indexUrlName": "",
