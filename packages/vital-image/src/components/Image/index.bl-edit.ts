@@ -1,3 +1,4 @@
+
 /**
  * Copyright © 2022 Johnson & Johnson
  *
@@ -12,4 +13,4 @@
  * limitations under the License.
  */
 
-export { default as vitalImage } from './tokens';
+ export { default as vitalImage } from './tokens';

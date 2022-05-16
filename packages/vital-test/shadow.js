@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 
+<<<<<<< HEAD:packages/vital-test/shadow.js
 module.exports = ({ componentName, packageName = 'unknown' }) => {
   const requirePath = `./lib/shadow/${packageName}/${componentName}`;
   try {
@@ -20,3 +21,6 @@ module.exports = ({ componentName, packageName = 'unknown' }) => {
     return false;
   }
 };
+=======
+export { default as vitalImage } from './tokens';
+>>>>>>> bodilessjs/main:packages/vital-image/src/components/Image/index.bl-edit.ts
