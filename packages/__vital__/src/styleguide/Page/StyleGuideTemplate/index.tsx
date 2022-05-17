@@ -24,6 +24,7 @@ import { Table } from './Table';
 import { List } from './List';
 import { _default } from './_default';
 import { Video } from './Video';
+import { Accordion } from './Accordion';
 
 export const __vital__StyleGuideTemplate = {
   _default,
@@ -39,4 +40,5 @@ export const __vital__StyleGuideTemplate = {
   Card,
   Table,
   List,
+  Accordion,
 };

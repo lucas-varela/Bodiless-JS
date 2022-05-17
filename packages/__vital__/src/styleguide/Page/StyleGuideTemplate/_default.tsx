@@ -48,6 +48,7 @@ const Examples = () => (
       <li><a href="./list">List</a></li>
       <li><a href="./card">Card</a></li>
       <li><a href="./table">Table</a></li>
+      <li><a href="./accordion">Accordion</a></li>
     </List>
     <Subtitle>Templates</Subtitle>
     <List>

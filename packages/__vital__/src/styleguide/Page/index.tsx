@@ -31,7 +31,8 @@ const {
   Card,
   Table,
   List,
-  _default
+  _default,
+  Accordion,
 } = __vital__StyleGuideTemplate;
 
 const Default = asFluidToken({
@@ -49,7 +50,8 @@ const Default = asFluidToken({
     Video,
     Card,
     Table,
-    List
+    List,
+    Accordion,
   },
 });
 
