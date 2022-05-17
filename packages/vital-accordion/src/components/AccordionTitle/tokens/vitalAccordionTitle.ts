@@ -3,7 +3,7 @@ import { withNodeKey } from '@bodiless/core';
 import { as, on } from '@bodiless/fclasses';
 import { EditorPlainClean, vitalEditorPlain } from '@bodiless/vital-editors';
 import { vitalColor, vitalFontSize, vitalTextDecoration } from '@bodiless/vital-elements';
-import { asAccordionTitleToken } from '../AccordionTitleClean';
+import { asAccordionTitleToken, withAccordionTitleHandler } from '../AccordionTitleClean';
 
 const Default = asAccordionTitleToken({
   Editors: {
@@ -15,11 +15,15 @@ const Default = asAccordionTitleToken({
   Schema: {
     Label: withNodeKey('title'),
   },
+  Behavior: {
+    Wrapper: withAccordionTitleHandler,
+  },
   Theme: {
     Wrapper: as(
       vitalFontSize.XL,
       vitalTextDecoration.Medium,
-      vitalColor.TextPrimaryHeaderCopy
+      vitalColor.TextPrimaryHeaderCopy,
+      'focus:outline',
     ),
   },
   Layout: {

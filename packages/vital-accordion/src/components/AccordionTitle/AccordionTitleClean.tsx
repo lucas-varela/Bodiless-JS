@@ -12,13 +12,15 @@
  * limitations under the License.
  */
 
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import {
   designable,
   Span,
   H4,
+  HOC,
 } from '@bodiless/fclasses';
 import { asVitalTokenSpec } from '@bodiless/vital-elements';
+import { useEditContext } from '@bodiless/core';
 import { AddIcon, RemoveIcon } from '../../assets';
 import { useAccordionContext } from '../Accordion';
 import {
@@ -64,6 +66,38 @@ const AccordionTitleBase: FC<AccordionTitleBaseProps> = ({
       </Icon>
     </Wrapper>
   );
+};
+
+/**
+ * An HOC that handles toggling the current accordion when pressing Enter or Space on the keyboard.
+ * On Edit, the keyboard won't toggle the accordion, but this will prevent the user from placing
+ * a carriage return (Enter) in the title, forcing it to be one line.
+ */
+export const withAccordionTitleHandler: HOC<any, any> = Component => props => {
+  const { isEdit } = useEditContext();
+  const { onKeyPress, ...rest } = props;
+  const { setExpanded } = useAccordionContext();
+
+  const handleKeyPress = useCallback((event: React.KeyboardEvent) => {
+    const toggleAccordion = () => {
+      event.preventDefault();
+      setExpanded((isExpanded) => !isExpanded);
+    };
+
+    switch (event.key) {
+      case 'Enter':
+        if (isEdit) event.preventDefault();
+        else toggleAccordion();
+        break;
+      case ' ':
+        if (!isEdit) toggleAccordion();
+        break;
+      default:
+        if (typeof onKeyPress === 'function') onKeyPress(event);
+    }
+  }, [isEdit, onKeyPress, setExpanded]);
+
+  return <Component {...rest} onKeyPress={handleKeyPress} />;
 };
 
 const AccordionTitleClean = designable(accordionTitleComponents, 'AccordionTitle')(AccordionTitleBase);
