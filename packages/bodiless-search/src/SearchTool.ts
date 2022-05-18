@@ -111,13 +111,20 @@ class SearchTool implements SearchToolInterface {
         .filter(filePath => fs.statSync(filePath).isFile())
         .forEach(filePath => {
           const mimeType = mime.getType(filePath);
+          const sourcePath = path.join(process.cwd(), source.path);
 
           switch (mimeType) {
             case 'text/html': {
               const html = fs.readFileSync(filePath).toString();
               const doc = this.htmlToDocument(html, selectors, excluders);
               const filePathClean = filePath.replace(/index.html$/i, '');
-              const link = path.relative(path.join(process.cwd(), source.path), filePathClean);
+              let link = path.relative(sourcePath, filePathClean);
+
+              if (!link.length) {
+                // An empty link means this file is the site index, since the file
+                // is located at the source root folder.
+                link = '/';
+              }
 
               if (!doc.title) {
                 doc.title = link;
