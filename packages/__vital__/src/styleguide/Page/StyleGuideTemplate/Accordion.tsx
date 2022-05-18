@@ -41,6 +41,12 @@ const ExpandedAccordion = as(
   withNodeKey('expanded'),
 )(AccordionClean);
 
+const FAQAccordion = as(
+  vitalAccordion.Default,
+  vitalAccordion.WithFAQSchema,
+  withNodeKey('faq'),
+)(AccordionClean);
+
 const Examples = () => (
   <>
     <C.Example>
@@ -50,6 +56,10 @@ const Examples = () => (
     <C.Example>
       <C.H3>Initially expanded</C.H3>
       <ExpandedAccordion />
+    </C.Example>
+    <C.Example>
+      <C.H3>With FAQ schema</C.H3>
+      <FAQAccordion />
     </C.Example>
   </>
 );

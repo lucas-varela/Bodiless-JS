@@ -1,6 +1,7 @@
 import { withPlaceholder } from '@bodiless/components';
 import { withNodeKey } from '@bodiless/core';
 import { as, on } from '@bodiless/fclasses';
+import { asSchemaSource } from '@bodiless/schema-org';
 import { EditorPlainClean, vitalEditorPlain } from '@bodiless/vital-editors';
 import { vitalColor, vitalFontSize, vitalTextDecoration } from '@bodiless/vital-elements';
 import { asAccordionTitleToken, withAccordionTitleHandler } from '../AccordionTitleClean';
@@ -34,6 +35,13 @@ const Default = asAccordionTitleToken({
   }
 });
 
+const WithFAQSchema = asAccordionTitleToken({
+  SEO: {
+    Wrapper: asSchemaSource('accordion-question'),
+  }
+});
+
 export default {
   Default,
+  WithFAQSchema,
 };

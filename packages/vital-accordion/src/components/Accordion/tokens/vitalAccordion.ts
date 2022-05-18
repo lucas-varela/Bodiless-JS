@@ -1,5 +1,6 @@
 import { withNode, withNodeKey } from '@bodiless/core';
 import { addProps, as } from '@bodiless/fclasses';
+import { withFAQSchema } from '@bodiless/schema-org';
 import { vitalColor } from '@bodiless/vital-elements';
 import { vitalAccordionBody } from '../../AccordionBody';
 import { vitalAccordionTitle } from '../../AccordionTitle';
@@ -27,7 +28,16 @@ const WithInitiallyExpanded = asAccordionToken({
   }
 });
 
+const WithFAQSchema = asAccordionToken({
+  SEO: {
+    Wrapper: withFAQSchema,
+    Title: vitalAccordionTitle.WithFAQSchema,
+    Body: vitalAccordionBody.WithFAQSchema,
+  },
+});
+
 export default {
   Default,
   WithInitiallyExpanded,
+  WithFAQSchema,
 };
