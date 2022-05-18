@@ -1,5 +1,5 @@
 import { withNode, withNodeKey } from '@bodiless/core';
-import { as } from '@bodiless/fclasses';
+import { addProps, as } from '@bodiless/fclasses';
 import { vitalColor } from '@bodiless/vital-elements';
 import { vitalAccordionBody } from '../../AccordionBody';
 import { vitalAccordionTitle } from '../../AccordionTitle';
@@ -21,6 +21,13 @@ const Default = asAccordionToken({
   }
 });
 
+const WithInitiallyExpanded = asAccordionToken({
+  Behavior: {
+    _: addProps({ expanded: true })
+  }
+});
+
 export default {
   Default,
+  WithInitiallyExpanded,
 };

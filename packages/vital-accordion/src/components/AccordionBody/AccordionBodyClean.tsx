@@ -38,7 +38,6 @@ const AccordionBodyBase: FC<AccordionBodyBaseProps> = ({
       role="region"
       aria-hidden={!isExpanded ? 'true' : 'false'}
       aria-labelledby={meta.accordionTitleId}
-      tabIndex={!isExpanded ? -1 : 0}
       {...rest}
     >
       <Content>

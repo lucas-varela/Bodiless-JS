@@ -18,21 +18,39 @@ import {
   as,
   replaceWith,
   H3,
+  Section,
 } from '@bodiless/fclasses';
 import { asStyleGuideTemplateToken, vitalStyleGuideTemplate } from '@bodiless/vital-templates';
 import { AccordionClean, vitalAccordion } from '@bodiless/vital-accordion';
 import { vitalTypography } from '@bodiless/vital-elements';
+import { withNodeKey } from '@bodiless/core';
 
 const C = {
   H3: as(vitalTypography.H3)(H3),
+  Example: as('bl-bg-gray-200 bl-p-4 bl-mb-12')(Section),
 };
 
-const DefaultAccordion = as(vitalAccordion.Default)(AccordionClean);
+const DefaultAccordion = as(
+  vitalAccordion.Default,
+  withNodeKey('default'),
+)(AccordionClean);
+
+const ExpandedAccordion = as(
+  vitalAccordion.Default,
+  vitalAccordion.WithInitiallyExpanded,
+  withNodeKey('expanded'),
+)(AccordionClean);
 
 const Examples = () => (
   <>
-    <C.H3>Default</C.H3>
-    <DefaultAccordion />
+    <C.Example>
+      <C.H3>Default</C.H3>
+      <DefaultAccordion />
+    </C.Example>
+    <C.Example>
+      <C.H3>Initially expanded</C.H3>
+      <ExpandedAccordion />
+    </C.Example>
   </>
 );
 
