@@ -1,5 +1,5 @@
 import { withNode, withNodeKey } from '@bodiless/core';
-import { addProps, as } from '@bodiless/fclasses';
+import { addProps, as, flowHoc } from '@bodiless/fclasses';
 import { withFAQSchema } from '@bodiless/schema-org';
 import { vitalColor } from '@bodiless/vital-elements';
 import { vitalAccordionBody } from '../../AccordionBody';
@@ -19,13 +19,15 @@ const Default = asAccordionToken({
       withNode,
       withNodeKey('accordion'),
     ),
-  }
+  },
+  Meta: flowHoc.meta.term('Type')('Accordion'),
 });
 
 const WithInitiallyExpanded = asAccordionToken({
   Behavior: {
     _: addProps({ expanded: true })
-  }
+  },
+  Meta: flowHoc.meta.term('Behavior')('Initially Expanded'),
 });
 
 const WithFAQSchema = asAccordionToken({
@@ -34,6 +36,7 @@ const WithFAQSchema = asAccordionToken({
     Title: vitalAccordionTitle.WithFAQSchema,
     Body: vitalAccordionBody.WithFAQSchema,
   },
+  Meta: flowHoc.meta.term('Schema')('With FAQ Schema'),
 });
 
 export default {
