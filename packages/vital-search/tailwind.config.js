@@ -19,10 +19,8 @@ const twConfig = {
     './lib/**/!(*.d).{ts,js,jsx,tsx}',
   ],
   variants: {
-    borderWidth: ['hover'],
     extend: {
-      display: ['direction'],
-      margin: ['direction'],
+      backgroundColor: ['even'],
     }
   },
 };

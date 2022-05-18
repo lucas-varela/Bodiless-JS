@@ -28,7 +28,7 @@ const Default = asSearchSuggestionToken({
     Count: 'text-right',
   },
   Spacing: {
-    Wrapper: 'px-2',
+    Wrapper: 'p-2',
   },
 });
 

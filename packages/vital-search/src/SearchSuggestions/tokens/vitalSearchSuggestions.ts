@@ -25,12 +25,10 @@ const Default = asSearchSuggestionsToken({
       vitalColor.BorderSecondarySearch,
       'border',
     ),
+    ItemWrapper: 'even:bl-bg-gray-200 hover:bl-bg-gray-300',
   },
   Layout: {
     Wrapper: 'absolute top-full z-50 w-full',
-  },
-  Spacing: {
-    ItemWrapper: 'my-2',
   },
   Components: {
     Item: as(vitalSearchSuggestion.Default),
