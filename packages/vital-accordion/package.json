@@ -17,6 +17,9 @@
     "type": "git",
     "url": "https://github.com/johnsonandjohnson/bodiless-js.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p ./tsconfig.json && npm run copy && npm run build:api-doc",
     "build:watch": "npm run build -- --watch",
@@ -25,9 +28,6 @@
     "clean": "rimraf \"lib/*\" && rimraf tsconfig.tsbuildinfo",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx ./src"
   },
-  "peerDependencies": {
-    "react": "^17.0.2"
-  },
   "dependencies": {
     "@bodiless/components": "^1.0.0-beta.18",
     "@bodiless/core": "^1.0.0-beta.18",
@@ -35,8 +35,9 @@
     "@bodiless/schema-org": "^1.0.0-beta.18",
     "@bodiless/vital-editors": "^1.0.0-beta.18",
     "@bodiless/vital-elements": "^1.0.0-beta.18",
-    "@bodiless/vital-layout": "^1.0.0-beta.18",
-    "@bodiless/vital-link": "^1.0.0-beta.18",
     "lodash": "^4.17.19"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
   }
 }
