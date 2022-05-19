@@ -32,7 +32,7 @@ const Default = asAccordionBodyToken(Base, {
 
 const WithFAQSchema = asAccordionBodyToken({
   SEO: {
-    Content: asSchemaSource('accordion-answer'),
+    Content: asSchemaSource('faq-answer'),
   }
 });
 

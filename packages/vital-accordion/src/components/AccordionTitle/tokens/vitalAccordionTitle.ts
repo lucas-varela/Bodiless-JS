@@ -40,7 +40,7 @@ const Default = asAccordionTitleToken(Base, {
 
 const WithFAQSchema = asAccordionTitleToken({
   SEO: {
-    Wrapper: asSchemaSource('accordion-question'),
+    Wrapper: asSchemaSource('faq-question'),
   }
 });
 
