@@ -23,6 +23,14 @@ const twConfig = {
       backgroundColor: ['even'],
     }
   },
+  theme: {
+    extend: {
+      colors: {
+        'search-suggestion-row': '#E5E7EB',
+        'search-suggestion-hover': '#D1D5DB'
+      },
+    },
+  },
 };
 
 module.exports = getPackageTailwindConfig({
