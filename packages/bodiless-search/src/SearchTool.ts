@@ -118,16 +118,13 @@ class SearchTool implements SearchToolInterface {
               const html = fs.readFileSync(filePath).toString();
               const doc = this.htmlToDocument(html, selectors, excluders);
               const filePathClean = filePath.replace(/index.html$/i, '');
-              let link = path.relative(sourcePath, filePathClean);
-
-              if (!link.length) {
-                // An empty link means this file is the site index, since the file
-                // is located at the source root folder.
-                link = '/';
-              }
+              const link = path.relative(sourcePath, filePathClean);
 
               if (!doc.title) {
-                doc.title = link;
+                // An empty link means this file is the site home page, since the file
+                // is located at the source root folder. If the home page has no title,
+                // we use '/' as a fallback.
+                doc.title = link.length ? link : '/';
               }
 
               documents.push({
