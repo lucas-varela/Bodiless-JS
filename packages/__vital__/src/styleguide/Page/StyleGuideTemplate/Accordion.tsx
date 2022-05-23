@@ -22,12 +22,12 @@ import {
 } from '@bodiless/fclasses';
 import { asStyleGuideTemplateToken, vitalStyleGuideTemplate } from '@bodiless/vital-templates';
 import { AccordionClean, vitalAccordion } from '@bodiless/vital-accordion';
-import { vitalTypography } from '@bodiless/vital-elements';
+import { vitalTypography, vitalColor } from '@bodiless/vital-elements';
 import { withNodeKey } from '@bodiless/core';
 
 const C = {
   H3: as(vitalTypography.H3)(H3),
-  Example: as('bl-bg-gray-200 bl-p-4 bl-mb-12')(Section),
+  Example: as(vitalColor.BgPrimaryPage, 'p-4 mb-12')(Section),
 };
 
 const DefaultAccordion = as(

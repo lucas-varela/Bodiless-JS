@@ -38,7 +38,9 @@ export type AccordionContextInterface = {
 
 export type AccordionComponents = {
   Wrapper: ComponentOrTag<any>,
+  TitleWrapper: ComponentOrTag<any>,
   Title: ComponentOrTag<any>,
+  BodyWrapper: ComponentOrTag<any>,
   Body: ComponentOrTag<any>,
 };
 

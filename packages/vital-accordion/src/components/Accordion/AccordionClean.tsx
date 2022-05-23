@@ -14,7 +14,7 @@
 
 import React, { FC, HTMLProps, useMemo } from 'react';
 import uniqueId from 'lodash/uniqueId';
-import { designable, Div } from '@bodiless/fclasses';
+import { designable, Div, Fragment } from '@bodiless/fclasses';
 import { asVitalTokenSpec } from '@bodiless/vital-elements';
 import { AccordionTitleClean } from '../AccordionTitle';
 import { AccordionBodyClean } from '../AccordionBody';
@@ -23,7 +23,9 @@ import { AccordionComponents, AccordionBaseProps, AccordionProviderProps } from 
 
 const AccordionComponentsStart: AccordionComponents = {
   Wrapper: Div,
+  TitleWrapper: Fragment,
   Title: AccordionTitleClean,
+  BodyWrapper: Fragment,
   Body: AccordionBodyClean,
 };
 
@@ -41,7 +43,9 @@ const AccordionBase: FC<AccordionBaseProps & AccordionProviderProps & HTMLProps<
   } = props;
   const {
     Wrapper,
+    TitleWrapper,
     Title,
+    BodyWrapper,
     Body,
   } = components;
   // Generates accordion ids and prepares meta information to context
@@ -62,8 +66,12 @@ const AccordionBase: FC<AccordionBaseProps & AccordionProviderProps & HTMLProps<
       meta={accordionMeta}
     >
       <Wrapper {...rest} id={accordionId}>
-        <Title />
-        <Body />
+        <TitleWrapper>
+          <Title />
+        </TitleWrapper>
+        <BodyWrapper>
+          <Body />
+        </BodyWrapper>
       </Wrapper>
     </AccordionProvider>
   );
