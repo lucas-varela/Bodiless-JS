@@ -32,6 +32,9 @@ const SearchLayoutBase: FC<SearchLayoutProps> = ({
 }) => (
   <C.Wrapper {...rest}>
     <C.Header {...rest} />
+    <C.Header {...rest} />
+    <C.Header {...rest} />
+    <C.Header {...rest} />
     <C.Result {...rest} />
     <C.Suggestions {...rest} />
   </C.Wrapper>
