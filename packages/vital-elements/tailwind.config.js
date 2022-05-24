@@ -59,7 +59,9 @@ const twConfig = {
         'table-interactive': '#f3f4f6',
         separator: '#666666',
         search: '#888888',
+        'button-selected': '#000041',
       },
+      white: '#FFFFFF',
     },
     extend: {
       fontFamily: {
