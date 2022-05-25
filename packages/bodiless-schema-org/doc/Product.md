@@ -1,43 +1,8 @@
-# Bodiless Schema.org
-
-Provides a Schema component to support adding SEO schema information to content, as well as
-helper functions to get and return page/content data.
-
-The base package currently supports the following schemas:
-
-- BreadcrumbList
-- FAQ
-- [Product](#product-schema)
-- [Video](#video-schema)
-
-?> **Note:** Information regarding schemas for structured data can be found at
-[Schema.org](https://schema.org/).
-
-## Usage
-
-As a Site Builder, you will want to set the schema source for every schema field you wish to render,
-using `asSchemaSource`. For instance, in the [Product Schema](#product-schema) section, you will see
-the following example:
-
-```tsx
-import { asSchemaSource } from '@bodiless/schema-org';
-
-  SEO: {
-    TitleRow: withDesign({
-      PageTitle: asSchemaSource('product-name'),
-    }),
-  },
-```
-
-Here, the page title is being used as the product name, but, on your site, the product name may
-exist elsewhere, and you will have to source it from there.
-
-As another example, if you wanted to use `meta:description` as the value of your `description`
-schema field, you would have to define that as the source.
-
-### Product Schema
+# Product Schema
 
 JSON-LD following the Product schema is automatically generated for Product Pages.
+
+## Site Builder Details
 
 01. Get data in the component file by setting the schema key desired; for example, to get the
     product name:
@@ -118,7 +83,7 @@ For further information regarding the definition of the Product and Offer data t
     Offer](https://developers.google.com/search/docs/advanced/structured-data/product#offer) |
     Google Search Central
 
-#### Product Schema Keys
+### Product Schema Keys
 
 - `product-name`: The name of the product.
 - `product-image`: The image of the product.
