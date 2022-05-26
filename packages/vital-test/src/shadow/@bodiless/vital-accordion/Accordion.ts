@@ -15,11 +15,9 @@
 import { vitalAccordionBase, asAccordionToken } from '@bodiless/vital-accordion';
 import { addProps } from '@bodiless/fclasses';
 
-const Default = asAccordionToken({
-  ...vitalAccordionBase.Default,
-  Compose: {
-    ...vitalAccordionBase.Default.Compose,
-    WithShadowedBy: addProps({ 'data-shadowed-by': '__vital__:Accordion' }),
+const Default = asAccordionToken(vitalAccordionBase.Default, {
+  Behavior: {
+    Wrapper: addProps({ 'data-shadowed-by': 'vital:Accordion' }),
   },
 });
 
