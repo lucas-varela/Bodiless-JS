@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { addProps, as } from '@bodiless/fclasses';
+import { addClasses, addProps, as } from '@bodiless/fclasses';
 import { vitalTypography } from '@bodiless/vital-elements';
 // import { withSearchDataLayer } from '@bodiless/vital-gtm';
 import { asSearchLayoutToken } from '../SearchLayoutClean';
@@ -30,7 +30,10 @@ const DefaultSearchLayout = asSearchLayoutToken({
     Header: vitalTypography.H1,
   },
   Content: {
-    Header: addProps({ children: 'Search Results' }),
+    Header: as(
+      addProps({ children: 'Search Results' }),
+      addClasses('bg-search-suggestion-row even:bg-search-suggestion-hover'),
+    ),
   },
 });
 
